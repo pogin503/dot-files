@@ -12,7 +12,12 @@ alias emacs="emacsclient -a emacs"
 alias nw='emacsclient --alternate-editor="" -t'
 alias cl='emacsclient --alternate-editor="" -nc'
 alias emnw='emacs -nw'
+alias emt='emacsclient -t -a ""'
+alias emc='emacsclient -c -a ""'
 
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # alias l='ls'
 alias ls='ls --color=auto'
@@ -23,12 +28,24 @@ alias lx='ll -BX'                   # sort by extension
 alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
 alias lm='la | more'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias cd..='cd ..'
 
 
 # usefuln
 alias grep='grep --color=auto'
 alias mkdir='mkdir -p -v'
 #alias ..='cd ..'
+
+# Command history
+export HISTCONTROL=ignoredups  # (ignoreboth -> ignoredups and ignorespace)
+
+HISTIGNORE='?:??:rm *:\\rm *:r \\m *'
+
+# append to the history file, don't overwrite it
+shopt -s histappend
 
 # privileged access
 if [ $UID -ne 0 ]; then
