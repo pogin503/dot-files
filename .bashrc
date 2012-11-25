@@ -139,3 +139,17 @@ export smoothblue="\[\033[0;38;5;111m\]"
 export iceblue="\[\033[0;38;5;45m\]"
 export turqoise="\[\033[0;38;5;50m\]"
 export smoothgreen="\[\033[0;38;5;42m\]"
+
+# git alias
+alias ga='git add'
+alias gal='git add --all'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gs='git status'
+alias gps='git push'
+alias gpl='git pull'
+alias gch='git checkout'
+alias gb='git branch'
+alias gf='git diff'
+alias gm='git merge'
+alias gl='git log'
