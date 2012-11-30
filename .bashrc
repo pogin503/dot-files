@@ -120,9 +120,6 @@ extract() {
     return $e
 }
 
-PATH=$PATH:~/.cabal/bin
-export PATH
-
 # color setting
 export black="\[\033[0;38;5;0m\]"
 export red="\[\033[0;38;5;1m\]"
@@ -153,3 +150,5 @@ alias gb='git branch'
 alias gf='git diff'
 alias gm='git merge'
 alias gl='git log'
+
+alias gsb='git status -sb'
