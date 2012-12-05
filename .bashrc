@@ -4,7 +4,7 @@
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-#PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]\\n$ '
 
 # emacs
 # @see http://d.hatena.ne.jp/h_iijima/20110401/1301620545
@@ -152,3 +152,8 @@ alias gm='git merge'
 alias gl='git log'
 
 alias gsb='git status -sb'
+
+# http://www.reddit.com/r/commandline/comments/12g76v/how_to_automatically_source_zshrc_in_all_open/
+trap "source ~/.bashrc" USR1
+alias source-bashrc-all="pkill -usr1 bash"
+
