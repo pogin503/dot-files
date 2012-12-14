@@ -9,11 +9,11 @@ fi
 # emacs
 # @see http://d.hatena.ne.jp/h_iijima/20110401/1301620545
 alias emacs="emacsclient -a emacs"
-alias nw='emacsclient --alternate-editor="" -t'
-alias cl='emacsclient --alternate-editor="" -nc'
-alias emnw='emacs -nw'
-alias emt='emacsclient -t -a ""'
-alias emc='emacsclient -c -a ""'
+# alias nw='emacsclient --alternate-editor="" -t'
+# alias cl='emacsclient --alternate-editor="" -nc'
+# alias emnw='emacs -nw'
+# alias emt='emacsclient -t -a ""'
+# alias emc='emacsclient -c -a ""'
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -157,3 +157,15 @@ alias gsb='git status -sb'
 trap "source ~/.bashrc" USR1
 alias source-bashrc-all="pkill -usr1 bash"
 
+source ~/git-completion.bash
+
+# http://dharry.hatenablog.com/entry/2012/09/17/031850
+backup(){ cp -pr $1{,.`date +%Y-%m-%dT%H:%M:%S`}; }
+
+alias cpuinfo="awk  -F: ' {if(\$1 ~/^model name/){ model[\$2]=+1}} END{for(k in model) { print model[k], k}}' /proc/cpuinfo"
+alias rmdir_r='find . -depth -type d | xargs rmdir 2> /dev/null'
+# alias rmdir_r='find . -type d -empty -delete'
+alias rdom='echo `od -vAn -N4 -tu4 < /dev/urandom`'
+
+# ex. $ pscan 192.168.0.0/24
+pscan(){ nmap -nsP "$1" | awk '{if($1=="Host") print $2 }'; }
