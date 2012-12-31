@@ -4,7 +4,7 @@
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-#PS1='[\u@\h \W]\\n$ '
+PS1='[\u@\h \W]\n$ '
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
