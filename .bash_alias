@@ -6,7 +6,7 @@
 # alias emnw='emacs -nw'
 # alias emt='emacsclient -t -a ""'
 # alias emc='emacsclient -c -a ""'
-
+alias e='emacsclient'
 
 # alias l='ls'
 # alias ls='ls --color=auto'
@@ -80,6 +80,12 @@ alias gl='git log'
 
 alias gsb='git status -sb'
 
+git config --global alias.co checkout
+git config --global alias.st 'status'
+git config --global alias.ci 'commit -a'
+git config --global alias.di 'diff'
+git config --global alias.br 'branch'
+
 # http://www.reddit.com/r/commandline/comments/12g76v/how_to_automatically_source_zshrc_in_all_open/
 trap "source ~/.bashrc" USR1
 alias source-bashrc-all="pkill -usr1 bash"
@@ -88,3 +94,18 @@ alias cpuinfo="awk  -F: ' {if(\$1 ~/^model name/){ model[\$2]=+1}} END{for(k in 
 alias rmdir_r='find . -depth -type d | xargs rmdir 2> /dev/null'
 # alias rmdir_r='find . -type d -empty -delete'
 alias rdom='echo `od -vAn -N4 -tu4 < /dev/urandom`'
+
+alias updatedb='sudo /usr/libexec/locate.updatedb'
+alias workmode='sudo workmode'
+
+alias sshsak='ssh -p 61203 pogin@www18244ue.sakura.ne.jp'
+alias moshsak='mosh --ssh="ssh -p 61203" pogin@www18244ue.sakura.ne.jp'
+
+alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+
+if [[ `uname` = "Darwin" ]];then
+    alias firefox="open -a Firefox"
+    alias safari="open -a Safari"
+fi
+
+alias yesod-deploy='cabal-dev install && yesod --dev devel'

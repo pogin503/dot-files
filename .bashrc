@@ -48,7 +48,7 @@ shopt -s histappend
 #         esac
 
 #         command $c "$i"
-#         e=$?З
+#         e=$?
 #     done
 
 #     return $e
@@ -63,3 +63,13 @@ backup(){ cp -pr $1{,.`date +%Y-%m-%dT%H:%M:%S`}; }
 pscan(){ nmap -nsP "$1" | awk '{if($1=="Host") print $2 }'; }
 
 source ./.bash_alias
+
+export EDITOR='emacsclient'
+
+if [ -f /usr/share/git-core/git-completion.bash ]; then
+  source /usr/share/git-core/git-completion.bash
+fi
+function show-hide-file (){
+    defaults write com.apple.finder AppleShowAllFiles -boolean $1 && killall Finder
+}
+

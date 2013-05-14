@@ -1,7 +1,41 @@
-* 　#全てのファイルを除外
-*.　#全ての隠しファイルを除外
-!.bashrc　#　.bashrcを除外しない
-!.tmux.conf
-!.zshrc
-!.gdbinit
-!.README.md
+### /Users/OginoRyo/.gitignore-boilerplates/Global/Emacs.gitignore
+
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+
+### /Users/OginoRyo/.gitignore-boilerplates/Global/vim.gitignore
+
+.*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+
+### /Users/OginoRyo/.gitignore-boilerplates/Global/Linux.gitignore
+
+.*
+!.gitignore
+*~
+
+
+### /Users/OginoRyo/.gitignore-boilerplates/Global/Tags.gitignore
+
+# Ignore tags created by etags and ctags
+TAGS
+!TAGS/
+tags
+!tags/
+
+
