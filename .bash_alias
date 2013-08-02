@@ -101,9 +101,8 @@ alias workmode='sudo workmode'
 alias sshsak='ssh -p 61203 pogin@www18244ue.sakura.ne.jp'
 alias moshsak='mosh --ssh="ssh -p 61203" pogin@www18244ue.sakura.ne.jp'
 
-alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
-
 if [[ `uname` = "Darwin" ]];then
+    alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
     alias chrome='open -a "Google Chrome"'
     alias firefox="open -a Firefox"
     alias safari="open -a Safari"
