@@ -104,8 +104,13 @@ alias moshsak='mosh --ssh="ssh -p 61203" pogin@www18244ue.sakura.ne.jp'
 alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
 
 if [[ `uname` = "Darwin" ]];then
+    alias chrome='open -a "Google Chrome"'
     alias firefox="open -a Firefox"
     alias safari="open -a Safari"
+    alias itunes="open -a iTunes"
 fi
 
 alias yesod-deploy='cabal-dev install && yesod --dev devel'
+
+mdcd ()	{ mkdir -p "$@" && cd "$*[-1]" }
+mdpu ()	{ mkdir -p "$@" && pushd "$*[-1]" }

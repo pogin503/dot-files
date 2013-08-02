@@ -38,14 +38,17 @@ ZSH_THEME="my-arrow"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby brew autojump cake vagrant rails)
+plugins=(git ruby gem brew autojump cake vagrant rails knife cabal node npm)
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.bash_alias
 # Customize to your needs...
-export PATH=/Users/OginoRyo/.rbenv/shims:/usr/local/share/npm/bin:~/.cabal/bin:/Users/OginoRyo/Library/Haskell/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$HOME/Library/Haskell/bin
+export PATH=/Users/OginoRyo/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/share/npm/bin:~/.cabal/bin:/$HOME/Library/Haskell/bin:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:
 fpath=($HOME/repo/zsh-completions $fpath)
+
+source ~/.bash_alias
+
+source ~/set_typescript.sh
 
 local RED=$'%{\e[0;31m%}'
 local GREEN=$'%{\e[0;32m%}'
@@ -55,3 +58,21 @@ local PINK=$'%{\e[0;35m%}'
 local CYAN=$'%{\e[0;36m%}'
 local GREY=$'%{\e[1;30m%}'
 local NORMAL=$'%{\e[0m%}'
+
+## 実行したプロセスの消費時間が3秒以上かかったら
+## 自動的に消費時間の統計情報を表示する。
+REPORTTIME=3
+
+## 全てのユーザのログイン・ログアウトを監視する。
+watch="all"
+## ログイン時にはすぐに表示する。
+log
+
+## ^Dでログアウトしないようにする。
+setopt ignore_eof
+
+# for rbenv
+which rbenv > /dev/null 2>&1
+if [ $? -eq 0 ]; then # コマンドが存在すれば
+    eval "$(rbenv init -)"
+fi

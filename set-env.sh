@@ -8,5 +8,5 @@ git config --global alias.br 'branch'
 
 for PROGRAM in .bashrc .bash_alias .gdbinit .tmux.conf .zshrc
 do
-    rsync -av `pwd` $HOME/$PROGRAM
+    rsync -av ~/repo/dot-files $HOME/$PROGRAM
 done
