@@ -23,13 +23,6 @@ Session.vim
 *~
 
 
-### /Users/OginoRyo/.gitignore-boilerplates/Global/Linux.gitignore
-
-.*
-!.gitignore
-*~
-
-
 ### /Users/OginoRyo/.gitignore-boilerplates/Global/Tags.gitignore
 
 # Ignore tags created by etags and ctags
