@@ -1,24 +1,40 @@
 tap phinze/homebrew-cask || true
 tap homebrew/versions || true
-tap homebrew/dupes 
+tap homebrew/dupes
 update || true
 
 install brew-cask || true
 install ag || true
+install percol || true
 install gibo || true
 install hub || true
+install tig || true
 install zsh || true
 install tree || true
 install tmux || true
 install reattach-to-user-namespace || true
 
-install ruby-build || true
+#tool
+install autogen || true
+install automake || true
+install autoconf || true
+install ctags || true
+
+# ruby
 install rbenv || true
+install ruby-build || true
+
+# go
+install go || ture
 
 # install haskell-platform || true
 install nginx || true
 install wget || true
 install curl || true
 
+# clojure
 install lein || true
 install rlwrap || true
+
+# js
+install npm || true
