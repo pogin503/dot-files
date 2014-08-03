@@ -1,43 +1,71 @@
-tap phinze/homebrew-cask || true
-tap homebrew/versions || true
+# Usage: `brew bundle Brewfile`
+
+# latest
+update
+
+# update all
+upgrade
+
+tap homebrew/binary
+tap caskroom/cask
 tap homebrew/dupes
-update || true
+tap homebrew/science
+tap homebrew/versions
+tap jimbojsb/launchrocket
 
-install brew-cask || true
-install ag || true
-install percol || true
-install gibo || true
-install hub || true
-install tig || true
-install zsh || true
-install tree || true
-install tmux || true
-install reattach-to-user-namespace || true
+# for X
+# cask install xquartz
 
-#tool
-install autogen || true
-install automake || true
-install autoconf || true
-install ctags || true
+install ag
+install brew-cask
+install curl
+install gibo
+install hub
+install reattach-to-user-namespace
+install tig
+install tmux
+install tree
+install wget
+install zsh
+install zsh-completions
+install nkf
+install trash
+install jenkins
+
+# for ricty
+tap sanemat/font
+install ricty
+
+# tool
+install autogen
+install automake
+install autoconf
+install ctags
+install cmake
+install libtool
+install readline
+
+# Image
+install imagemagick
 
 # ruby
-install rbenv || true
-install ruby-build || true
+install rbenv
+install ruby-build
+install heroku-toolbelt
 
 # go
-install go || ture
+install go
 
-# install haskell-platform || true
-install nginx || true
-install wget || true
-install curl || true
+# install haskell-platform
+
+install nginx
 
 # clojure
-install lein || true
-install rlwrap || true
+install leiningen
+install rlwrap
 
 # js
-install npm || true
+install npm
 
 cask update
 cask install alfred
