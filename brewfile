@@ -38,3 +38,16 @@ install rlwrap || true
 
 # js
 install npm || true
+
+cask update
+cask install alfred
+cask install dropbox
+cask install evernote
+cask install firefox
+cask install github
+cask install iterm2
+cask install kobit
+cask install skype
+cask install slack
+cask install vagrant
+cask install virtualbox
