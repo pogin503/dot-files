@@ -6,13 +6,15 @@
 # alias emnw='emacs -nw'
 # alias emt='emacsclient -t -a ""'
 # alias emc='emacsclient -c -a ""'
-alias e='emacsclient'
+alias e='emacsclient -n'
+# alias emacs='emacsclient -a "" '
+# export EDITOR=vim
 
 # alias l='ls'
 # alias ls='ls --color=auto'
 alias lr='ls -R'                    # recursive ls
 alias ll='ls -l'
-alias la='ll -lA'
+alias la='ll -lAB'
 alias lx='ll -BX'                   # sort by extension
 alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
@@ -98,18 +100,19 @@ alias rdom='echo `od -vAn -N4 -tu4 < /dev/urandom`'
 alias updatedb='sudo /usr/libexec/locate.updatedb'
 alias workmode='sudo workmode'
 
-alias sshsak='ssh -p 61203 pogin@www18244ue.sakura.ne.jp'
-alias moshsak='mosh --ssh="ssh -p 61203" pogin@www18244ue.sakura.ne.jp'
-
-if [[ `uname` = "Darwin" ]];then
-    alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+if [[ `uname` = 'Darwin' ]];then
+    alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
     alias chrome='open -a "Google Chrome"'
-    alias firefox="open -a Firefox"
-    alias safari="open -a Safari"
-    alias itunes="open -a iTunes"
+    alias firefox='open -a Firefox'
+    alias safari='open -a Safari'
+    alias itunes='open -a iTunes'
 fi
 
-alias yesod-deploy='cabal-dev install && yesod --dev devel'
+alias yesod-deploy='cabal install && yesod --dev devel'
 
-mdcd ()	{ mkdir -p "$@" && cd "$*[-1]" }
-mdpu ()	{ mkdir -p "$@" && pushd "$*[-1]" }
+# mdcd ()	{ mkdir -p '$@' && cd '$*[-1]' }
+# mdpu ()	{ mkdir -p '$@' && pushd '$*[-1]' }
+
+alias rr='rm -rf'
+alias vaglogin='vagrant up && vagrant ssh'
+alias vagssh='vagrant ssh'
