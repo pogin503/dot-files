@@ -9,3 +9,4 @@ ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.gdbinit ~/.gdbinit
 ln -s ~/dotfiles/.ghci ~/.ghci
 ln -s ~/dotfiles/.gemrc ~/.gemrc
+ln -s ~/dotfiles/.guile ~/.guile
