@@ -101,7 +101,6 @@ alias updatedb='sudo /usr/libexec/locate.updatedb'
 alias workmode='sudo workmode'
 
 if [[ `uname` = 'Darwin' ]];then
-    alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
     alias chrome='open -a "Google Chrome"'
     alias firefox='open -a Firefox'
     alias safari='open -a Safari'
@@ -116,3 +115,5 @@ alias yesod-deploy='cabal install && yesod --dev devel'
 alias rr='rm -rf'
 alias vaglogin='vagrant up && vagrant ssh'
 alias vagssh='vagrant ssh'
+
+alias show-hidefiles="defaults write com.apple.finder AppleShowAllFiles TRUE & killall Finder"
