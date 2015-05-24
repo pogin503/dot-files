@@ -1,0 +1,33 @@
+-- @see https://github.com/nathanic/dotfiles/blob/master/config/ghci
+
+-- things i always want
+:m + Control.Monad Control.Applicative Debug.Trace Text.Printf System.IO.Unsafe Data.Maybe Data.List
+
+import Text.ParserCombinators.Parsec
+import qualified Text.ParserCombinators.Parsec as PS
+
+-- @see http://www.haskell.org/haskellwiki/Hoogle#Using_Hoogle_from_GHCi
+--
+-- Example:
+--   :hoogle map
+--   :hoogle (a -> b) -> [a] -> [b]
+--   :hoogle con map
+--   :hoogle a -> a
+--   :hoogle id :: a -> a
+:def hoogle \x -> return $ ":!hoogle \"" ++ x ++ "\""
+
+--   :doc map
+--   :doc (a -> b) -> [a] -> [b]
+:def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
+
+-- too many modules for the default prompt.
+:set prompt "ghci> "
+
+-- debug用
+let tracify x = (trace $ "<pop "++show x++">") x
+
+-- 2進数文字列から整数に変換
+let b2i xs = foldl (\x y -> 2 * x + y) 0 $ map (\x -> read [x]) xs
+
+-- 整数から2進数に
+let i2b = concat . (map show) . reverse . i2b' where i2b' 0 = []; i2b' n = mod n 2 : i2b' (div n 2)
