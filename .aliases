@@ -1,17 +1,6 @@
-# emacs
 # @see http://d.hatena.ne.jp/h_iijima/20110401/1301620545
-# alias emacs="emacsclient -a emacs"
-# alias nw='emacsclient --alternate-editor="" -t'
-# alias cl='emacsclient --alternate-editor="" -nc'
-# alias emnw='emacs -nw'
-# alias emt='emacsclient -t -a ""'
-# alias emc='emacsclient -c -a ""'
 alias e='emacsclient -n'
-# alias emacs='emacsclient -a "" '
-# export EDITOR=vim
 
-# alias l='ls'
-# alias ls='ls --color=auto'
 alias lr='ls -R'                    # recursive ls
 alias ll='ls -l'
 alias la='ll -lAB'
@@ -45,8 +34,6 @@ fi
 alias da='date "+%A, %B %d, %Y [%T]"'
 alias hist='history | grep $1'      # requires an argument
 alias openports='netstat --all --numeric --programs --inet --inet6'
-
-
 
 # pacman aliases (if applicable, replace 'pacman' with 'yaourt'/'pacaur'/whatever)
 if [[ `uname -r` =~ ARCH$ ]]; then
@@ -94,7 +81,6 @@ alias source-bashrc-all="pkill -usr1 bash"
 
 alias cpuinfo="awk  -F: ' {if(\$1 ~/^model name/){ model[\$2]=+1}} END{for(k in model) { print model[k], k}}' /proc/cpuinfo"
 alias rmdir_r='find . -depth -type d | xargs rmdir 2> /dev/null'
-# alias rmdir_r='find . -type d -empty -delete'
 alias rdom='echo `od -vAn -N4 -tu4 < /dev/urandom`'
 
 alias updatedb='sudo /usr/libexec/locate.updatedb'
