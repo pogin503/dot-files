@@ -46,9 +46,9 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/Users/OginoRyo/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/share/npm/bin:~/.cabal/bin:/$HOME/Library/Haskell/bin:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:
 fpath=($HOME/repo/zsh-completions $fpath)
 
-source ~/.bash_alias
 
 source ~/set_typescript.sh
+source ~/.aliases
 
 local RED=$'%{\e[0;31m%}'
 local GREEN=$'%{\e[0;32m%}'
