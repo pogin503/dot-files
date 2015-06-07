@@ -31,7 +31,7 @@ __EOC__
     return 1
 }
 if [ ! -e ~/script_history ]; then
-    mkdri ~/script_histroy
+    mkdir ~/script_histroy
 fi
 is_parent_not_script
 if [ $? -eq 0 ]; then
