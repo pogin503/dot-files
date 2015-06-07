@@ -33,9 +33,12 @@ plugins=(git ruby gem brew autojump cake vagrant rails knife cabal node npm)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/Users/OginoRyo/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/share/npm/bin:~/.cabal/bin:/$HOME/Library/Haskell/bin:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:
-fpath=($HOME/repo/zsh-completions $fpath)
+export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:
 
+# for cabal path
+export PATH="$HOME/Library/Haskell/bin:$PATH"
+
+fpath=($HOME/repo/zsh-completions $fpath)
 
 source ~/set_typescript.sh
 source ~/.aliases
