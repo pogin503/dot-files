@@ -35,6 +35,14 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:
 
+
+# for rbenv
+which rbenv > /dev/null 2>&1
+if [ $? -eq 0 ]; then # コマンドが存在すれば
+    export PATH=~/.rbenv/bin:$PATH
+    eval "$(rbenv init -)"
+fi
+
 # for cabal path
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
@@ -63,9 +71,3 @@ log
 
 ## ^Dでログアウトしないようにする。
 setopt ignore_eof
-
-# for rbenv
-which rbenv > /dev/null 2>&1
-if [ $? -eq 0 ]; then # コマンドが存在すれば
-    eval "$(rbenv init -)"
-fi
