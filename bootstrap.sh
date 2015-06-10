@@ -13,6 +13,9 @@ ln -s ~/dotfiles/.gemrc ~/.gemrc
 ln -s ~/dotfiles/.guile ~/.guile
 ln -s ~/dotfiles/.aliases ~/.aliases
 
+git clone git://github.com/Shougo/neobundle.vim.git ~/.vim/bundle
+vim +":NeoBundleInstall" +:q
+
 git config --global alias.co 'checkout'
 git config --global alias.st 'status -sb'
 git config --global alias.cm 'commit -a'
