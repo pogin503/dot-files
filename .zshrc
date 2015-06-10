@@ -48,7 +48,6 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 fpath=($HOME/repo/zsh-completions $fpath)
 
-source ~/set_typescript.sh
 source ~/.aliases
 
 local RED=$'%{\e[0;31m%}'
