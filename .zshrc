@@ -46,6 +46,9 @@ fi
 # for cabal path
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
+# for cask
+export PATH="$HOME/.cask/bin:$PATH"
+
 fpath=($HOME/repo/zsh-completions $fpath)
 
 source ~/.aliases
