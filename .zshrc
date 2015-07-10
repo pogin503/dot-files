@@ -33,7 +33,7 @@ plugins=(git ruby gem brew autojump cake vagrant rails knife cabal node npm)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:
+export PATH=$PATH:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin
 
 
 # for rbenv
