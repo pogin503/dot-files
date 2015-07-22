@@ -13,10 +13,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cd..='cd ..'
 
-# useful
 alias grep='grep --color=auto'
 alias mkdir='mkdir -p -v'
-#alias ..='cd ..'
 
 # privileged access
 if [ $UID -ne 0 ]; then
@@ -33,7 +31,6 @@ fi
 # new commands
 alias da='date "+%A, %B %d, %Y [%T]"'
 alias hist='history | grep $1'      # requires an argument
-alias openports='netstat --all --numeric --programs --inet --inet6'
 
 # pacman aliases (if applicable, replace 'pacman' with 'yaourt'/'pacaur'/whatever)
 if [[ `uname -r` =~ ARCH$ ]]; then
@@ -59,6 +56,7 @@ alias gal='git add --all'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gs='git status'
+alias gsb='git status -sb'
 alias gps='git push'
 alias gpl='git pull'
 alias gch='git checkout'
@@ -66,8 +64,6 @@ alias gb='git branch'
 alias gf='git diff'
 alias gm='git merge'
 alias gl='git log'
-
-alias gsb='git status -sb'
 
 git config --global alias.co checkout
 git config --global alias.st 'status'
@@ -79,7 +75,11 @@ git config --global alias.br 'branch'
 trap "source ~/.bashrc" USR1
 alias source-bashrc-all="pkill -usr1 bash"
 
-alias cpuinfo="awk  -F: ' {if(\$1 ~/^model name/){ model[\$2]=+1}} END{for(k in model) { print model[k], k}}' /proc/cpuinfo"
+if [[ ! `uname` = 'Darwin' ]];then
+   alias cpuinfo="awk  -F: ' {if(\$1 ~/^model name/){ model[\$2]=+1}} END{for(k in model) { print model[k], k}}' /proc/cpuinfo"
+   alias openports='netstat --all --numeric --programs --inet --inet6'
+fi
+
 alias rmdir_r='find . -depth -type d | xargs rmdir 2> /dev/null'
 alias rdom='echo `od -vAn -N4 -tu4 < /dev/urandom`'
 
@@ -103,3 +103,5 @@ alias vaglogin='vagrant up && vagrant ssh'
 alias vagssh='vagrant ssh'
 
 alias show-hidefiles="defaults write com.apple.finder AppleShowAllFiles TRUE & killall Finder"
+
+alias be="bundle exec"
