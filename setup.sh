@@ -22,3 +22,12 @@ git config --global alias.br 'branch'
 
 git config --global core.excludesfile ~/.gitignore_global
 git config core.editor emacsclient
+
+# for clojure
+if [ ! -d $HOME/local/bin ]; then mkdir -p $HOME/local/bin; fi
+
+pushd $HOME/local/bin
+wget https://raw.github.com/technomancy/leiningen/stable/bin/lein
+chmod +x lein
+./lein
+popd

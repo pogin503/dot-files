@@ -73,3 +73,6 @@ log
 
 ## ^Dでログアウトしないようにする。
 setopt ignore_eof
+
+# for clojure
+export PATH=$HOME/local/bin:$PATH
