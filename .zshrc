@@ -76,3 +76,8 @@ setopt ignore_eof
 
 # for clojure
 export PATH=$HOME/local/bin:$PATH
+
+# for ats
+export PATSHOME=/Use/atshome/ATS2-Postiats-0.2.1
+export PATH=${PATSHOME}/bin:${PATH}
+export PATSHOMERELOC=/Users/iMac/atshome/ATS2-Postiats-contrib-0.1.12
