@@ -33,7 +33,7 @@ plugins=(git ruby gem brew autojump cake vagrant rails knife cabal node npm)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin
+export PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:$PATH
 
 
 # for rbenv
@@ -75,9 +75,12 @@ log
 setopt ignore_eof
 
 # for clojure
+if [[ ! -e $HOME/local/bin ]];then
+    mkdir $HOME/local/bin
+fi
 export PATH=$HOME/local/bin:$PATH
 
 # for ats
-export PATSHOME=/Use/atshome/ATS2-Postiats-0.2.1
+export PATSHOME=$HOME/atshome/ATS2-Postiats-0.2.1
 export PATH=${PATSHOME}/bin:${PATH}
-export PATSHOMERELOC=/Users/iMac/atshome/ATS2-Postiats-contrib-0.1.12
+export PATSHOMERELOC=$HOME/atshome/ATS2-Postiats-contrib-0.1.12
