@@ -26,11 +26,11 @@
 -- too many modules for the default prompt.
 :set prompt "ghci> "
 
--- debug用
+-- for debug
 let tracify x = (trace $ "<pop "++show x++">") x
 
--- 2進数文字列から整数に変換
+-- binary string to integer
 let b2i xs = foldl (\x y -> 2 * x + y) 0 $ map (\x -> read [x]) xs
 
--- 整数から2進数に
+-- integer to binary string
 let i2b = concat . (map show) . reverse . i2b' where i2b' 0 = []; i2b' n = mod n 2 : i2b' (div n 2)
