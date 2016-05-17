@@ -32,9 +32,31 @@ plugins=(git ruby gem brew autojump cake vagrant rails knife cabal node npm)
 
 source $ZSH/oh-my-zsh.sh
 
+source ~/.aliases
+
+## 実行したプロセスの消費時間が3秒以上かかったら
+## 自動的に消費時間の統計情報を表示する。
+REPORTTIME=3
+
+## 全てのユーザのログイン・ログアウトを監視する。
+watch="all"
+## ログイン時にはすぐに表示する。
+log
+
+## ^Dでログアウトしないようにする。
+setopt ignore_eof
+
+local RED=$'%{\e[0;31m%}'
+local GREEN=$'%{\e[0;32m%}'
+local YELLOW='%{\e[0;33m%}'
+local BLUE=$'%{\e[0;34m%}'
+local PINK=$'%{\e[0;35m%}'
+local CYAN=$'%{\e[0;36m%}'
+local GREY=$'%{\e[1;30m%}'
+local NORMAL=$'%{\e[0m%}'
+
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:$PATH
-
 
 # for rbenv
 which rbenv > /dev/null 2>&1
@@ -51,29 +73,6 @@ export PATH="$HOME/.cask/bin:$PATH"
 
 fpath=($HOME/repo/zsh-completions $fpath)
 
-source ~/.aliases
-
-local RED=$'%{\e[0;31m%}'
-local GREEN=$'%{\e[0;32m%}'
-local YELLOW='%{\e[0;33m%}'
-local BLUE=$'%{\e[0;34m%}'
-local PINK=$'%{\e[0;35m%}'
-local CYAN=$'%{\e[0;36m%}'
-local GREY=$'%{\e[1;30m%}'
-local NORMAL=$'%{\e[0m%}'
-
-## 実行したプロセスの消費時間が3秒以上かかったら
-## 自動的に消費時間の統計情報を表示する。
-REPORTTIME=3
-
-## 全てのユーザのログイン・ログアウトを監視する。
-watch="all"
-## ログイン時にはすぐに表示する。
-log
-
-## ^Dでログアウトしないようにする。
-setopt ignore_eof
-
 # for clojure
 if [[ ! -e $HOME/local/bin ]];then
     mkdir $HOME/local/bin
@@ -84,3 +83,9 @@ export PATH=$HOME/local/bin:$PATH
 export PATSHOME=$HOME/atshome/ATS2-Postiats-0.2.1
 export PATH=${PATSHOME}/bin:${PATH}
 export PATSHOMERELOC=$HOME/atshome/ATS2-Postiats-contrib-0.1.12
+
+# for stack
+export PATH=$HOME/.local/bin:$PATH
+
+# autojump
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
