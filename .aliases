@@ -36,25 +36,27 @@ alias vagssh='vagrant ssh'
 alias be="bundle exec"
 
 # git alias
-alias ga='git add'
-alias gal='git add --all'
-alias gc='git commit'
-alias gcm='git commit -m'
-alias gs='git status'
-alias gsb='git status -sb'
-alias gps='git push'
-alias gpl='git pull'
-alias gch='git checkout'
-alias gb='git branch'
-alias gf='git diff'
-alias gm='git merge'
-alias gl='git log'
+if [ -e /usr/bin/git ]; then
+    alias ga='git add'
+    alias gal='git add --all'
+    alias gc='git commit'
+    alias gcm='git commit -m'
+    alias gs='git status'
+    alias gsb='git status -sb'
+    alias gps='git push'
+    alias gpl='git pull'
+    alias gch='git checkout'
+    alias gb='git branch'
+    alias gf='git diff'
+    alias gm='git merge'
+    alias gl='git log'
 
-git config --global alias.co checkout
-git config --global alias.st 'status'
-git config --global alias.ci 'commit -a'
-git config --global alias.di 'diff'
-git config --global alias.br 'branch'
+    git config --global alias.co checkout
+    git config --global alias.st 'status'
+    git config --global alias.ci 'commit -a'
+    git config --global alias.di 'diff'
+    git config --global alias.br 'branch'
+fi
 
 # privileged access
 if [ $UID -ne 0 ]; then
