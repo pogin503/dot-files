@@ -10,6 +10,8 @@ ln -s ~/dotfiles/.gdbinit ~/.gdbinit
 ln -s ~/dotfiles/.ghci ~/.ghci
 ln -s ~/dotfiles/.guile ~/.guile
 ln -s ~/dotfiles/.aliases ~/.aliases
+ln -s ~/dotfiles/.config/fish/aliases.fish  ~/.config/fish/aliases.fish
+ln -s ~/dotfiles/.config/fish/config.fish  ~/.config/fish/config.fish
 
 git clone git://github.com/Shougo/neobundle.vim.git ~/.vim/bundle
 vim +":NeoBundleInstall" +:q
