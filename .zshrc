@@ -89,3 +89,11 @@ export PATH=$HOME/.local/bin:$PATH
 
 # autojump
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# brew api token
+if [ -f ~/private/.brew_api_token ];then
+  source ~/private/.homebrew_api_token
+fi
+source $HOME/local/git-subrepo/init
+
+PATH=$HOME/.local/bin:$PATH
