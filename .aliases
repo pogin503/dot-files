@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # @see http://d.hatena.ne.jp/h_iijima/20110401/1301620545
 alias e='emacsclient -n'
 
@@ -21,7 +23,9 @@ alias rmdir_r='find . -depth -type d | xargs rmdir 2> /dev/null'
 alias rdom='echo `od -vAn -N4 -tu4 < /dev/urandom`'
 
 alias da='date "+%A, %B %d, %Y [%T]"'
-alias hist='history | grep $1'      # requires an argument
+function hist() {
+  history | grep "$1"
+}
 
 # http://www.reddit.com/r/commandline/comments/12g76v/how_to_automatically_source_zshrc_in_all_open/
 trap "source ~/.bashrc" USR1
@@ -70,7 +74,7 @@ if [ $UID -ne 0 ]; then
     alias netcfg='sudo netcfg2'
 fi
 
-if [[ `uname` = 'Darwin' ]];then
+if [[ $(uname) = 'Darwin' ]];then
     alias chrome='open -a "Google Chrome"'
     alias firefox='open -a Firefox'
     alias safari='open -a Safari'
@@ -81,7 +85,7 @@ if [[ `uname` = 'Darwin' ]];then
 fi
 
 # pacman aliases (if applicable, replace 'pacman' with 'yaourt'/'pacaur'/whatever)
-if [[ `uname -r` =~ ARCH$ ]]; then
+if [[ $(uname -r) =~ ARCH$ ]]; then
     alias pac="pacman -S"      # default action     - install one or more packages
     alias pacu="pacman -Syu"   # '[u]pdate'         - upgrade all packages to their newest version
     alias pacs="pacman -Ss"    # '[s]earch'         - search for a package using one or more keywords

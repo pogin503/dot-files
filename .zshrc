@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+ZSH="$HOME"/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -46,14 +46,14 @@ log
 ## ^Dでログアウトしないようにする。
 setopt ignore_eof
 
-local RED=$'%{\e[0;31m%}'
-local GREEN=$'%{\e[0;32m%}'
-local YELLOW='%{\e[0;33m%}'
-local BLUE=$'%{\e[0;34m%}'
-local PINK=$'%{\e[0;35m%}'
-local CYAN=$'%{\e[0;36m%}'
-local GREY=$'%{\e[1;30m%}'
-local NORMAL=$'%{\e[0m%}'
+RED=$'%{\e[0;31m%}'
+GREEN=$'%{\e[0;32m%}'
+YELLOW='%{\e[0;33m%}'
+BLUE=$'%{\e[0;34m%}'
+PINK=$'%{\e[0;35m%}'
+CYAN=$'%{\e[0;36m%}'
+GREY=$'%{\e[1;30m%}'
+NORMAL=$'%{\e[0m%}'
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:$PATH
@@ -74,8 +74,8 @@ export PATH="$HOME/.cask/bin:$PATH"
 fpath=($HOME/repo/zsh-completions $fpath)
 
 # for clojure
-if [[ ! -e $HOME/local/bin ]];then
-    mkdir $HOME/local/bin
+if [[ ! -e "$HOME"/local/bin ]];then
+    mkdir "$HOME"/local/bin
 fi
 export PATH=$HOME/local/bin:$PATH
 

@@ -1,4 +1,6 @@
-# .bashrc
+#!/usr/bin/env bash
+
+set -ue -o pipefail
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -19,7 +21,7 @@ HISTIGNORE='?:??:rm *:\\rm *:r \\m *'
 shopt -s histappend
 
 # http://dharry.hatenablog.com/entry/2012/09/17/031850
-backup(){ cp -pr $1{,.`date +%Y-%m-%dT%H:%M:%S`}; }
+backup(){ cp -pr "$1"{,.$(date +%Y-%m-%dT%H:%M:%S)}; }
 
 # ex. $ pscan 192.168.0.0/24
 pscan(){ nmap -nsP "$1" | awk '{if($1=="Host") print $2 }'; }
