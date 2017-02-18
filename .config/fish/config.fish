@@ -14,6 +14,11 @@ if test -d "$HOME"/.cargo/bin
   set -x PATH "$HOME"/.cargo/bin $PATH
 end
 
+# for haskell-stack
+if test -d "$HOME"/.local/bin
+  set -x PATH "$HOME"/.local/bin $PATH
+end
+
 . "$HOME"/.config/fish/aliases.fish
 
 # set homebrew github api token
