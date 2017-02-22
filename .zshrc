@@ -30,7 +30,7 @@ ZSH_THEME="my-arrow"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git ruby gem brew autojump cake vagrant rails knife cabal node npm)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 source ~/.aliases
 
@@ -68,18 +68,16 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # for cabal path
-export PATH="$HOME/Library/Haskell/bin:$PATH"
-
 # for cask
 export PATH="$HOME/.cask/bin:$PATH"
 
 fpath=($HOME/repo/zsh-completions $fpath)
 
 # for clojure
-if [[ ! -e "$HOME"/local/bin ]];then
-    mkdir "$HOME"/local/bin
+if [[ ! -e "$HOME"/.local/bin ]];then
+    mkdir "$HOME"/.local/bin
 fi
-export PATH=$HOME/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # for ats
 export PATSHOME=$HOME/atshome/ATS2-Postiats-0.2.1
@@ -90,12 +88,14 @@ export PATSHOMERELOC=$HOME/atshome/ATS2-Postiats-contrib-0.1.12
 export PATH=$HOME/.local/bin:$PATH
 
 # autojump
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+if [[ $(uname) = 'Darwin' ]];then
+	export PATH="$HOME/Library/Haskell/bin:$PATH"
 
-# brew api token
-if [ -f ~/private/.brew_api_token ];then
-  source ~/private/.homebrew_api_token
+	[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+	# brew api token
+	if [ -f ~/private/.brew_api_token ];then
+		source ~/private/.homebrew_api_token
+	fi
 fi
-source $HOME/local/git-subrepo/init
 
 PATH=$HOME/.local/bin:$PATH
