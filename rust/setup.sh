@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-set -e
-set -x
+set -eu
+# set -x
 
 # completion, difinition jump
 cargo install racer
