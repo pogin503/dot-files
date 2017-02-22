@@ -2,18 +2,20 @@
 set -eu
 # set -x
 
-ln -sf ~/dotfiles/.aliases ~/.aliases
-ln -sf  ~/dotfiles/.gdbinit ~/.gdbinit
-ln -sf ~/dotfiles/.ghci ~/.ghci
-ln -sf ~/dotfiles/.gitignore_global ~/.gitignore_global
-ln -sf ~/dotfiles/.guile ~/.guile
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
+DOT_DIR="$HOME"/dotfiles
+
+ln -sf $DOT_DIR/.aliases ~/.aliases
+ln -sf  $DOT_DIR/.gdbinit ~/.gdbinit
+ln -sf $DOT_DIR/.ghci ~/.ghci
+ln -sf $DOT_DIR/.gitignore_global ~/.gitignore_global
+ln -sf $DOT_DIR/.guile ~/.guile
+ln -sf $DOT_DIR/.tmux.conf ~/.tmux.conf
+ln -sf $DOT_DIR/.vimrc ~/.vimrc
+ln -sf $DOT_DIR/.zshrc ~/.zshrc
 
 mkdir -p ~/.config/fish
-ln -sf ~/dotfiles/.config/fish/aliases.fish  ~/.config/fish/aliases.fish
-ln -sf ~/dotfiles/.config/fish/config.fish  ~/.config/fish/config.fish
+ln -sf $DOT_DIR/.config/fish/aliases.fish  ~/.config/fish/aliases.fish
+ln -sf $DOT_DIR/.config/fish/config.fish  ~/.config/fish/config.fish
 
 git config --global alias.co 'checkout'
 git config --global alias.st 'status -sb'
@@ -26,10 +28,10 @@ git config --global user.email "pogin503@gmail.com"
 
 git config --global core.excludesfile ~/.gitignore_global
 # git config --global core.editor emacsclient
-pwd
+
 # ./clojure/setup.sh
-./rust/setup.sh
+$DOT_DIR/rust/setup.sh
 
 if [[ $(uname) = 'Darwin' ]];then
-    ./mac/setup.sh
+    "$DOT_DIR"/mac/setup.sh
 fi
