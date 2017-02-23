@@ -3,7 +3,7 @@
 # source $fisher_home/config.fish
 
 # for rbenv
-if test -d "$HOME"/.rbenv/bin
+if test -d "$HOME"/.rbenv
   status --is-interactive; and . (rbenv init -|psub)
 else
   echo "can't load rbenv."
