@@ -96,6 +96,9 @@ brew 'wget'
 
 brew 'shellcheck'
 
+brew 'sbt'
+brew 'scala'
+
 # brew 'mzyy94/mikutter/mikutter'
 brew 'railwaycat/emacsmacport/emacs-mac'
 brew 'sanemat/font/ricty'
