@@ -20,6 +20,12 @@ if test -d "$HOME"/.local/bin
   set -x PATH "$HOME"/.local/bin $PATH
 end
 
+if test -d "$HOME"/.pyenv
+  set -x PYENV_ROOT "$HOME"/.pyenv
+  set -x PATH "$PYENV_ROOT"/bin $PATH
+  . (pyenv init - | psub)
+end
+
 . "$HOME"/.config/fish/aliases.fish
 
 # set homebrew github api token

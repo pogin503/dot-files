@@ -59,11 +59,13 @@ NORMAL=$'%{\e[0m%}'
 export PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/opt/X11/bin:$PATH
 
 # for rbenv
-which rbenv > /dev/null 2>&1
-if [ $? -eq 0 ]; then # コマンドが存在すれば
-    export PATH=~/.rbenv/bin:$PATH
-    eval "$(rbenv init -)"
-fi
+export PATH=~/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
+
+# for pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # for cabal path
 export PATH="$HOME/Library/Haskell/bin:$PATH"

@@ -1,11 +1,6 @@
-#
-# ~/.bash_profile
-#
+# .bash_profile
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-
-PATH=$PATH:~/.cabal/bin
-export PATH
 
 # color setting
 export black="\[\033[0;38;5;0m\]"
@@ -23,3 +18,15 @@ export smoothblue="\[\033[0;38;5;111m\]"
 export iceblue="\[\033[0;38;5;45m\]"
 export turqoise="\[\033[0;38;5;50m\]"
 export smoothgreen="\[\033[0;38;5;42m\]"
+
+PATH=$PATH:~/.cabal/bin
+export PATH
+
+# for rbenv
+export PATH=~/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
+
+# for pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
