@@ -28,6 +28,9 @@ end
 
 . "$HOME"/.config/fish/aliases.fish
 
+# load functions
+. "$HOME"/.config/fish/functions.fish
+
 # set homebrew github api token
 if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]; and [ (uname) = 'Darwin' ]
   source "$HOME"/.config/fish/.homebrew_github_api_token
