@@ -15,9 +15,13 @@ if test -d "$HOME"/.cargo/bin
   set -x PATH "$HOME"/.cargo/bin $PATH
 end
 
-# for haskell-stack
+
 if test -d "$HOME"/.local/bin
+  # for haskell-stack
   set -x PATH "$HOME"/.local/bin $PATH
+  # for golang
+  set -x GOPATH "$HOME"/.local/go
+  set -x PATH "$GOPATH"/bin $PATH
 end
 
 if test -d "$HOME"/.pyenv
