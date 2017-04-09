@@ -26,6 +26,7 @@ if test -d "$HOME"/.pyenv
   . (pyenv init - | psub)
 end
 
+# load aliases
 . "$HOME"/.config/fish/aliases.fish
 
 # load functions
@@ -35,6 +36,5 @@ end
 if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]; and [ (uname) = 'Darwin' ]
   source "$HOME"/.config/fish/.homebrew_github_api_token
 end
-
 
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
