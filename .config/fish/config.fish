@@ -42,3 +42,5 @@ if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]; and [ (uname) = 'Darw
 end
 
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+
+set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
