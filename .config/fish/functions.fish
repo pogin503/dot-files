@@ -13,14 +13,30 @@ function git_template
   ruby -e "$len.times {|i| print '=' }; puts " >> README.md
   printf "\
 
+
+#Features
+
+
+
 #Description
+
+
 
 #Requirement
 
+
+
 #Usage
+
+
 
 #Installation
 
+
+
+#License
+
+MIT
 " | cat >> README.md
 end
 
