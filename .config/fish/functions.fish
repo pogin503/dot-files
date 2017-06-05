@@ -14,27 +14,27 @@ function git_template
   printf "\
 
 
-#Features
+# Features
 
 
 
-#Description
+# Description
 
 
 
-#Requirement
+# Requirement
 
 
 
-#Usage
+# Usage
 
 
 
-#Installation
+# Installation
 
 
 
-#License
+# License
 
 MIT
 " | cat >> README.md
