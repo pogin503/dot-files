@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+if [ $# -lt 1 ]; then
+    cat <<EOF
+usage:
+    ./makerole.sh <role-name>
+EOF
+fi
+
 # make role directory
 mkdir -p ./roles/"$1"/tasks
 mkdir -p ./roles/"$1"/defaults
