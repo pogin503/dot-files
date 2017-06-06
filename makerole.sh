@@ -35,5 +35,7 @@ touch ./roles/"$1"/templates/file.j2 && printf "---\n" >> ./roles/"$1"/templates
 touch ./roles/"$1"/handlers/main.yml && printf "---\n" >> ./roles/"$1"/handlers/main.yml
 
 # Roleの依存関係を記述するファイル
-# touch ./roles/"$1"/handlers/main.yml && printf "---\n" >> ./roles/"$1"/handlers/main.yml
+# touch ./roles/"$1"/meta/main.yml && printf "---\n" >> ./roles/"$1"/meta/main.yml
+
+touch ./roles/"$1"/README.md
 
