@@ -7,6 +7,7 @@ alias la='ll -lAB'
 alias lx='ll -BX'                   # sort by extension
 alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
+alias l1='ls -1'
 alias lm='la | more'
 alias ..='cd ..'
 alias ...='cd ../..'
