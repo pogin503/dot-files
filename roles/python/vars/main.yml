@@ -1,0 +1,14 @@
+---
+ml_packages:
+  - jupyter
+  - scikit-learn
+  - ipython
+
+python_packages:
+  - jedi
+  - epc
+  - flake8
+  - pygments
+  - requests
+
+
