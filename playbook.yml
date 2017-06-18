@@ -1,0 +1,31 @@
+---
+- name: dotfiles Playbook
+  hosts: vagrants
+  pre_tasks:
+    - name: install dpendencies
+      become: true
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - git
+        - python3-pip
+        - build-essential
+        # ruby dependencies
+        - autoconf
+        - bison
+        - libssl-dev
+        - libyaml-dev
+        - libreadline6-dev
+        - zlib1g-dev
+        - libncurses5-dev
+        - libffi-dev
+        - libgdbm3
+        - libgdbm-dev
+      when: ansible_distribution == 'Ubuntu'
+  roles:
+    - role: common
+    - role: python
+    - role: scala
+    - role: ruby
