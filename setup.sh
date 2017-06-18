@@ -30,8 +30,8 @@ git config --global user.email "pogin503@gmail.com"
 git config --global core.excludesfile ~/.gitignore_global
 # git config --global core.editor emacsclient
 
-# ./clojure/setup.sh
-"$DOT_DIR"/rust/setup.sh
+# "$DOT_DIR"/clojure/setup.sh
+# "$DOT_DIR"/rust/setup.sh
 
 if [[ $(uname) = 'Darwin' ]];then
     "$DOT_DIR"/mac/setup.sh
