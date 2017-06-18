@@ -1,0 +1,29 @@
+---
+- name: install rbenv
+  git: repo=https://github.com/sstephenson/rbenv.git
+       dest="{{ ansible_env.HOME }}/.rbenv"
+       version=master
+
+- name: add rbenv path to bash_profile
+  become: true
+  copy: src=files/rbenv.sh dest=/etc/profile.d/rbenv.sh
+  # copy: content="export PATH=\"/home/vagrant/.rbenv/bin:$PATH\"\neval \"$(rbenv init -)\"" dest=/etc/profile.d/rbenv.sh
+
+- name: install ruby_build
+  git: repo=https://github.com/sstephenson/ruby-build.git
+       dest={{ ansible_env.HOME }}/.rbenv/plugins/ruby-build
+       version=master
+
+- name: install ruby
+  # shell: "export RBENV_ROOT={{ ansible_env.HOME }}/.rbenv; export PATH=$RBENV_ROOT/bin:$PATH; echo N | rbenv install \"{{ ruby_version }}\"; rbenv global \"{{ ruby_version }}\""
+  shell: "export RBENV_ROOT={{ ansible_env.HOME  }}/.rbenv; export PATH=$RBENV_ROOT/bin:$PATH; echo N | rbenv install 2.4.0; rbenv global 2.4.0"
+  args:
+    creates: "{{ ansible_env.HOME }}/.rbenv/versions/2.4.0"
+
+- name: install bundler
+  shell: "{{ ansible_env.HOME }}/.rbenv/shims/gem install bundler"
+  args:
+    creates: "{{ ansible_env.HOME }}/.rbenv/shims/bundle"
+
+# - name: change ~/.rbenv owner to vagrant
+#   file: path={{ ansible_env.HOME }}/.rbenv state=directory owner=ubuntu group=vagrant recurse=yes

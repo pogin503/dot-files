@@ -1,0 +1,22 @@
+---
+- name: install dpendencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - git
+    - python-pip
+  when: ansible_distribution == 'Ubuntu'
+
+# - include: ubuntu.yml
+#   when: ansible_distribution == 'Ubuntu'
+
+- name: set dotfiles
+  git: repo='https://github.com/pogin503/dot-files.git'
+       dest={{ ansible_env.HOME }}/dotfiles
+       version=master
+
+- name: exec setup
+  shell: "{{ ansible_env.HOME }}/dotfiles/setup.sh"
+  args:
+    chdir: "{{ ansible_env.HOME }}/dotfiles/"
