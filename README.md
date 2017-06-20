@@ -5,9 +5,11 @@ my dotfiles
 
 # Requirement
 - Ansible
+- Vagrant
+- fish
 
-[fish shell](https://fishshell.com/)
-[Installation — Ansible Documentation](http://docs.ansible.com/ansible/intro_installation.html)
+- [fish shell](https://fishshell.com/)
+- [Vagrant by HashiCorp](https://www.vagrantup.com/)
 
 # Usage
 
@@ -15,14 +17,18 @@ TODO
 
 # Installation
 
+Install Ansible
+
+[Installation — Ansible Documentation](http://docs.ansible.com/ansible/intro_installation.html)
+
 ```
 git clone git@github.com:pogin503/dot-files.git ~/dotfiles
-
-./setup.sh
-```
-
-````
+cd ~/dotfiles
 ansible-playbook -i localhost
 ````
+
+```
+vagrant up
+```
 
 
