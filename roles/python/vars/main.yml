@@ -3,8 +3,8 @@ ml_packages:
   - jupyter
   - jupyter_contrib_nbextensions
   - scikit-learn
-  - ipython
   - scipy
+  - matplotlib
 
 python_packages:
   - jedi

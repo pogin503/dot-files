@@ -1,18 +1,23 @@
-- name: machine learning
+---
+- name: upgrade pip
+  pip:
+    name: pip
+    state: latest
+
+- name: Related to machine learning packages
+  become: true
   pip:
     name: "{{ item }}"
     state: present
   with_items:
     - "{{ ml_packages }}"
 
-- name: common package
+- name: common packages
+  become: true
   pip:
     name: "{{ item }}"
     state: present
   with_items:
     - "{{ python_packages }}"
 
-- name: Install Python3 kernel
-  shell: >-
-    python3 -m IPython kernelspec install-self
 
