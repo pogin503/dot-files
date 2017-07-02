@@ -1,4 +1,26 @@
 ---
+- name: install dpendencies (Ubuntu)
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libtool-bin
+  become: true
+  when: ansible_distribution == 'Ubuntu'
+
+- name: install dpendencies (macOS)
+  homebrew:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { name: rbenv, state: present }
+    # iruby dependencies
+    - { name: automake, state: present }
+    - { name: gmp, state: present }
+    - { name: libtool, state: present }
+    - { name: wget, state: present }
+  when: ansible_distribution == 'Darwin'
+
 - name: install rbenv
   git: repo=https://github.com/sstephenson/rbenv.git
        dest="{{ ansible_env.HOME }}/.rbenv"
@@ -7,7 +29,6 @@
 - name: add rbenv path to bash_profile
   become: true
   copy: src=files/rbenv.sh dest=/etc/profile.d/rbenv.sh
-  # copy: content="export PATH=\"/home/vagrant/.rbenv/bin:$PATH\"\neval \"$(rbenv init -)\"" dest=/etc/profile.d/rbenv.sh
 
 - name: install ruby_build
   git: repo=https://github.com/sstephenson/ruby-build.git
@@ -15,15 +36,40 @@
        version=master
 
 - name: install ruby
-  # shell: "export RBENV_ROOT={{ ansible_env.HOME }}/.rbenv; export PATH=$RBENV_ROOT/bin:$PATH; echo N | rbenv install \"{{ ruby_version }}\"; rbenv global \"{{ ruby_version }}\""
-  shell: "export RBENV_ROOT={{ ansible_env.HOME  }}/.rbenv; export PATH=$RBENV_ROOT/bin:$PATH; echo N | rbenv install 2.4.0; rbenv global 2.4.0"
+  shell: |
+    export RBENV_ROOT={{ ansible_env.HOME }}/.rbenv
+    export PATH=$RBENV_ROOT/bin:$PATH
+    echo N | rbenv install {{ ruby_version }}
+    rbenv global {{ ruby_version }}
   args:
     creates: "{{ ansible_env.HOME }}/.rbenv/versions/2.4.0"
 
-- name: install bundler
-  shell: "{{ ansible_env.HOME }}/.rbenv/shims/gem install bundler"
-  args:
-    creates: "{{ ansible_env.HOME }}/.rbenv/shims/bundle"
-
 # - name: change ~/.rbenv owner to vagrant
 #   file: path={{ ansible_env.HOME }}/.rbenv state=directory owner=ubuntu group=vagrant recurse=yes
+
+- name: install dpendencies (macOS)
+  block:
+    - homebrew:
+        name: "{{ item }}"
+        state: latest
+        with_items:
+          - name: zeromq
+            state: present
+          - name: czmq
+            state: latest
+    - name: iruby dependency
+      gem: ffi-rzmq
+      state: present
+  when: ansible_distribution == 'Darwin'
+
+- name: install bundler by rbenv gem
+  gem:
+    name: "{{ item }}"
+    executable: "{{ ansible_env.HOME }}/.rbenv/shims/gem"
+    # user_install: False
+  with_items:
+    - "{{ my_rbenv_packages }}"
+
+- name: Install iruby kernel
+  shell: |
+    iruby register --force
