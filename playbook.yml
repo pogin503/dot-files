@@ -23,9 +23,51 @@
         - libffi-dev
         - libgdbm3
         - libgdbm-dev
+        # mysql dependencies
+        - libmysqlclient-dev
+        - python3-dev
+        - python3-pip
+        - python3-mysqldb
       when: ansible_distribution == 'Ubuntu'
+
+    # https://github.com/geerlingguy/ansible-role-mysql/issues/42
+    - block:
+        - name: install mysql dependencies (pip)
+          pip:
+            name: "{{ item.name }}"
+            state: "{{ item.state }}"
+          with_items:
+            - name: https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python-1.1.6.tar.gz
+              state: present
+            # mysql dependencies
+            - name: mysqlclient
+              state: present
+            - name: pip
+              state: latest
+        - shell: |
+            python3 --version
+            pip3 --version
+          changed_when: false
+      when: ansible_distribution == 'Ubuntu'
+
   roles:
     - role: common
     - role: python
     - role: scala
     - role: ruby
+    - role: geerlingguy.mysql
+      become: yes
+      mysql_databases:
+        - name: example
+          collation: utf8_general_ci
+          encoding: utf8
+          # replicate: 1
+      mysql_packages:
+        - mariadb-client
+        - mariadb-server
+        - python-mysqldb
+      mysql_users:
+        - name: pogin
+          host: "%"
+          password: mysqlpass00
+          priv: "example_db.*:ALL"
