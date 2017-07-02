@@ -5,6 +5,7 @@ ml_packages:
   - scikit-learn
   - scipy
   - matplotlib
+  - environment_kernels
 
 python_packages:
   - jedi
