@@ -4,3 +4,4 @@
   roles:
     - role: python
     - role: scala
+    - role: ruby
