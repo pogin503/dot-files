@@ -7,6 +7,4 @@ my_rbenv_packages:
   - activesupport
   - bundler
   - pry
-  # for iruby notebook
-  - iruby
 
