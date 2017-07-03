@@ -1,11 +1,13 @@
 ---
-- name: install dpendencies
+- name: install dpendencies (Ubuntu)
   apt:
     name: "{{ item }}"
     state: present
   with_items:
     - git
     - python-pip
+    - libtool-bin
+  become: true
   when: ansible_distribution == 'Ubuntu'
 
 # - include: ubuntu.yml
@@ -15,8 +17,9 @@
   git: repo='https://github.com/pogin503/dot-files.git'
        dest={{ ansible_env.HOME }}/dotfiles
        version=master
+       force=yes
 
-- name: exec setup
+- name: exec setup.sh
   shell: "{{ ansible_env.HOME }}/dotfiles/setup.sh"
   args:
     chdir: "{{ ansible_env.HOME }}/dotfiles/"
