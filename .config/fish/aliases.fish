@@ -29,6 +29,8 @@ alias vagssh='vagrant ssh'
 
 alias be="bundle exec"
 
+alias crontab="crontab -i"
+
 # git alias
 alias ga='git add'
 alias gal='git add --all'
@@ -69,6 +71,7 @@ if [ (uname) = Darwin ]
     alias show-hidefiles="defaults write com.apple.finder AppleShowAllFiles TRUE & killall Finder"
     alias cpuinfo="awk  -F: ' {if(\$1 ~/^model name/){ model[\$2]=+1}} END{for(k in model) { print model[k], k}}' /proc/cpuinfo"
     alias openports='netstat --all --numeric --programs --inet --inet6'
+    alias sourcetree='open -a "Sourcetree"'
 end
 
 # pacman aliases (if applicable, replace 'pacman' with 'yaourt'/'pacaur'/whatever)
