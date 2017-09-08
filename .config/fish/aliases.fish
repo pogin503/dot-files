@@ -1,12 +1,12 @@
 # @see http://d.hatena.ne.jp/h_iijima/20110401/1301620545
 alias e='emacsclient -n'
 
-alias lr='ls -R'                    # recursive ls
+alias lr='ls -R'            # recursive ls
 alias ll='ls -l'
 alias la='ll -lAB'
-alias lx='ll -BX'                   # sort by extension
-alias lz='ll -rS'                   # sort by size
-alias lt='ll -rt'                   # sort by date
+alias lx='ll -BX'           # sort by extension
+alias lz='ll -rS'           # sort by size
+alias lt='ll -rt'           # sort by date
 alias l1='ls -1'
 alias lm='la | more'
 alias ..='cd ..'
