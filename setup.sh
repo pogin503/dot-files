@@ -18,6 +18,9 @@ ln -sf "$DOT_DIR"/.config/fish/aliases.fish     ~/.config/fish/aliases.fish
 ln -sf "$DOT_DIR"/.config/fish/config.fish      ~/.config/fish/config.fish
 ln -sf "$DOT_DIR"/.config/fish/functions.fish   ~/.config/fish/functions.fish
 
+mkdir -p ~/.stack/
+ln -sf "$DOT_DIR"/.stack/config.yaml ~/.stack/config.yaml
+
 git config --global alias.co 'checkout'
 git config --global alias.st 'status -sb'
 git config --global alias.cm 'commit -a'
