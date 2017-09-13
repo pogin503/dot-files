@@ -36,6 +36,10 @@ end
 # load functions
 . "$HOME"/.config/fish/functions.fish
 
+if [ -f "$HOME"/.config/fish/GRAPHQL_TOKEN ]; and [ (uname) = 'Darwin' ]
+  set -x GITHUB_GRAPHQL_TOKEN (cat "$HOME"/.config/fish/GRAPHQL_TOKEN)
+end
+
 # set homebrew github api token
 if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]; and [ (uname) = 'Darwin' ]
   source "$HOME"/.config/fish/.homebrew_github_api_token
