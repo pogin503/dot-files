@@ -30,8 +30,6 @@ ZSH_THEME="my-arrow"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git ruby gem brew autojump cake vagrant rails knife cabal node npm)
 
-# source $ZSH/oh-my-zsh.sh
-
 source ~/.aliases
 
 ## 実行したプロセスの消費時間が3秒以上かかったら
@@ -67,13 +65,12 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# for cabal path
 # for cask
 export PATH="$HOME/.cask/bin:$PATH"
 
 fpath=($HOME/repo/zsh-completions $fpath)
 
-# for clojure
+# for stack or clojure
 if [[ ! -e "$HOME"/.local/bin ]];then
     mkdir "$HOME"/.local/bin
 fi
@@ -84,18 +81,12 @@ export PATSHOME=$HOME/atshome/ATS2-Postiats-0.2.1
 export PATH=${PATSHOME}/bin:${PATH}
 export PATSHOMERELOC=$HOME/atshome/ATS2-Postiats-contrib-0.1.12
 
-# for stack
-export PATH=$HOME/.local/bin:$PATH
 
-# autojump
 if [[ $(uname) = 'Darwin' ]];then
 	export PATH="$HOME/Library/Haskell/bin:$PATH"
 
-	[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 	# brew api token
 	if [ -f ~/private/.brew_api_token ];then
 		source ~/private/.homebrew_api_token
 	fi
 fi
-
-PATH=$HOME/.local/bin:$PATH
