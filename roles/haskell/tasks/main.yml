@@ -1,0 +1,39 @@
+---
+# - name: Install stack
+#   shell: |
+#     wget -qO- https://get.haskellstack.org/ | sh
+
+# - name: Setup GHC
+#   shell: |
+#     stack setup
+
+- name: Install IHaskell dependencies
+  homebrew:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { name: zeromq, state: present }
+    - { name: libmagic, state: present }
+    - { name: cairo, state: present }
+    - { name: pkg-config, state: present }
+    - { name: haskell-stack, state: present }
+    - { name: pango, state: present }
+
+- name: Clone repository
+  git:
+    repo: https://github.com/gibiansky/IHaskell
+    dest: ~/.local/share/IHaskell
+
+- name: Install IHaskell dependencies (gtk2hs-buildtools)
+  shell: |
+    stack install gtk2hs-buildtools
+    stack install --fast
+  args:
+    chdir: ~/.local/share/IHaskell
+
+- name: Install IHaskell
+  shell: |
+    ihaskell install --stack
+  args:
+    chdir: ~/.local/share/IHaskell
+
