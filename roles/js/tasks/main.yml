@@ -1,0 +1,9 @@
+---
+- name: Install npm modules
+  npm:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    global: yes
+  with_items:
+    - '{{ nodejs_npm_global_packages }}'
+

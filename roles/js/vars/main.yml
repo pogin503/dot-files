@@ -1,0 +1,4 @@
+---
+nodejs_npm_global_packages:
+  - { name: eslint, state: present }
+  - { name: node-sass, state: present }
