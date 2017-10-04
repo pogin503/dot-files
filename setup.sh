@@ -33,6 +33,8 @@ git config --global user.email "pogin503@gmail.com"
 git config --global core.excludesfile ~/.gitignore_global
 # git config --global core.editor emacsclient
 
+git config --global core.quotepath false
+
 # "$DOT_DIR"/clojure/setup.sh
 # "$DOT_DIR"/rust/setup.sh
 "$DOT_DIR"/ats2/setup.sh
