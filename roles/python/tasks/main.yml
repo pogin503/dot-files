@@ -1,4 +1,20 @@
 ---
+- block:
+    - name: copy pip.conf
+      file:
+        src: "~/dotfiles/python/pip.conf"
+        dest: "$HOME/Library/Application Support/pip/pip.conf"
+        state: link
+        force: yes
+      when: ansible_os_family == 'Darwin'
+    - name: copy pip.conf
+      file:
+        src: "~/dotfiles/python/pip.conf"
+        dest: "$HOME/.config/pip/pip.conf"
+        state: link
+        force: yes
+      when: ansible_os_family == 'Ubuntu'
+   
 - name: upgrade pip
   pip:
     name: pip
