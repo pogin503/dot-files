@@ -21,7 +21,6 @@
     state: latest
 
 - name: Related to machine learning packages
-  become: true
   pip:
     name: "{{ item }}"
     state: present
@@ -29,7 +28,6 @@
     - "{{ ml_packages }}"
 
 - name: common packages
-  become: true
   pip:
     name: "{{ item }}"
     state: present
