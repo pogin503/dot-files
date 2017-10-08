@@ -2,7 +2,8 @@ matrix:
   include:
     # - os: linux
     - sudo: required
-      language: objective-c
+      language: python
+      cache: pip
       os: osx
 
 before_install:
