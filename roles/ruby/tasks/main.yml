@@ -1,27 +1,28 @@
 ---
-- name: install dpendencies (Ubuntu)
-  apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - libtool-bin
-    - libffi-dev
-  become: true
-  when: ansible_distribution == 'Ubuntu'
-
-- name: install dpendencies (macOS)
-  homebrew:
-    name: "{{ item.name }}"
-    state: "{{ item.state }}"
-  with_items:
-    - { name: rbenv, state: present }
-    # iruby dependencies
-    - { name: automake, state: present }
-    - { name: gmp, state: present }
-    - { name: libtool, state: present }
-    - { name: wget, state: present }
-  when: ansible_distribution == 'Darwin'
+- block::
+  - name: install dpendencies (Ubuntu)
+    apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    with_items:
+      - libtool-bin
+      - libffi-dev
+    become: true
+    when: ansible_distribution == 'Ubuntu'
+  
+  - name: install dpendencies (macOS)
+    homebrew:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+    with_items:
+      - { name: rbenv, state: present }
+      # iruby dependencies
+      - { name: automake, state: present }
+      - { name: gmp, state: present }
+      - { name: libtool, state: present }
+      - { name: wget, state: present }
+    when: ansible_distribution == 'Darwin'
 
 - name: install rbenv
   git: repo=https://github.com/sstephenson/rbenv.git
@@ -31,7 +32,9 @@
 - name: add rbenv path to bash_profile
   become: true
   # copy: src=files/rbenv.sh dest=/etc/profile.d/rbenv.sh
-  template: src=templates/rbenv.sh.j2 dest=/etc/profile.d/rbenv.sh
+  template:
+    src= rbenv.sh.j2
+    dest=/etc/profile.d/rbenv.sh
 
 - name: install ruby_build
   git: repo=https://github.com/sstephenson/ruby-build.git
