@@ -34,7 +34,7 @@ install:
 script:
   - ansible --version
   - ansible-galaxy install -r requirements.yml
-  - ansible-playbook --syntax-check ./tests/test.yml -i ./tests/hosts
+  - ansible-playbook --syntax-check ./localhost.yml -i hosts
   - idempotence=$(mktemp)
   - >
     tail ${idempotence}
