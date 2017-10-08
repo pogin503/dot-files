@@ -19,8 +19,8 @@ before_install:
   # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew outdated xctool || brew upgrade xctool; fi
 
 install:
-  - sudo easy_install pip
-  - sudo pip install ansible
+  - sudo -H easy_install pip
+  - sudo -H pip install ansible
 
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
