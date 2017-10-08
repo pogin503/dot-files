@@ -14,6 +14,10 @@
         state: link
         force: yes
       when: ansible_os_family == 'Ubuntu'
+  rescue:
+    - name: for travis-ci setting
+      failed: false
+      when: "{{ ansible_env.USER }}  == 'travis'"
    
 - name: upgrade pip
   pip:
