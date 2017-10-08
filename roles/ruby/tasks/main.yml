@@ -33,7 +33,7 @@
   become: true
   # copy: src=files/rbenv.sh dest=/etc/profile.d/rbenv.sh
   template:
-    src: rbenv.sh.j2
+    src: templates/rbenv.sh.j2
     dest: /etc/profile.d/rbenv.sh
 
 - name: install ruby_build
