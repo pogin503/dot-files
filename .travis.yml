@@ -31,10 +31,10 @@ script:
   - ansible-galaxy install -r requirements.yml
   # - ansible-playbook --syntax-check ./localhost.yml -i hosts
   - ansible-playbook --syntax-check ./localhost.yml
-  - "travis_wait 30 ansible-playbook --extra-vars '{\"configure_sudoers\":\"false\"}' main.yml"
+  - "travis_wait 30 ansible-playbook --extra-vars '{\"configure_sudoers\":\"false\"}' localhost.yml"
   # Test the playbook's idempotence.
   - idempotence=$(mktemp)
-  - "ansible-playbook --extra-vars '{\"configure_sudoers\":\"false\"}' main.yml | tee -a ${idempotence}"
+  - "ansible-playbook --extra-vars '{\"configure_sudoers\":\"false\"}' localhost.yml | tee -a ${idempotence}"
   - >
     tail ${idempotence}
     | grep -q 'changed=0.*failed=0'
