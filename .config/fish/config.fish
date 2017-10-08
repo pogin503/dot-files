@@ -45,6 +45,8 @@ if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]; and [ (uname) = 'Darw
   source "$HOME"/.config/fish/.homebrew_github_api_token
 end
 
+set -x BROWSER "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
-set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
+# set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
