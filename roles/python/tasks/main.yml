@@ -16,7 +16,8 @@
       when: ansible_os_family == 'Ubuntu'
   rescue:
     - name: for travis-ci setting
-      failed: false
+      shell: "false"
+      ignore_errors: yes
       when: "{{ ansible_env.USER }}  == 'travis'"
    
 - name: upgrade pip
@@ -38,4 +39,9 @@
   with_items:
     - "{{ python_packages }}"
 
+# - name: Install Mecab
+#     debug: "Download Mecab"
+#     - get_url:
+#         url: https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE
+#         dest: /tmp
 
