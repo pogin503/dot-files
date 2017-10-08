@@ -21,11 +21,13 @@
       when: "{{ ansible_env.USER }}  == 'travis'"
    
 - name: upgrade pip
+  become: true
   pip:
     name: pip
     state: latest
 
 - name: Related to machine learning packages
+  become: true
   pip:
     name: "{{ item }}"
     state: present
