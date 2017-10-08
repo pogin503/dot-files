@@ -1,6 +1,3 @@
-# language: python
-# - '2.7'
-
 matrix:
   include:
     # - os: linux
@@ -8,13 +5,12 @@ matrix:
       language: objective-c
       os: osx
 
-
-
 before_install:
-  - 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"'
-  - rm -rf /usr/local/Homebrew
-  - rm -rf /usr/local/Caskroom
-  - rm -rf /usr/local/bin/brew
+  - echo ""
+  # - 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"'
+  # - rm -rf /usr/local/Homebrew
+  # - rm -rf /usr/local/Caskroom
+  # - rm -rf /usr/local/bin/brew
   # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew update; fi
   # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew outdated xctool || brew upgrade xctool; fi
 
@@ -30,12 +26,15 @@ install:
   - sudo touch /etc/ansible/hosts
   - "echo -e '[local]\nlocalhost ansible_connection=local' | sudo tee -a /etc/ansible/hosts > /dev/null"
 
-#- ansible-galaxy install -r tests/requirements.yml -p tests/roles
 script:
   - ansible --version
   - ansible-galaxy install -r requirements.yml
-  - ansible-playbook --syntax-check ./localhost.yml -i hosts
+  # - ansible-playbook --syntax-check ./localhost.yml -i hosts
+  - ansible-playbook --syntax-check ./localhost.yml
+  - "travis_wait 30 ansible-playbook --extra-vars '{\"configure_sudoers\":\"false\"}' main.yml"
+  # Test the playbook's idempotence.
   - idempotence=$(mktemp)
+  - "ansible-playbook --extra-vars '{\"configure_sudoers\":\"false\"}' main.yml | tee -a ${idempotence}"
   - >
     tail ${idempotence}
     | grep -q 'changed=0.*failed=0'
