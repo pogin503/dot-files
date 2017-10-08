@@ -1,5 +1,6 @@
 - name: Download jupyter scala script
-  get_url: url=https://raw.githubusercontent.com/alexarchambault/jupyter-scala/master/jupyter-scala dest={{ ansible_env.HOME }}/.local/bin/jupyter-scala
-
-- name: Execute the jupyter-scala
-  shell: dest={{ ansible_env.HOME }}/.local/bin/jupyter-scala mode=755
+  get_url:
+    url: https://raw.githubusercontent.com/alexarchambault/jupyter-scala/master/jupyter-scala
+    dest:  "{ ansible_env.HOME }}/.local/bin/jupyter-scala"
+    mode: 0755
+    force: yes
