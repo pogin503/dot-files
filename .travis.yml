@@ -1,0 +1,42 @@
+# language: python
+# - '2.7'
+
+matrix:
+  include:
+    # - os: linux
+    - sudo: required
+      language: objective-c
+      os: osx
+
+
+before_install:
+  - 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"'
+  - rm -rf /usr/local/Homebrew
+  - rm -rf /usr/local/Caskroom
+  - rm -rf /usr/local/bin/brew
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew update; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew outdated xctool || brew upgrade xctool; fi
+
+install:
+  - sudo easy_install pip
+  - sudo pip install ansible
+
+  # Add ansible.cfg to pick up roles path.
+  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+
+    # Add a hosts file.
+  - sudo mkdir -p /etc/ansible
+  - sudo touch /etc/ansible/hosts
+  - "echo -e '[local]\nlocalhost ansible_connection=local' | sudo tee -a /etc/ansible/hosts > /dev/null"
+
+#- ansible-galaxy install -r tests/requirements.yml -p tests/roles
+script:
+  - ansible --version
+  - ansible-galaxy install -r requirements.yml
+  - ansible-playbook --syntax-check ./tests/test.yml -i ./tests/hosts
+  - idempotence=$(mktemp)
+  - >
+    tail ${idempotence}
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
