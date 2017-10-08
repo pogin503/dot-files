@@ -2,12 +2,15 @@ matrix:
   include:
     # - os: linux
     - sudo: required
-      language: python
+      language: objective-c
       cache: pip
       os: osx
 
 before_install:
   - echo ""
+  # - brew update
+  # - brew install python
+  # - brew install ansible
   # - 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"'
   # - rm -rf /usr/local/Homebrew
   # - rm -rf /usr/local/Caskroom
