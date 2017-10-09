@@ -11,27 +11,19 @@
     become: true
     when: ansible_distribution == 'Ubuntu'
   
-  - name: install dpendencies (macOS)
+  - name: install dpendencies and rbenv (macOS)
     homebrew:
       name: "{{ item.name }}"
       state: "{{ item.state }}"
     with_items:
       - { name: rbenv, state: present }
+      - { name: ruby-build, state: latest }
       # iruby dependencies
       - { name: automake, state: present }
       - { name: gmp, state: present }
       - { name: libtool, state: present }
       - { name: wget, state: present }
     when: ansible_os_family == 'Darwin'
-
-- name: install rbenv (macOS)
-  homebrew:
-    name: "{{ item.name }}"
-    state: "{{ item.state }}"
-  with_items:
-    - { name: rbenv, state: latest }
-    - { name: ruby-build, state: latest }
-  when: ansible_os_family == 'Darwin'
 
 - name: install rbenv
   git:
@@ -42,7 +34,6 @@
 
 - name: add rbenv path to bash_profile
   become: true
-  # copy: src=files/rbenv.sh dest=/etc/profile.d/rbenv.sh
   template:
     src: templates/rbenv.sh.j2
     dest: /etc/profile.d/rbenv.sh
@@ -65,7 +56,7 @@
 # - name: change ~/.rbenv owner to vagrant
 #   file: path={{ ansible_env.HOME }}/.rbenv state=directory owner=ubuntu group=vagrant recurse=yes
 
-- name: install dpendencies (macOS)
+- name: install iruby dpendencies (macOS)
   block:
     - homebrew:
         name: "{{ item.name }}"
@@ -81,10 +72,11 @@
         user_install: False
         executable: "{{ ansible_env.HOME }}/.rbenv/shims/gem"
       with_items:
-        - { name: zeromq, state: present }
-  when: ansible_distribution == 'Darwin'
+        - { name: cztop, state: present }
+        - { name: iruby, state: present }
+  when: ansible_os_family == 'Darwin'
 
-- name: install dpendencies (Ubuntu)
+- name: install iruby dpendencies (Ubuntu)
   block:
     - name: iruby dependency (block)
       gem:
@@ -105,11 +97,12 @@
         - autoconf
         - pkg-config
       become: true
-    - name: set czmq
-      git: repo='https://github.com/zeromq/czmq.git'
-           dest='/tmp/czmq'
-           version=master
-           force=yes
+    - name: clone czmq
+      git:
+        repo: 'https://github.com/zeromq/czmq.git'
+        dest: '/tmp/czmq'
+        version: master
+        force: yes
     - name: make czmq
       shell: |
         ./autogen.sh && ./configure && sudo make && sudo make install
@@ -137,4 +130,3 @@
 - name: Install iruby kernel
   shell: |
     {{ ansible_env.HOME }}/.rbenv/shims/iruby register --force
-
