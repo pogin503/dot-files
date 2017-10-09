@@ -22,12 +22,24 @@
       - { name: gmp, state: present }
       - { name: libtool, state: present }
       - { name: wget, state: present }
-    when: ansible_distribution == 'Darwin'
+    when: ansible_os_family == 'Darwin'
 
-- name: install rbenv
-  git: repo=https://github.com/sstephenson/rbenv.git
-       dest="{{ ansible_env.HOME }}/.rbenv"
-       version=master
+- name: install rbenv (macOS)
+  homebrew:
+    name: "{{ item.name }}"
+    state: latest
+  with_items:
+    - rbenv
+    - ruby-build
+  when: ansible_os_family == 'Darwin'
+
+- block:
+    - name: install rbenv
+      git:
+        repo: https://github.com/sstephenson/rbenv.git
+        dest: "{{ ansible_env.HOME }}/.rbenv"
+        version: master
+      when: ansible_distribution == 'Ubuntu'
 
 - name: add rbenv path to bash_profile
   become: true
@@ -35,6 +47,7 @@
   template:
     src: templates/rbenv.sh.j2
     dest: /etc/profile.d/rbenv.sh
+  when: ansible_distribution != 'Darwin'
 
 - name: install ruby_build
   git: repo=https://github.com/sstephenson/ruby-build.git
