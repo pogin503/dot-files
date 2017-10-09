@@ -27,19 +27,18 @@
 - name: install rbenv (macOS)
   homebrew:
     name: "{{ item.name }}"
-    state: latest
+    state: "{{ item.state }}"
   with_items:
-    - rbenv
-    - ruby-build
+    - { name: rbenv, state: latest }
+    - { name: ruby-build, state: latest }
   when: ansible_os_family == 'Darwin'
 
-- block:
-    - name: install rbenv
-      git:
-        repo: https://github.com/sstephenson/rbenv.git
-        dest: "{{ ansible_env.HOME }}/.rbenv"
-        version: master
-      when: ansible_distribution == 'Ubuntu'
+- name: install rbenv
+  git:
+    repo: https://github.com/sstephenson/rbenv.git
+    dest: "{{ ansible_env.HOME }}/.rbenv"
+    version: master
+  when: ansible_distribution == 'Ubuntu'
 
 - name: add rbenv path to bash_profile
   become: true
