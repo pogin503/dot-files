@@ -46,7 +46,7 @@
   template:
     src: templates/rbenv.sh.j2
     dest: /etc/profile.d/rbenv.sh
-  when: not ansible_distribution == 'Darwin'
+  when: not ansible_os_family == 'Darwin'
 
 - name: install ruby_build
   git: repo=https://github.com/sstephenson/ruby-build.git
