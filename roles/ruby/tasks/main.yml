@@ -125,7 +125,7 @@
     user_install: False
     executable: "{{ ansible_env.HOME }}/.rbenv/shims/gem"
   with_items:
-    - "{{ my_rbenv_packages }}"
+    - "{{ ruby_packages }}"
 
 - name: Install iruby kernel
   shell: |
