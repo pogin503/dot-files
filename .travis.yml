@@ -1,5 +1,8 @@
 language: objective-c
 sudo: true
+cache:
+  directories:
+    - $HOME/Library/Caches/Homebrew
 matrix:
   include:
     # - os: linux
