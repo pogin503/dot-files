@@ -3,7 +3,7 @@ matrix:
     # - os: linux
     - sudo: required
       language: objective-c
-      cache: pip
+      cache: brew
       os: osx
 
 before_install:
@@ -15,8 +15,8 @@ before_install:
   # - rm -rf /usr/local/Homebrew
   # - rm -rf /usr/local/Caskroom
   # - rm -rf /usr/local/bin/brew
-  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew update; fi
-  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew outdated xctool || brew upgrade xctool; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew outdated xctool || brew upgrade xctool; fi
 
 install:
   - sudo -H easy_install pip
