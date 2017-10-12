@@ -18,7 +18,7 @@
     - name: for travis-ci setting
       shell: "false"
       ignore_errors: yes
-      when: "{{ ansible_env.USER }}  == 'travis'"
+      when: ansible_env.USER  == 'travis'
    
 - name: upgrade pip
   become: true
