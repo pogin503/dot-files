@@ -6,10 +6,10 @@ if ! command "brew" > /dev/null; then
 fi
 
 # Install Apps
-brew tap Homebrew/bundle
-brew bundle --file=~/dotfiles/Brewfile
-brew linkapps
-brew cleanup
-brew cask cleanup
-brew doctor
-brew cask doctor
+# brew tap Homebrew/bundle
+# brew bundle --file=~/dotfiles/Brewfile
+# brew linkapps
+# brew cleanup
+# brew cask cleanup
+# brew doctor
+# brew cask doctor
