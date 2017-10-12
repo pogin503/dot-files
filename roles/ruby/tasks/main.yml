@@ -53,6 +53,9 @@
   args:
     creates: "{{ ansible_env.HOME }}/.rbenv/versions/{{ ruby_version }}"
 
+- name: exec rbenv rehash
+  command: rbenv rehash
+
 # - name: change ~/.rbenv owner to vagrant
 #   file: path={{ ansible_env.HOME }}/.rbenv state=directory owner=ubuntu group=vagrant recurse=yes
 
@@ -129,4 +132,5 @@
 
 - name: Install iruby kernel
   shell: |
+    ls {{ ansible_env.HOME }}/.rbenv/shims/
     {{ ansible_env.HOME }}/.rbenv/shims/iruby register --force
