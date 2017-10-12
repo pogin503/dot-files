@@ -2,6 +2,7 @@
 - hosts: localhost
   connection: local
   roles:
+    - role: common
     - role: python
     - role: scala
     - role: ruby

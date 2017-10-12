@@ -4,11 +4,12 @@
 
 # for rbenv
 if test -d "$HOME"/.rbenv
-  status --is-interactive; and . (rbenv init -|psub)
+  # status --is-interactive; and . (rbenv init -|psub)
+  rbenv init - | source
 else
   echo "can't load rbenv."
   echo "git clone https://github.com/rbenv/rbenv.git ~/.rbenv"
-  echo "status --is-interactive; and . (rbenv init -|psub)"
+  echo "rbenv init - | source"
 end
 
 if test -d "$HOME"/.cargo/bin
