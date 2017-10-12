@@ -6,19 +6,15 @@
         dest: "$HOME/Library/Application Support/pip/pip.conf"
         state: link
         force: yes
-      when: ansible_os_family == 'Darwin'
+      when: ansible_os_family == 'Darwin' && ansible_env.USER  != 'travis'
+
     - name: copy pip.conf
       file:
-        src: "~/dotfiles/python/pip.conf"
+        src: "{{ ansible_env.PWD }}/dotfiles/python/pip.conf"
         dest: "$HOME/.config/pip/pip.conf"
         state: link
         force: yes
       when: ansible_os_family == 'Ubuntu'
-  rescue:
-    - name: for travis-ci setting
-      shell: "false"
-      ignore_errors: yes
-      when: ansible_env.USER  == 'travis'
    
 - name: upgrade pip
   become: true
