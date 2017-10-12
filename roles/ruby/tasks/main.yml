@@ -131,7 +131,7 @@
   with_items:
     - "{{ ruby_packages }}"
 
-- name: Install iruby kernel
-  shell: |
-    ls {{ ansible_env.HOME }}/.rbenv/shims/
-    {{ ansible_env.HOME }}/.rbenv/shims/iruby register --force
+# - name: Install iruby kernel
+#   shell: |
+#     ls {{ ansible_env.HOME }}/.rbenv/shims/
+#     {{ ansible_env.HOME }}/.rbenv/shims/iruby register --force
