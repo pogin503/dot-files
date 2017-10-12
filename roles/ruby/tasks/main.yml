@@ -43,6 +43,7 @@
   git: repo=https://github.com/sstephenson/ruby-build.git
        dest={{ ansible_env.HOME }}/.rbenv/plugins/ruby-build
        version=master
+  when: not ansible_os_family == 'Darwin'
 
 - name: install ruby
   shell: |
@@ -53,8 +54,8 @@
   args:
     creates: "{{ ansible_env.HOME }}/.rbenv/versions/{{ ruby_version }}"
 
-- name: exec rbenv rehash
-  command: rbenv rehash
+- name: set ruby {{ ruby_version }} for system
+  command:  bash -lc "rbenv rehash"
 
 # - name: change ~/.rbenv owner to vagrant
 #   file: path={{ ansible_env.HOME }}/.rbenv state=directory owner=ubuntu group=vagrant recurse=yes
