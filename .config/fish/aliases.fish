@@ -91,3 +91,6 @@ if test /etc/arch-release
     # @see https://wiki.archlinux.org/index.php/Bashrc#Aliases
     alias yaupdate="yaourt -Syua --devel"
 end
+
+# @see https://qiita.com/SightSeekerTw/items/601d883e594bcaf234f4
+alias jshell='docker run -it --rm java:9-jdk jshell'
