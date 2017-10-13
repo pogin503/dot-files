@@ -1,8 +1,16 @@
 ---
 - hosts: localhost
   connection: local
+  vars:
+    rbenv:
+      env: user
+      version: v1.0.0
+      default_ruby: 2.4.1
   roles:
     - role: common
     - role: python
     - role: scala
+    - role: zzet.rbenv
+      rbenv_users:
+        - user
     - role: ruby

@@ -16,8 +16,8 @@
       name: "{{ item.name }}"
       state: "{{ item.state }}"
     with_items:
-      - { name: rbenv, state: present }
-      - { name: ruby-build, state: latest }
+      # - { name: rbenv, state: present }
+      # - { name: ruby-build, state: latest }
       # iruby dependencies
       - { name: automake, state: present }
       - { name: gmp, state: present }
@@ -25,12 +25,12 @@
       - { name: wget, state: present }
     when: ansible_os_family == 'Darwin'
 
-- name: install rbenv
-  git:
-    repo: https://github.com/sstephenson/rbenv.git
-    dest: "{{ ansible_env.HOME }}/.rbenv"
-    version: master
-  when: ansible_distribution == 'Ubuntu'
+# - name: install rbenv
+#   git:
+#     repo: https://github.com/sstephenson/rbenv.git
+#     dest: "{{ ansible_env.HOME }}/.rbenv"
+#     version: master
+#   when: ansible_distribution == 'Ubuntu'
 
 - name: add rbenv path to bash_profile
   become: true
@@ -39,23 +39,27 @@
     dest: /etc/profile.d/rbenv.sh
   when: not ansible_os_family == 'Darwin'
 
-- name: install ruby_build
-  git: repo=https://github.com/sstephenson/ruby-build.git
-       dest={{ ansible_env.HOME }}/.rbenv/plugins/ruby-build
-       version=master
-  when: not ansible_os_family == 'Darwin'
+# - name: install ruby_build
+#   git: repo=https://github.com/sstephenson/ruby-build.git
+#        dest={{ ansible_env.HOME }}/.rbenv/plugins/ruby-build
+#        version=master
+#   when: not ansible_os_family == 'Darwin'
 
-- name: install ruby
-  shell: |
-    export RBENV_ROOT={{ ansible_env.HOME }}/.rbenv
-    export PATH=$RBENV_ROOT/bin:$PATH
-    echo N | rbenv install {{ ruby_version }}
-    rbenv global {{ ruby_version }}
-  args:
-    creates: "{{ ansible_env.HOME }}/.rbenv/versions/{{ ruby_version }}"
+# - name: install ruby
+#   shell: |
+#     export RBENV_ROOT={{ ansible_env.HOME }}/.rbenv
+#     export PATH=$RBENV_ROOT/bin:$PATH
+#     echo N | rbenv install {{ ruby_version }}
+#     rbenv global {{ ruby_version }}
+#   args:
+#     creates: "{{ ansible_env.HOME }}/.rbenv/versions/{{ ruby_version }}"
 
-- name: set ruby {{ ruby_version }} for system
-  command:  bash -lc "rbenv rehash"
+# - name: set ruby {{ ruby_version }} for system
+#   command:  bash -lc "rbenv rehash"
+
+# - name: check ruby installed version
+#   shell: bash -lc "rbenv versions"
+#   register: ruby_installed_version
 
 # - name: change ~/.rbenv owner to vagrant
 #   file: path={{ ansible_env.HOME }}/.rbenv state=directory owner=ubuntu group=vagrant recurse=yes

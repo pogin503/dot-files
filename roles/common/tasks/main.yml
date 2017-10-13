@@ -23,3 +23,5 @@
   shell: "{{ ansible_env.HOME }}/dotfiles/setup.sh"
   args:
     chdir: "{{ ansible_env.HOME }}/dotfiles/"
+  register: ret
+  changed_when: ret.rc != 0
