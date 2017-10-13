@@ -6,7 +6,7 @@
         dest: "$HOME/Library/Application Support/pip/pip.conf"
         state: link
         force: yes
-      when: ansible_os_family == 'Darwin' && ansible_env.USER  != 'travis'
+      when: ansible_os_family == 'Darwin' and ansible_env.USER  != 'travis'
 
     - name: copy pip.conf
       file:
