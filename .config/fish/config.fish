@@ -46,8 +46,19 @@ if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]; and [ (uname) = 'Darw
   source "$HOME"/.config/fish/.homebrew_github_api_token
 end
 
-set -x BROWSER "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+if [ -d "$HOME"/.nodebrew/current/bin ];
+  set -x PATH "$HOME"/.nodebrew/current/bin $PATH
+end
+if [ -d /Applications/IBM/node/bin ];
+  set -x PATH /Applications/IBM/node/bin $PATH
+end
 
-set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+if [ (uname) = 'Darwin' ]
+  set -x BROWSER "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+end
 
+set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
+
+set -g PYTHONPATH $PYTHONPATH ~/workspace/ansible-lint/lib
+set -g PATH $PATH ~/workspace/ansible-lint/bin
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts

@@ -54,10 +54,15 @@
 
   roles:
     - role: common
-    - role: python
-    - role: scala
+    # - role: python
+    # - role: scala
     - role: ruby
       ruby_version: 2.4.1
+    - role: geerlingguy.nodejs
+      become: yes
+      nodejs_npm_global_packages:
+        - name: jslint
+        - name: node-sass
     - role: geerlingguy.mysql
       become: yes
       mysql_databases:

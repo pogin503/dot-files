@@ -1,14 +1,28 @@
 ---
-- name: install dpendencies (Ubuntu)
-  apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - libtool-bin
-    - libffi-dev
-  become: true
-  when: ansible_distribution == 'Ubuntu'
+- block:
+  - name: install dpendencies (Ubuntu)
+    apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    with_items:
+      - libtool-bin
+      - libffi-dev
+    become: true
+    when: ansible_distribution == 'Ubuntu'
+  - name: install dpendencies and rbenv (macOS)
+    homebrew:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+    with_items:
+      # - { name: rbenv, state: present }
+      # - { name: ruby-build, state: latest }
+      # iruby dependencies
+      - { name: automake, state: present }
+      - { name: gmp, state: present }
+      - { name: libtool, state: present }
+      - { name: wget, state: present }
+    when: ansible_os_family == 'Darwin'
 
 - name: install dpendencies (macOS)
   homebrew:
@@ -47,8 +61,9 @@
   args:
     creates: "{{ ansible_env.HOME }}/.rbenv/versions/{{ ruby_version }}"
 
-# - name: change ~/.rbenv owner to vagrant
-#   file: path={{ ansible_env.HOME }}/.rbenv state=directory owner=ubuntu group=vagrant recurse=yes
+- name: set ruby {{ my_ruby_version }} for system
+  shell: bash -lc "rbenv rehash"
+  changed_when: false
 
 - name: install dpendencies (macOS)
   block:

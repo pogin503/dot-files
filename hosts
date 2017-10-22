@@ -1,4 +1,10 @@
+# localhost ansible_connection=local
 localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
+
+[localhost:vars]
+home_path={{ lookup('env','HOME') }}
+homebrew_prefix={{ lookup('pipe','echo `brew --prefix`') }}
+homebrew_cellar={{ lookup('pipe','echo `brew --cellar`') }}
 
 [vagrants]
 192.168.33.10 ansible_python_interpreter=/usr/bin/python3

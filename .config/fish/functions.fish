@@ -40,6 +40,13 @@ MIT
 " | cat >> README.md
 end
 
-function kill_process
-  kill -9 (pgrep $argv[1])
-end
+# function kill_process
+#   set pid (pgrep $argv[1])
+#   if not (-z $pid "")
+#     # kill -9 $pid
+#     echo 11
+#   else
+#     echo 22
+#   end
+# end
+
