@@ -1,8 +1,6 @@
 ---
 - hosts: localhost
   connection: local
-  # vars_files:
-  #   - private.yml
   vars:
     rbenv:
       env: user
@@ -39,4 +37,3 @@
     #     - name: node-sass
     # - role: geerlingguy.mysql
     #   become: yes
-

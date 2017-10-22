@@ -27,6 +27,6 @@
   changed_when: ret.rc != 0
 
 - name: create iterm2 log directory
-  file: path=/var/log/iterm2 state=directory owner=root group=admin mode=775
+  become: true
+  file: path=/var/log/iterm2 state=directory owner=root group=admin mode=0775
   when: ansible_os_family == 'Darwin'
-

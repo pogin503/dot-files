@@ -8,3 +8,4 @@ my_ruby_packages:
   - bundler
   - pry
 
+my_rbenv_root: "{% if rbenv.env == 'system' %}/usr/local/rbenv{% else %}~/.rbenv{% endif %}"

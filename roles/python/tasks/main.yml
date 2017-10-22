@@ -2,25 +2,28 @@
 - block:
     - name: copy pip.conf
       file:
-        src: "~/dotfiles/python/pip.conf"
+        src: "{{ ansible_env.PWD }}/python/pip.conf"
         dest: "$HOME/Library/Application Support/pip/pip.conf"
         state: link
         force: yes
-      when: ansible_os_family == 'Darwin'
+      when: ansible_os_family == 'Darwin' and ansible_env.USER  != 'travis'
+
     - name: copy pip.conf
       file:
-        src: "~/dotfiles/python/pip.conf"
+        src: "{{ ansible_env.PWD }}/dotfiles/python/pip.conf"
         dest: "$HOME/.config/pip/pip.conf"
         state: link
         force: yes
       when: ansible_os_family == 'Ubuntu'
    
 - name: upgrade pip
+  become: true
   pip:
     name: pip
     state: latest
 
 - name: Related to machine learning packages
+  become: true
   pip:
     name: "{{ item }}"
     state: present
@@ -34,4 +37,9 @@
   with_items:
     - "{{ python_packages }}"
 
+# - name: Install Mecab
+#     debug: "Download Mecab"
+#     - get_url:
+#         url: https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE
+#         dest: /tmp
 

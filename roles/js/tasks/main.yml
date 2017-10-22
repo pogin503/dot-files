@@ -1,4 +1,22 @@
 ---
+# - include_role:
+#     name: djyugg.nodebrew
+
+# - name: Install nodebrew
+#   roles:
+#     role: djyugg.nodebrew
+- block:
+    - name: donwload nodebrew script
+      get_url:
+        url: https://git.io/nodebrew
+        dest: "$HOME/workspace/"
+        mode: 0755
+        force: yes
+    - name: Install nodebrew
+      shell: perl nodebrew setup
+      args:
+        chdir: "$HOME/workspace/"
+
 - name: Install npm modules
   npm:
     name: "{{ item.name }}"
