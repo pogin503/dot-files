@@ -8,11 +8,13 @@
       default_ruby: 2.4.1
       rubies:
       - version: 2.4.1
+  pre_tasks:
+    - debug: msg="USER={{ ansible_env.USER }} HOME={{ ansible_env.HOME }}"
+    - shell: |
+        python --version
+      changed_when: false
   roles:
     - role: common
     - role: python
     - role: scala
-    - role: zzet.rbenv
-      rbenv_users:
-        - "{{ ansible_env.USER }}"
     - role: ruby

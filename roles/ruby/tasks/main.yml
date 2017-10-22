@@ -28,7 +28,7 @@
 # - name: install rbenv
 #   git:
 #     repo: https://github.com/sstephenson/rbenv.git
-#     dest: "{{ ansible_env.HOME }}/.rbenv"
+#     dest: "{{ my_rbenv_root }}"
 #     version: master
 #   when: ansible_distribution == 'Ubuntu'
 
@@ -39,30 +39,30 @@
     dest: /etc/profile.d/rbenv.sh
   when: not ansible_os_family == 'Darwin'
 
-# - name: install ruby_build
-#   git: repo=https://github.com/sstephenson/ruby-build.git
-#        dest={{ ansible_env.HOME }}/.rbenv/plugins/ruby-build
-#        version=master
-#   when: not ansible_os_family == 'Darwin'
+- name: install ruby_build
+  git: repo=https://github.com/sstephenson/ruby-build.git
+       dest={{ my_rbenv_root }}/plugins/ruby-build
+       version=master
+  when: not ansible_os_family == 'Darwin'
 
-# - name: install ruby
-#   shell: |
-#     export RBENV_ROOT={{ ansible_env.HOME }}/.rbenv
-#     export PATH=$RBENV_ROOT/bin:$PATH
-#     echo N | rbenv install {{ ruby_version }}
-#     rbenv global {{ ruby_version }}
-#   args:
-#     creates: "{{ ansible_env.HOME }}/.rbenv/versions/{{ ruby_version }}"
+- name: install ruby
+  shell: |
+    export RBENV_ROOT={{ my_rbenv_root }}
+    export PATH=$RBENV_ROOT/bin:$PATH
+    echo N | rbenv install {{ my_ruby_version }}
+    rbenv global {{ my_ruby_version }}
+  args:
+    creates: "{{ my_rbenv_root }}/versions/{{ my_ruby_version }}"
 
-# - name: set ruby {{ ruby_version }} for system
-#   command:  bash -lc "rbenv rehash"
+- name: set ruby {{ my_ruby_version }} for system
+  command: bash -lc "rbenv rehash"
 
 # - name: check ruby installed version
 #   shell: bash -lc "rbenv versions"
 #   register: ruby_installed_version
 
-# - name: change ~/.rbenv owner to vagrant
-#   file: path={{ ansible_env.HOME }}/.rbenv state=directory owner=ubuntu group=vagrant recurse=yes
+# - name: change ~ owner to vagrant
+#   file: path={{ my_rbenv_root }} state=directory owner=ubuntu group=vagrant recurse=yes
 
 - name: install iruby dpendencies (macOS)
   block:
@@ -71,14 +71,14 @@
         state: "{{ item.state }}"
       with_items:
         - { name: zeromq, state: present }
-        - { name: czmq, state: latest }
+        - { name: czmq, state: head }
     - name: iruby dependency
       gem:
         name: "{{ item.name }}"
         state: "{{ item.state }}"
         # Install ~/.rbenv/
         user_install: False
-        executable: "{{ ansible_env.HOME }}/.rbenv/shims/gem"
+        executable: "{{ my_rbenv_root }}/shims/gem"
       with_items:
         - { name: cztop, state: present }
         - { name: iruby, state: present }
@@ -91,7 +91,7 @@
         name: "{{ item.name }}"
         state: "{{ item.state }}"
         user_install: False
-        executable: "{{ ansible_env.HOME }}/.rbenv/shims/gem"
+        executable: "{{ my_rbenv_root }}/shims/gem"
       with_items:
         - { name: cztop, state: present }
     - name: install dpendencies
@@ -121,7 +121,7 @@
         name: "{{ item.name }}"
         state: "{{ item.state }}"
         user_install: False
-        executable: "{{ ansible_env.HOME }}/.rbenv/shims/gem"
+        executable: "{{ my_rbenv_root }}/shims/gem"
       with_items:
         # for iruby notebook
         - { name: iruby, state: present }
@@ -131,11 +131,11 @@
   gem:
     name: "{{ item }}"
     user_install: False
-    executable: "{{ ansible_env.HOME }}/.rbenv/shims/gem"
+    executable: "{{ my_rbenv_root }}/shims/gem"
   with_items:
-    - "{{ ruby_packages }}"
+    - "{{ my_ruby_packages }}"
 
-# - name: Install iruby kernel
-#   shell: |
-#     ls {{ ansible_env.HOME }}/.rbenv/shims/
-#     {{ ansible_env.HOME }}/.rbenv/shims/iruby register --force
+- name: Install iruby kernel
+  shell: |
+    ls {{ my_rbenv_root }}/shims/
+    iruby register --force
