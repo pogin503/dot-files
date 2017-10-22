@@ -1,6 +1,6 @@
 ---
 my_rbenv_version: 2.4.1
-my_rbenv_packages:
+my_ruby_packages:
   # A toolkit of support libraries and Ruby core extensions extracted
   # from the Rails framework. Rich support for multibyte strings,
   # internationalization, time zones, and testing.

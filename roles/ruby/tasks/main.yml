@@ -10,7 +10,6 @@
       - libffi-dev
     become: true
     when: ansible_distribution == 'Ubuntu'
-  
   - name: install dpendencies and rbenv (macOS)
     homebrew:
       name: "{{ item.name }}"
@@ -55,7 +54,8 @@
     creates: "{{ my_rbenv_root }}/versions/{{ my_ruby_version }}"
 
 - name: set ruby {{ my_ruby_version }} for system
-  command: bash -lc "rbenv rehash"
+  shell: bash -lc "rbenv rehash"
+  changed_when: false
 
 # - name: check ruby installed version
 #   shell: bash -lc "rbenv versions"

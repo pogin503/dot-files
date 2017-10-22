@@ -10,7 +10,8 @@
       - version: 2.4.1
   pre_tasks:
     - debug: msg="USER={{ ansible_env.USER }} HOME={{ ansible_env.HOME }}"
-    - shell: |
+    - name: show python version
+      shell: |
         python --version
       changed_when: false
   roles:
