@@ -18,7 +18,7 @@ local setting (for macOS)
 git clone https://github.com/pogin503/dot-files.git ~/dotfiles
 cd ~/dotfiles
 ansible-galaxy install -r requirements.yml
-ansible-playbook -i hosts localhost.yml -v
+ansible-playbook -K -i hosts localhost.yml -v
 ```
 
 Create guest machine (Ubuntu)
