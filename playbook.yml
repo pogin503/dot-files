@@ -57,7 +57,7 @@
     # - role: python
     # - role: scala
     - role: ruby
-      ruby_version: 2.4.1
+      my_ruby_version: 2.4.1
     - role: geerlingguy.nodejs
       become: yes
       nodejs_npm_global_packages:

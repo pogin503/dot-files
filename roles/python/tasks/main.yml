@@ -15,12 +15,10 @@
         state: link
         force: yes
       when: ansible_os_family == 'Ubuntu'
-   
+
 - name: upgrade pip
   become: true
-  pip:
-    name: pip
-    state: latest
+  shell: pip3 install –upgrade pip
 
 - name: Related to machine learning packages
   become: true
