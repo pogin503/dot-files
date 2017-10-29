@@ -72,7 +72,7 @@ fpath=($HOME/repo/zsh-completions $fpath)
 
 # for stack or clojure
 if [[ ! -e "$HOME"/.local/bin ]];then
-    mkdir "$HOME"/.local/bin
+  mkdir "$HOME"/.local/bin
 fi
 export PATH=$HOME/.local/bin:$PATH
 
