@@ -59,6 +59,6 @@ end
 
 set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
 
-set -g PYTHONPATH $PYTHONPATH ~/workspace/ansible-lint/lib
-set -g PATH $PATH ~/workspace/ansible-lint/bin
+set -x PYTHONPATH $PYTHONPATH "$HOME"/workspace/ansible-lint/lib
+set -x PATH "$HOME"/workspace/ansible-lint/bin $PATH
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
