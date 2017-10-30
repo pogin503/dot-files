@@ -23,6 +23,7 @@ before_install:
 install:
   - sudo -H easy_install pip
   - sudo -H pip install ansible
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew install python3; fi
 
   # Add ansible.cfg to pick up roles path.
   # - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
@@ -46,4 +47,3 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
-

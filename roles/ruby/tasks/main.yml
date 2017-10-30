@@ -140,3 +140,4 @@
   shell: |
     ls {{ my_rbenv_root }}/shims/
     iruby register --force
+  changed_when: false

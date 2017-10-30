@@ -16,9 +16,11 @@
         force: yes
       when: ansible_os_family == 'Ubuntu'
 
-- name: upgrade pip
+- name: Upgrade pip
   become: true
-  shell: pip3 install –upgrade pip
+  pip:
+    name: pip
+    extra_args: --upgrade
 
 - name: Related to machine learning packages
   become: true
@@ -40,4 +42,3 @@
 #     - get_url:
 #         url: https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE
 #         dest: /tmp
-

@@ -46,7 +46,8 @@
               state: present
             - name: pip
               state: latest
-        - shell: |
+        - name: show python and pip version
+          shell: |
             python3 --version
             pip3 --version
           changed_when: false
@@ -57,7 +58,6 @@
     # - role: python
     # - role: scala
     - role: ruby
-      my_ruby_version: 2.4.1
     - role: geerlingguy.nodejs
       become: yes
       nodejs_npm_global_packages:
