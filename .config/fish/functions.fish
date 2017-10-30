@@ -50,3 +50,10 @@ end
 #   end
 # end
 
+function ansible_chceck
+  # usage
+  # $ ansible_check ./locahost.yml
+  ansble-playbook --syntax-check $argv[1]
+  ansible-playbook --check $argv[1] --vault-password-file ~/.ansible/.vault_password
+  ansible-lint $argv[1]
+end
