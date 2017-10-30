@@ -47,7 +47,7 @@
             - name: pip
               state: latest
         - name: show python and pip version
-          shell: |
+          command: |
             python3 --version
             pip3 --version
           changed_when: false

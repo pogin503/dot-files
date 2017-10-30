@@ -54,7 +54,7 @@
     creates: "{{ my_rbenv_root }}/versions/{{ my_ruby_version }}"
 
 - name: set ruby {{ my_ruby_version }} for system
-  shell: bash -lc "rbenv rehash"
+  command: bash -lc "rbenv rehash"
   changed_when: false
 
 # - name: check ruby installed version
@@ -137,7 +137,7 @@
     - "{{ my_ruby_packages }}"
 
 - name: Install iruby kernel
-  shell: |
+  command: |
     ls {{ my_rbenv_root }}/shims/
     iruby register --force
   changed_when: false

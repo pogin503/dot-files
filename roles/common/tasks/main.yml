@@ -20,7 +20,7 @@
        force=yes
 
 - name: exec setup.sh
-  shell: "{{ ansible_env.HOME }}/dotfiles/setup.sh"
+  script: "{{ ansible_env.HOME }}/dotfiles/setup.sh"
   args:
     chdir: "{{ ansible_env.HOME }}/dotfiles/"
   register: ret
