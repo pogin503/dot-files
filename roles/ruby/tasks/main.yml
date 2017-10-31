@@ -15,7 +15,7 @@
       name: "{{ item.name }}"
       state: "{{ item.state }}"
     with_items:
-      # - { name: rbenv, state: present }
+      - { name: rbenv, state: present }
       # - { name: ruby-build, state: latest }
       # iruby dependencies
       - { name: automake, state: present }
