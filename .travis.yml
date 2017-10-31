@@ -10,6 +10,7 @@ matrix:
 
 before_install:
   - echo ""
+  - python --version
   # - brew update
   # - brew install python
   # - brew install ansible
@@ -21,14 +22,14 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew outdated xctool || brew upgrade xctool; fi
 
 install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install python3; fi
   - sudo -H easy_install pip
   - sudo -H pip install ansible
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install python3; fi
 
   # Add ansible.cfg to pick up roles path.
   # - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
-    # Add a hosts file.
+  # Add a hosts file.
   - sudo mkdir -p /etc/ansible
   - sudo touch /etc/ansible/hosts
   - "echo -e '[local]\nlocalhost ansible_connection=local' | sudo tee -a /etc/ansible/hosts > /dev/null"
@@ -38,10 +39,10 @@ script:
   - ansible-galaxy install -r requirements.yml
   # - ansible-playbook --syntax-check ./localhost.yml -i hosts
   - ansible-playbook --syntax-check ./localhost.yml
-  - "travis_wait 30 ansible-playbook --extra-vars '{\"configure_sudoers\":\"false\"}' localhost.yml"
+  - "travis_wait 30 ansible-playbook localhost.yml"
   # Test the playbook's idempotence.
   - idempotence=$(mktemp)
-  - "ansible-playbook --extra-vars '{\"configure_sudoers\":\"false\"}' localhost.yml | tee -a ${idempotence}"
+  - "ansible-playbook  localhost.yml | tee -a ${idempotence}"
   - >
     tail ${idempotence}
     | grep -q 'changed=0.*failed=0'
