@@ -50,12 +50,24 @@ end
 #   end
 # end
 
-function ansible_chceck
+function ansible_check
   # usage
   # $ ansible_check ./locahost.yml
-  ansble-playbook --syntax-check $argv[1]
-  ansible-playbook --check $argv[1] --vault-password-file ~/.ansible/.vault_password
-  ansible-lint $argv[1]
+  # $ ansible_check ./locahost.yml hosts
+  if [ (string length "$argv.length") = 0 ]
+    exit
+  else if [ (string length "$argv.length") = 1 ]
+    echo 0
+    ansible-playbook --syntax-check $argv[1]
+    and ansible-playbook --check $argv[1] --vault-password-file ~/.ansible/.vault_password
+    and ansible-lint $argv[1]
+  else
+    echo 2
+    ansible-playbook --syntax-check $argv[1] -i $argv[2]
+    and ansible-playbook --check $argv[1] -i $argv[2] --vault-password-file ~/.ansible/.vault_password
+    and ansible-lint $argv[1]
+  end
+end
 
 function reload_tmux_conf
   tmux source-file ~/.tmux.conf; tmux display-message "reload"
