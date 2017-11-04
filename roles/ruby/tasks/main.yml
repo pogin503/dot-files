@@ -1,6 +1,6 @@
 ---
 - import_tasks: macOS.yml
-  when: ansible_os_faimily == 'Darwin'
+  when: ansible_os_family == 'Darwin'
 
 - name: install dpendencies (Ubuntu)
   apt:
