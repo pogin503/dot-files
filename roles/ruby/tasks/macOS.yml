@@ -1,0 +1,17 @@
+---
+  - name: install dpendencies and rbenv (macOS)
+    homebrew:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+    with_items:
+      - { name: rbenv, state: present }
+      # - { name: ruby-build, state: latest }
+      # iruby dependencies
+      - { name: automake, state: present }
+      - { name: gmp, state: present }
+      - { name: libtool, state: present }
+      - { name: wget, state: present }
+
+- name: add rbenv initialization to profile system-wide
+  blockinfile: block="{{ lookup('template', 'rbenv_user.sh.j2') }}" dest=/etc/profile
+  become: yes

@@ -1,28 +1,17 @@
 ---
-- block:
-  - name: install dpendencies (Ubuntu)
-    apt:
-      name: "{{ item }}"
-      state: present
-      update_cache: yes
-    with_items:
-      - libtool-bin
-      - libffi-dev
-    become: true
-    when: ansible_distribution == 'Ubuntu'
-  - name: install dpendencies and rbenv (macOS)
-    homebrew:
-      name: "{{ item.name }}"
-      state: "{{ item.state }}"
-    with_items:
-      - { name: rbenv, state: present }
-      # - { name: ruby-build, state: latest }
-      # iruby dependencies
-      - { name: automake, state: present }
-      - { name: gmp, state: present }
-      - { name: libtool, state: present }
-      - { name: wget, state: present }
-    when: ansible_os_family == 'Darwin'
+- include: macOS.yml
+  when: ansible_os_faimily == 'Darwin'
+
+- name: install dpendencies (Ubuntu)
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - libtool-bin
+    - libffi-dev
+  become: true
+  when: ansible_distribution == 'Ubuntu'
 
 # - name: install rbenv
 #   git:
@@ -37,12 +26,6 @@
     src: templates/rbenv_user.sh.j2
     dest: /etc/profile.d/rbenv_user.sh
   when: not ansible_os_family == 'Darwin'
-
-- name: add rbenv initialization to profile system-wide
-  blockinfile: block="{{ lookup('template', 'rbenv_user.sh.j2') }}" dest=/etc/profile
-  become: yes
-  when:
-    - ansible_os_family == 'Darwin'
 
 - name: install ruby_build
   git: repo=https://github.com/sstephenson/ruby-build.git
