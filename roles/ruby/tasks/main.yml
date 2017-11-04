@@ -34,9 +34,15 @@
 - name: add rbenv path to bash_profile
   become: true
   template:
-    src: templates/rbenv.sh.j2
-    dest: /etc/profile.d/rbenv.sh
+    src: templates/rbenv_user.sh.j2
+    dest: /etc/profile.d/rbenv_user.sh
   when: not ansible_os_family == 'Darwin'
+
+- name: add rbenv initialization to profile system-wide
+  blockinfile: block="{{ lookup('template', 'rbenv_user.sh.j2') }}" dest=/etc/profile
+  become: yes
+  when:
+    - ansible_os_family == 'Darwin'
 
 - name: install ruby_build
   git: repo=https://github.com/sstephenson/ruby-build.git
@@ -96,6 +102,7 @@
       with_items:
         - { name: cztop, state: present }
     - name: install dpendencies
+      become: true
       apt:
         name: "{{ item }}"
         state: present
@@ -105,7 +112,6 @@
         - libzmq-dev
         - autoconf
         - pkg-config
-      become: true
     - name: clone czmq
       git:
         repo: 'https://github.com/zeromq/czmq.git'
