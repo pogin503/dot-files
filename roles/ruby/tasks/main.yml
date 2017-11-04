@@ -1,5 +1,5 @@
 ---
-- include: macOS.yml
+- import_tasks: macOS.yml
   when: ansible_os_faimily == 'Darwin'
 
 - name: install dpendencies (Ubuntu)
@@ -126,7 +126,6 @@
     - "{{ my_ruby_packages }}"
 
 # - name: Install iruby kernel
-#   command: |
-#     ls {{ my_rbenv_root }}/shims/
-#     iruby register --force
+#   shell: |
+#     ls {{ my_rbenv_root }}/shims/; iruby register --force
 #   changed_when: false
