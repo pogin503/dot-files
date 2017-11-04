@@ -13,3 +13,7 @@ ansible_check () {
   ansible-lint "$1"
 
 }
+
+reload_tmux_conf () {
+  tmux source-file ~/.tmux.conf; tmux display-message "reload"
+}

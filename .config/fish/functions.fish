@@ -56,4 +56,7 @@ function ansible_chceck
   ansble-playbook --syntax-check $argv[1]
   ansible-playbook --check $argv[1] --vault-password-file ~/.ansible/.vault_password
   ansible-lint $argv[1]
+
+function reload_tmux_conf
+  tmux source-file ~/.tmux.conf; tmux display-message "reload"
 end
