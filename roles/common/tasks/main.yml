@@ -1,17 +1,6 @@
 ---
-- name: install dpendencies (Ubuntu)
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - git
-    - python-pip
-    - libtool-bin
-  become: true
+- import_tasks: ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
-
-# - include: ubuntu.yml
-#   when: ansible_distribution == 'Ubuntu'
 
 - name: set dotfiles
   git: repo='https://github.com/pogin503/dot-files.git'

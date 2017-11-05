@@ -3,14 +3,24 @@
   when: ansible_os_family == 'Darwin'
 
 - name: install dpendencies (Ubuntu)
+  become: true
   apt:
     name: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
-    - libtool-bin
+    - autoconf
+    - bison
     - libffi-dev
-  become: true
+    - libffi-dev
+    - libgdbm-dev
+    - libgdbm3
+    - libncurses5-dev
+    - libreadline6-dev
+    - libssl-dev
+    - libtool-bin
+    - libyaml-dev
+    - zlib1g-dev
   when: ansible_distribution == 'Ubuntu'
 
 # - name: install rbenv
