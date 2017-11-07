@@ -109,4 +109,5 @@ Temporary Items
 .apdisk
 
 private
+private*
 group_vars/all
