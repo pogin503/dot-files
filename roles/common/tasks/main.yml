@@ -13,7 +13,7 @@
   args:
     chdir: "{{ ansible_env.HOME }}/dotfiles/"
   register: ret
-  changed_when: ret.rc != 0
+  changed_when: false
 
 - name: create iterm2 log directory
   become: true
