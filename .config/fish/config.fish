@@ -29,6 +29,7 @@ if test -d "$HOME"/.pyenv
   set -x PYENV_ROOT "$HOME"/.pyenv
   set -x PATH "$PYENV_ROOT"/bin $PATH
   . (pyenv init - | psub)
+  source (conda info --root)/etc/fish/conf.d/conda.fish
 end
 
 # load aliases
