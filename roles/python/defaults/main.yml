@@ -3,6 +3,11 @@ ml_packages:
   - jupyter
   - jupyter_contrib_nbextensions
   - scikit-learn
+  - environment_kernels
+  - numpy
+  - matplotlib
+  - bokeh
+  - plotly
 
 python_packages:
   - jedi
