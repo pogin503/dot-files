@@ -58,8 +58,5 @@ if [ (uname) = 'Darwin' ]
   set -x BROWSER "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 end
 
-set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
-
-set -x PYTHONPATH $PYTHONPATH "$HOME"/workspace/ansible-lint/lib
-set -x PATH "$HOME"/workspace/ansible-lint/bin $PATH
+# set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
