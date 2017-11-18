@@ -18,9 +18,12 @@
       - railwaycat/emacsmacport
   pre_tasks:
     - debug: msg="USER={{ ansible_env.USER }} HOME={{ ansible_env.HOME }}"
+    - debug: msg="PATH={{ ansible_env.PATH }}"
     - name: show python version
       command: python --version
+      register: python_version
       changed_when: false
+    - debug: msg="{{ python_version }}"
   roles:
     - role: common
     - role: python
