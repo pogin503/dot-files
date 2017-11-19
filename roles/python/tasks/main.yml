@@ -19,8 +19,12 @@
 - name: Upgrade pip
   become: true
   pip:
-    name: pip
+    name: "{{ item }}"
     extra_args: --upgrade
+  with_items:
+    - pip
+    - setuptools
+    - wheel
 
 - name: Related to machine learning packages
   become: true
