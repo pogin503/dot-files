@@ -7,11 +7,16 @@ function sh_template
   chmod 744 $argv[1]
 end
 
-function git_template
-  printf "$argv[1]\n" > README.md
-  set len (string length $argv[1])
-  ruby -e "$len.times {|i| print '=' }; puts " >> README.md
-  printf "\
+function readme_template
+  if [ (count $argv) = 0 ]
+    printf "usage:
+    \$ readme_template <app_name>\n"
+    return
+  else
+    printf "$argv[1]\n" > README.md
+    set len (string length $argv[1])
+    ruby -e "$len.times {|i| print '=' }; puts " >> README.md
+    set template "\
 
 
 # Features
@@ -37,7 +42,9 @@ function git_template
 # License
 
 MIT
-" | cat >> README.md
+"
+    printf $template | cat >> README.md
+  end
 end
 
 # function kill_process
