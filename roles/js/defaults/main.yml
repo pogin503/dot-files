@@ -1,0 +1,7 @@
+---
+nodejs_npm_global_packages:
+  - { name: eslint, state: present }
+  - { name: node-sass, state: present }
+  - { name: purescript, state: present }
+  - { name: pulp, state: present }
+  - { name: bower, state: present }

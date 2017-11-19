@@ -13,9 +13,10 @@
         mode: 0755
         force: yes
     - name: Install nodebrew
-      shell: perl nodebrew setup
+      command: perl nodebrew setup
       args:
         chdir: "$HOME/workspace/"
+      changed_when: false
 
 - name: Install npm modules
   npm:
@@ -24,4 +25,3 @@
     global: yes
   with_items:
     - '{{ nodejs_npm_global_packages }}'
-
