@@ -1,0 +1,21 @@
+- name: create iterm2 log directory
+  become: true
+  file: path=/var/log/iterm2 state=directory owner=root group=admin mode=0775
+  when: ansible_os_family == 'Darwin'
+
+- name: install packages
+  homebrew:
+    name: "{{ item }}"
+  with_item:
+    - fish
+    - go
+    - ansifilter
+    - the_silver_searcher
+    - ricty
+    - editorconfig
+    - jenkins
+    - shellcheck
+    - tmux
+    - trash
+    - tree
+  tags: brew-install
