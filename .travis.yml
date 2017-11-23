@@ -30,6 +30,7 @@ script:
   - ansible --version
   - ansible-galaxy install -r requirements.yml
   - ansible-playbook --syntax-check ./localhost.yml
+  - ansible-playbook --syntax-check ./playbook.yml
   - "travis_wait 30 ansible-playbook -i hosts localhost.yml"
   # Test the playbook's idempotence.
   - idempotence=$(mktemp)
