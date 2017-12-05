@@ -22,8 +22,10 @@
     - name: show python version
       command: python --version
       register: python_version
+      check_mode: no
       changed_when: false
-    - debug: msg="{{ python_version }}"
+    - debug:
+        msg: "{{ python_version }}"
   roles:
     - role: common
     - role: python
