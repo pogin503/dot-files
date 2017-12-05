@@ -36,7 +36,7 @@ end
 . "$HOME"/.config/fish/aliases.fish
 
 # load functions
-. "$HOME"/.config/fish/functions.fish
+. "$HOME"/.config/fish/functions/functions.fish
 
 if [ -f "$HOME"/.config/fish/GRAPHQL_TOKEN ];
   set -x GITHUB_GRAPHQL_TOKEN (cat "$HOME"/.config/fish/GRAPHQL_TOKEN)
