@@ -3,6 +3,16 @@
   file: path=/var/log/iterm2 state=directory owner=root group=admin mode=0775
   when: ansible_os_family == 'Darwin'
 
+- name: Set homebrew tap
+  homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - caskroom/cask
+    - caskroom/versions
+    - railwaycat/emacsmacport
+    - sanemat/font
+
 - name: install packages
   homebrew:
     name: "{{ item }}"
