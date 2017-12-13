@@ -8,23 +8,16 @@
       default_ruby: 2.4.1
       rubies:
       - version: 2.4.1
-    homebrew_taps:
-      - caskroom/cask
-      - caskroom/versions
-      - homebrew/dupes
-      - homebrew/versions
-      - homebrew/boneyard
-      - homebrew/binary
-      - railwaycat/emacsmacport
   pre_tasks:
-    - debug: msg="USER={{ ansible_env.USER }} HOME={{ ansible_env.HOME }}"
-    - debug: msg="PATH={{ ansible_env.PATH }}"
-    - name: show python version
+    - name: show environment
+      debug: msg="USER={{ ansible_env.USER }} HOME={{ ansible_env.HOME }}\nPATH={{ ansible_env.PATH }}"
+    - name: get python version
       command: python --version
       register: python_version
       check_mode: no
       changed_when: false
-    - debug:
+    - name: show python verion
+      debug:
         msg: "{{ python_version }}"
   roles:
     - role: common
@@ -36,8 +29,12 @@
     #     nodebrew_install_user: pogin
     # - role: geerlingguy.nodejs
     #   become: true
+    #   npm_config_unsafe_perm: true
     #   nodejs_npm_global_packages:
     #     - name: jslint
     #     - name: node-sass
+    #     - name: purescript
+    #     - name: pulp
+    #     - name: bower
     # - role: geerlingguy.mysql
     #   become: yes
