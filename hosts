@@ -1,10 +1,18 @@
-# localhost ansible_connection=local
-localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
+local_group:
+  hosts:
+    localhost:
+  vars:
+    ansible_connection: local
+    ansible_python_interpreter: "/usr/local/bin/python3"
+    # ansible_python_interpreter: "/Users/pogin/.pyenv/shims/python"
+    home_path: "{{ lookup('env','HOME') }}"
+    homebrew_prefix: "{{ lookup('pipe','echo `brew --prefix`') }}"
+    homebrew_cellar: "{{ lookup('pipe','echo `brew --cellar`') }}"
 
-[localhost:vars]
-home_path={{ lookup('env','HOME') }}
-homebrew_prefix={{ lookup('pipe','echo `brew --prefix`') }}
-homebrew_cellar={{ lookup('pipe','echo `brew --cellar`') }}
+vagrants:
+  hosts:
+    192.168.33.10:
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
-[vagrants]
-192.168.33.10 ansible_python_interpreter=/usr/bin/python3
+
