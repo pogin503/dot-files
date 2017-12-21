@@ -6,6 +6,7 @@
   with_items:
     - { name: rbenv, state: present }
     - { name: ruby-build, state: latest }
+    - { name: libtool, state: present }
     # iruby dependencies
     - { name: automake, state: present }
     - { name: gmp, state: present }
