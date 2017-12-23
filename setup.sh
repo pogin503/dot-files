@@ -5,6 +5,10 @@ set -eu
 DOT_DIR="$HOME"/dotfiles
 
 ln -sf "$DOT_DIR"/.aliases          ~/.aliases
+if [ -e ~/.bashrc ]; then
+  cp ~/.bashrc ~/".bashrc_orig_$(date '+%Y-%m-%dT%H:%M')"
+fi
+ln -sf "$DOT_DIR"/.bashrc           ~/.bashrc
 ln -sf "$DOT_DIR"/.gdbinit          ~/.gdbinit
 ln -sf "$DOT_DIR"/.ghci             ~/.ghci
 ln -sf "$DOT_DIR"/.gitignore_global ~/.gitignore_global

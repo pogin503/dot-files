@@ -23,10 +23,6 @@ alias rmdir_r='find . -depth -type d | xargs rmdir 2> /dev/null'
 alias rdom='echo `od -vAn -N4 -tu4 < /dev/urandom`'
 
 alias da='date "+%A, %B %d, %Y [%T]"'
-function hist() {
-  history | grep "$1"
-}
-
 # http://www.reddit.com/r/commandline/comments/12g76v/how_to_automatically_source_zshrc_in_all_open/
 trap "source ~/.bashrc" USR1
 alias source-bashrc-all="pkill -usr1 bash"
@@ -103,3 +99,25 @@ if [[ $(uname -r) =~ ARCH$ ]]; then
     # @see https://wiki.archlinux.org/index.php/Bashrc#Aliases
     alias yaupdate="yaourt -Syua --devel"
 fi
+
+# http://dharry.hatenablog.com/entry/2012/09/17/031850
+function backup(){
+    cp -pr "$1{,.$(date +%Y-%m-%dT%H:%M:%S)";
+}
+
+# ex. $ pscan 192.168.0.0/24
+function pscan(){
+    nmap -nsP "$1" | awk '{if($1=="Host") print $2 }';
+}
+
+function hist() {
+    history | grep "$1"
+}
+
+function show-hide-file (){
+    defaults write com.apple.finder AppleShowAllFiles -boolean "$1" && killall Finder
+}
+
+function show-hide-file (){
+    defaults write com.apple.finder AppleShowAllFiles -boolean "$1" && killall Finder
+}
