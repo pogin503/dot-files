@@ -2,6 +2,12 @@
 # set fisher_config ~/.config/fisherman
 # source $fisher_home/config.fish
 
+# load aliases
+. "$HOME"/.config/fish/aliases.fish
+
+# load functions
+. "$HOME"/.config/fish/functions/functions.fish
+
 # for rbenv
 if test -d "$HOME"/.rbenv
   # status --is-interactive; and . (rbenv init -|psub)
@@ -32,20 +38,10 @@ if test -d "$HOME"/.pyenv
   source (conda info --root)/etc/fish/conf.d/conda.fish
 end
 
-# load aliases
-. "$HOME"/.config/fish/aliases.fish
-
-# load functions
-. "$HOME"/.config/fish/functions/functions.fish
-
 if [ -f "$HOME"/.config/fish/GRAPHQL_TOKEN ];
   set -x GITHUB_GRAPHQL_TOKEN (cat "$HOME"/.config/fish/GRAPHQL_TOKEN)
 end
 
-# set homebrew github api token
-if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]; and [ (uname) = 'Darwin' ]
-  source "$HOME"/.config/fish/.homebrew_github_api_token
-end
 
 if [ -d "$HOME"/.nodebrew/current/bin ];
   set -x PATH "$HOME"/.nodebrew/current/bin $PATH
@@ -55,6 +51,12 @@ if [ -d /Applications/IBM/node/bin ];
 end
 
 if [ (uname) = 'Darwin' ]
+
+  # set homebrew github api token
+  if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]
+    source "$HOME"/.config/fish/.homebrew_github_api_token
+  end
+
   set -x BROWSER "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 end
 

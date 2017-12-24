@@ -117,7 +117,3 @@ function hist() {
 function show-hide-file (){
     defaults write com.apple.finder AppleShowAllFiles -boolean "$1" && killall Finder
 }
-
-function show-hide-file (){
-    defaults write com.apple.finder AppleShowAllFiles -boolean "$1" && killall Finder
-}
