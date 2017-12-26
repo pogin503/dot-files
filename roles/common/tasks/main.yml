@@ -18,3 +18,14 @@
 
 - import_tasks: macOS.yml
   when: ansible_os_family == 'Darwin'
+
+- name: Create plantuml directory
+  file:
+    path: ~/.local/share/plantuml/
+    state: directory
+    mode: 755
+
+- name: Download PlantUML jar
+  get_url:
+    url: http://jaist.dl.sourceforge.net/project/plantuml/plantuml.jar
+    dest: ~/.local/share/plantuml/
