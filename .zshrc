@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Path to your oh-my-zsh configuration.
 ZSH="$HOME"/.oh-my-zsh
 
@@ -89,4 +91,8 @@ if [[ $(uname) = 'Darwin' ]];then
 	if [ -f ~/private/.brew_api_token ];then
 		source ~/private/.homebrew_api_token
 	fi
+fi
+
+if [ -d "$HOME"/.composer/vendor/bin ]; then
+   export PATH="$HOME"/.composer/vendor/bin:${PATH}
 fi

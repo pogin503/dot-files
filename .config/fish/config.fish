@@ -50,7 +50,7 @@ if [ -d /Applications/IBM/node/bin ];
   set -x PATH /Applications/IBM/node/bin $PATH
 end
 
-if [ (uname) = 'Darwin' ]
+if [ (uname) = 'Darwin' ];
 
   # set homebrew github api token
   if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]
@@ -61,4 +61,7 @@ if [ (uname) = 'Darwin' ]
 end
 
 # set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
+if [ -d "$HOME"/.composer/vendor/bin ];
+  set -x PATH "$HOME"/.composer/vendor/bin $PATH
+end
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts

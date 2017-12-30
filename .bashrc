@@ -27,3 +27,6 @@ if [ -f /usr/share/git-core/git-completion.bash ]; then
   # shellcheck disable=SC1091
   source /usr/share/git-core/git-completion.bash
 fi
+if [ -d "$HOME"/.composer/vendor/bin ]; then
+   export PATH="$HOME"/.composer/vendor/bin:${PATH}
+fi
