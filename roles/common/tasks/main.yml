@@ -23,7 +23,7 @@
   file:
     path: ~/.local/share/plantuml/
     state: directory
-    mode: 755
+    mode: 0755
 
 - name: Download PlantUML jar
   get_url:
