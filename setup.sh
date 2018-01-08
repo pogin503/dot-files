@@ -26,6 +26,8 @@ ln -sf "$DOT_DIR"/.config/fish/functions/functions.fish   ~/.config/fish/functio
 mkdir -p ~/.stack/
 ln -sf "$DOT_DIR"/.stack/config.yaml ~/.stack/config.yaml
 
+ln -sf "$DOT_DIR"/.rubocop.yml ~/.rubocop.yml
+
 git config --global alias.co 'checkout'
 git config --global alias.st 'status -sb'
 git config --global alias.cm 'commit -a'
