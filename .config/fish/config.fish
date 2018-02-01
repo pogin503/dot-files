@@ -35,7 +35,6 @@ if test -d "$HOME"/.pyenv
   set -x PYENV_ROOT "$HOME"/.pyenv
   set -x PATH "$PYENV_ROOT"/bin $PATH
   . (pyenv init - | psub)
-  source (conda info --root)/etc/fish/conf.d/conda.fish
 end
 
 if [ -f "$HOME"/.config/fish/GRAPHQL_TOKEN ];
@@ -60,8 +59,10 @@ if [ (uname) = 'Darwin' ];
   set -x BROWSER "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 end
 
-# set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
 if [ -d "$HOME"/.composer/vendor/bin ];
   set -x PATH "$HOME"/.composer/vendor/bin $PATH
 end
+
+set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
+set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
