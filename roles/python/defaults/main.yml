@@ -15,3 +15,6 @@ python_packages:
   - flake8
   - pygments
   - requests
+  # A Python library for the Docker Engine API
+  # https://github.com/docker/docker-py
+  - docker
