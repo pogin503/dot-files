@@ -25,11 +25,11 @@ fi
 mkdir -p "$DIR"/roles/"$1"/tasks
 mkdir -p "$DIR"/roles/"$1"/defaults
 mkdir -p "$DIR"/roles/"$1"/vars
-# mkdir -p "$DIR"/roles/"$1"/files
+mkdir -p "$DIR"/roles/"$1"/files
 mkdir -p "$DIR"/roles/"$1"/templates
 mkdir -p "$DIR"/roles/"$1"/tests
 mkdir -p "$DIR"/roles/"$1"/handlers
-# mkdir -p "$DIR"/roles/"$1"/meta
+mkdir -p "$DIR"/roles/"$1"/meta
 
 # 実行するタスクを定義する
 touch "$DIR"/roles/"$1"/tasks/main.yml
@@ -48,8 +48,8 @@ printf -- "---\n" > "$DIR"/roles/"$1"/vars/main.yml
 # printf -- "---\n" >> "$DIR"/roles/"$1"/templates/main.yml
 
 # templateモジュールでリモートに展開するJinja2テンプレートを置くディレクトリ
-touch "$DIR"/roles/"$1"/templates/file.j2
-printf -- "---\n" > "$DIR"/roles/"$1"/templates/main.yml
+# touch "$DIR"/roles/"$1"/templates/file.j2
+# printf -- "---\n" > "$DIR"/roles/"$1"/templates/main.yml
 
 # ハンドラーを定義する
 touch "$DIR"/roles/"$1"/handlers/main.yml
