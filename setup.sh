@@ -13,6 +13,7 @@ ln -sf "$DOT_DIR"/.gdbinit          ~/.gdbinit
 ln -sf "$DOT_DIR"/.ghci             ~/.ghci
 ln -sf "$DOT_DIR"/.gitignore_global ~/.gitignore_global
 ln -sf "$DOT_DIR"/.guile            ~/.guile
+ln -sf "$DOT_DIR"/.rubocop.yml      ~/.rubocop.yml
 ln -sf "$DOT_DIR"/.tmux.conf        ~/.tmux.conf
 ln -sf "$DOT_DIR"/.vimrc            ~/.vimrc
 ln -sf "$DOT_DIR"/.zshrc            ~/.zshrc
@@ -25,8 +26,6 @@ ln -sf "$DOT_DIR"/.config/fish/functions/functions.fish   ~/.config/fish/functio
 
 mkdir -p ~/.stack/
 ln -sf "$DOT_DIR"/.stack/config.yaml ~/.stack/config.yaml
-
-ln -sf "$DOT_DIR"/.rubocop.yml ~/.rubocop.yml
 
 git config --global alias.co 'checkout'
 git config --global alias.st 'status -sb'
