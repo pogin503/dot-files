@@ -87,7 +87,7 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
 
 # Thumbnails
 ._*
@@ -412,7 +412,7 @@ tags
 
 *.gem
 *.rbc
-/.config
+# /.config
 /coverage/
 /InstalledFiles
 /pkg/
