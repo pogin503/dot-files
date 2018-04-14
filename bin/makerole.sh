@@ -33,15 +33,15 @@ mkdir -p "$DIR"/roles/"$1"/meta
 
 # 実行するタスクを定義する
 touch "$DIR"/roles/"$1"/tasks/main.yml
-printf -- "---\n" > "$DIR"/roles/"$1"/tasks/main.yml
+printf -- "---\n# tasks file for $1" > "$DIR"/roles/"$1"/tasks/main.yml
 
 # Role内で使う「外から書き換えるつもり」の変数のデフォルト値を設定する
 touch "$DIR"/roles/"$1"/defaults/main.yml
-printf -- "---\n" > "$DIR"/roles/"$1"/defaults/main.yml
+printf -- "---\n# defaults file for $1" > "$DIR"/roles/"$1"/defaults/main.yml
 
 # Role内で使う「外から書き換えるつもりの***ない***」の変数のデフォルト値を設定する
 touch "$DIR"/roles/"$1"/vars/main.yml
-printf -- "---\n" > "$DIR"/roles/"$1"/vars/main.yml
+printf -- "---\n# vars file for $1" > "$DIR"/roles/"$1"/vars/main.yml
 
 # copyモジュールでリモートに配置するファイルを置くディレクトリ
 # touch "$DIR"/roles/"$1"/files/file.j2
@@ -53,7 +53,7 @@ printf -- "---\n" > "$DIR"/roles/"$1"/vars/main.yml
 
 # ハンドラーを定義する
 touch "$DIR"/roles/"$1"/handlers/main.yml
-printf -- "---\n" > "$DIR"/roles/"$1"/handlers/main.yml
+printf -- "---\n# handlers file for $1" > "$DIR"/roles/"$1"/handlers/main.yml
 
 # テスト用のタスクを定義する
 touch "$DIR"/roles/"$1"/tests/main.yml
@@ -72,11 +72,38 @@ EOF
 # printf "---\n" >> "$DIR"/roles/"$1"/meta/main.yml
 
 touch "$DIR"/roles/"$1"/README.md
+ROLE_NAME=$1
+ROLE_SEPARATOR=$(ruby -e "puts '='*${#ROLE_NAME}")
+
 cat > "$DIR"/roles/"$1"/README.md <<EOF
-$1 doc
+$1
+${ROLE_SEPARATOR}
 
-# Usage
+Requirements
+------------
 
+Role Variables
+--------------
+
+Example Playbook
+----------------
+
+Usage
+-----
+
+\`\`\`
 ansible-playbook -i $1/tests/inventory $1/tests/test.yml
+\`\`\`
+
+\`\`\`
+    - hosts: servers
+      roles:
+         - { role: username.rolename, x: 42 }
+\`\`\`
+
+License
+-------
+
+BSD
 
 EOF
