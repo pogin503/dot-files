@@ -30,3 +30,22 @@
     - trash
     - tree
   tags: brew-install
+
+- name: install packages
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - appcleaner
+    - dropbox
+    - eclipse-platform
+    - google-chrome
+    - google-chrome-canary
+    - kindle
+    - mendley-desktop
+    - postico
+    - powershell
+    - vagrant
+    - virtualbox
+    - visual-studio-code
+    - vlc
