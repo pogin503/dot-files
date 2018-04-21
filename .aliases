@@ -117,3 +117,11 @@ function hist() {
 function show-hide-file (){
     defaults write com.apple.finder AppleShowAllFiles -boolean "$1" && killall Finder
 }
+
+function dbash() {
+    command docker exec -it "$1" bash
+}
+
+function kbash() {
+    command kubectl exec -it "$1" bash
+}

@@ -99,3 +99,13 @@ end
 function reload_tmux_conf
   tmux source-file ~/.tmux.conf; tmux display-message "reload"
 end
+
+function dbash
+    # $1 -> container_id
+    command docker exec -it "$argv[1]" bash
+end
+
+function kbash
+    # $1 -> container_id
+    command kubectl exec -it "$argv[1]" bash
+end
