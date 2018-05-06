@@ -109,3 +109,8 @@ function kbash
     # $1 -> container_id
     command kubectl exec -it "$argv[1]" bash
 end
+
+function homestead
+    pushd ~/Homestead ;and vagrant $argv[1..-1]
+    popd
+end
