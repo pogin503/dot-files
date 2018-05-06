@@ -11,8 +11,11 @@ local_group:
 
 vagrants:
   hosts:
-    192.168.33.10:
+    vagrant:
   vars:
     ansible_python_interpreter: /usr/bin/python3
+    ansible_ssh_port: 22
+    ansible_ssh_host: 192.168.33.10
+    ansible_user: ubuntu
 
 

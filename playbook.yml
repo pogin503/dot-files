@@ -1,6 +1,6 @@
 ---
 - name: dotfiles Playbook
-  hosts: vagrants
+  hosts: vagrant
   pre_tasks:
     - name: install dpendencies
       become: true

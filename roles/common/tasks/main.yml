@@ -21,11 +21,11 @@
 
 - name: Create plantuml directory
   file:
-    path: ~/.local/share/plantuml/
+    path: "{{ ansible_env.HOME }}/.local/share/plantuml/"
     state: directory
     mode: 0755
 
 - name: Download PlantUML jar
   get_url:
     url: http://jaist.dl.sourceforge.net/project/plantuml/plantuml.jar
-    dest: ~/.local/share/plantuml/
+    dest: "{{ ansible_env.HOME }}/.local/share/plantuml/"
