@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -ue -o pipefail
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
