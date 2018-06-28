@@ -138,3 +138,20 @@ end
 alias ff=find-file
 alias dired=find-file
 
+# Get token(password) from log file.
+function get_jupyternotebook_token
+    set -q $argv[1]; and set -l log_path ~/var/log/jupyter-notebook/jupyter-notebook.err.log;
+    or set -l log_path argv[1]
+    set -q $argv[2]; and set -l grepword http://localhost:8888/\?token;
+    or set -l log_path argv[2]
+    cat $log_path | grep $grepword | tail -n 1 | sed -e 's/.*=//'
+end
+
+function sample_default_value
+    set -q $MY_PROGRAM_ROOT; and set program_root ~/.local/share/my_prorgram;or set program_root $MY_PROGRAM_ROOT
+
+    echo $program_root #=> /Users/username/.local/share/my_prorgram
+    set MY_PROGRAM_ROOT "root!"
+    set -q $MY_PROGRAM_ROOT; and set program_root ~/.local/share/my_prorgram;or set program_root $MY_PROGRAM_ROOT
+    echo $program_root #=> root!
+end
