@@ -114,3 +114,27 @@ function homestead
     pushd ~/Homestead ;and vagrant $argv[1..-1]
     popd
 end
+
+function magit
+    set repo $argv[1]
+    string length -q -- $repo; or set repo (pwd)
+    cd $repo ;and emacsclient --eval '(magit-status)'
+end
+
+function eshell
+    emacsclient --eval '(eshell)' --eval '(open-emacs-window)'
+end
+
+function info-in-emacs
+    set node=$argv[1]
+    emacsclient --eval "(shell/info \"$node\")" --eval '(open-emacs-window)'
+end
+
+function find-file
+    set repo $argv[1]
+    string length -q -- $file; or set file (pwd)
+    emacsclient --eval "(find-file \"$file\")" --eval '(open-emacs-window)'
+end
+alias ff=find-file
+alias dired=find-file
+
