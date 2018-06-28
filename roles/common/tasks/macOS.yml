@@ -29,6 +29,9 @@
     - tmux
     - trash
     - tree
+    - reattach-to-user-namespace
+    - peco
+    - fzf
   tags: brew-install
 
 - name: install packages

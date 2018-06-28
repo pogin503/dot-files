@@ -6,6 +6,7 @@ ml_packages:
   - scipy
   - matplotlib
   - environment_kernels
+  - pandas
 
 python_packages:
   - jedi
@@ -14,3 +15,5 @@ python_packages:
   - pylint
   - pygments
   - requests
+  - ipython-sql
+  - psycopg2-binary
