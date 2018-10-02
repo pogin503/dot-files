@@ -21,43 +21,23 @@ usage:
 EOF
 fi
 
-# make role directory
-mkdir -p "$DIR"/roles/"$1"/tasks
-mkdir -p "$DIR"/roles/"$1"/defaults
-mkdir -p "$DIR"/roles/"$1"/vars
-mkdir -p "$DIR"/roles/"$1"/files
-mkdir -p "$DIR"/roles/"$1"/templates
-mkdir -p "$DIR"/roles/"$1"/tests
-mkdir -p "$DIR"/roles/"$1"/handlers
-mkdir -p "$DIR"/roles/"$1"/meta
+ansible-galaxy init --init-path "$DIR"/roles/ "$1"
 
 # 実行するタスクを定義する
-touch "$DIR"/roles/"$1"/tasks/main.yml
-printf -- "---\n# tasks file for $1" > "$DIR"/roles/"$1"/tasks/main.yml
-
+# tasks/main.yml
 # Role内で使う「外から書き換えるつもり」の変数のデフォルト値を設定する
-touch "$DIR"/roles/"$1"/defaults/main.yml
-printf -- "---\n# defaults file for $1" > "$DIR"/roles/"$1"/defaults/main.yml
-
+# defaults/main.yml
 # Role内で使う「外から書き換えるつもりの***ない***」の変数のデフォルト値を設定する
-touch "$DIR"/roles/"$1"/vars/main.yml
-printf -- "---\n# vars file for $1" > "$DIR"/roles/"$1"/vars/main.yml
-
+# vars/main.yml
 # copyモジュールでリモートに配置するファイルを置くディレクトリ
-# touch "$DIR"/roles/"$1"/files/file.j2
-# printf -- "---\n" >> "$DIR"/roles/"$1"/templates/main.yml
-
+# files/file.j2
 # templateモジュールでリモートに展開するJinja2テンプレートを置くディレクトリ
-# touch "$DIR"/roles/"$1"/templates/file.j2
-# printf -- "---\n" > "$DIR"/roles/"$1"/templates/main.yml
-
+# templates/file.j2
 # ハンドラーを定義する
-touch "$DIR"/roles/"$1"/handlers/main.yml
-printf -- "---\n# handlers file for $1" > "$DIR"/roles/"$1"/handlers/main.yml
+# handlers/main.yml
 
 # テスト用のタスクを定義する
-touch "$DIR"/roles/"$1"/tests/main.yml
-printf "localhost" > "$DIR"/roles/"$1"/tests/inventory
+# tests/main.yml
 cat > "$DIR"/roles/"$1"/tests/test.yml <<EOF
 ---
 - hosts: localhost
@@ -68,8 +48,7 @@ EOF
 
 
 # Roleの依存関係を記述するファイル
-# touch "$DIR"/roles/"$1"/meta/main.yml
-# printf "---\n" >> "$DIR"/roles/"$1"/meta/main.yml
+# meta/main.yml
 
 touch "$DIR"/roles/"$1"/README.md
 ROLE_NAME=$1
@@ -88,18 +67,18 @@ Role Variables
 Example Playbook
 ----------------
 
-Usage
------
-
-\`\`\`
-ansible-playbook -i $1/tests/inventory $1/tests/test.yml
-\`\`\`
-
 \`\`\`
     - hosts: servers
       roles:
          - { role: username.rolename, x: 42 }
 \`\`\`
+
+\`\`\`
+ansible-playbook -i $1/tests/inventory $1/tests/test.yml
+\`\`\`
+
+Usage
+-----
 
 License
 -------
@@ -107,3 +86,4 @@ License
 BSD
 
 EOF
+
