@@ -63,6 +63,14 @@ if [ -d "$HOME"/.composer/vendor/bin ];
   set -x PATH "$HOME"/.composer/vendor/bin $PATH
 end
 
+# OPAM configuration
+if [ -f "$HOME"/.opam/opam-init/init.fish ];
+  source "$HOME"/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+end
+
+set -x NVM_DIR "$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ];and bash "$NVM_DIR/nvm.sh"  # This loads nvm
+
 set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
 set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
