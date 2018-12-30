@@ -1,0 +1,9 @@
+---
+# tasks file for emacs
+- name: set dotfiles
+  git: repo='https://github.com/pogin503/dot-emacs.git'
+       dest={{ ansible_env.HOME }}/.emacs.d
+       version=master
+       force=yes
+  register: git_result
+  changed_when: "git_result.after|default('after') != git_result.before|default('before')"
