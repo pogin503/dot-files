@@ -71,6 +71,19 @@ end
 set -x NVM_DIR "$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ];and bash "$NVM_DIR/nvm.sh"  # This loads nvm
 
+#peco
+function fish_user_key_bindings
+    bind \cr peco_select_history
+end
+
+# global
+set -x GTAGSLABEL pygments
+
+function history-merge --on-event fish_preexec
+  history --save
+  history --merge
+end
+
 set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
 set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
