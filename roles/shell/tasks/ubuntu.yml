@@ -1,0 +1,35 @@
+---
+- block:
+    # - name: install Pygments
+    #   become: yes
+    #   pip:
+    #     name: Pygments
+    #     state: present
+
+    - name: download and unpack zip
+      unarchive:
+        src: http://tamacom.com/global/global-6.6.3.tar.gz
+        dest: /tmp
+        remote_src: yes
+
+    - name: whether exists global
+      stat: path=/usr/local/bin/global
+      register: result2
+
+    - name: configure emacs
+      command: ./configure
+      args:
+        chdir: /tmp/global-6.6.3
+      when: result2 is failed
+
+    - name: make global
+      command: make
+      args:
+        chdir: /tmp/global-6.6.3
+      when: result2 is failed
+
+    - name: make install global
+      command: make install
+      args:
+        chdir: /tmp/global-6.6.3
+      when: result2 is failed

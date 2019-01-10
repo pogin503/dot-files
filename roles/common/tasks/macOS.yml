@@ -18,20 +18,10 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - fish
     - go
-    - ansifilter
-    - the_silver_searcher
     - ricty
     - editorconfig
     - jenkins
-    - shellcheck
-    - tmux
-    - trash
-    - tree
-    - reattach-to-user-namespace
-    - peco
-    - fzf
   tags: brew-install
 
 - name: install packages

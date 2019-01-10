@@ -1,0 +1,23 @@
+---
+- name: install packages
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - fish
+    - ansifilter
+    - the_silver_searcher
+    - shellcheck
+    - tmux
+    - trash
+    - tree
+    - reattach-to-user-namespace
+    - peco
+    - fzf
+  tags: brew-install
+
+- block:
+    - name: install global
+      homebrew:
+        name: global
+        install_options: with-exuberant-ctags,with-pygments
