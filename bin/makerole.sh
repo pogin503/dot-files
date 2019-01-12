@@ -15,7 +15,7 @@ do
 done
 
 if [ $# -lt 1 ]; then
-    cat <<EOF
+  cat <<EOF
 usage:
     ./makerole.sh <role-name>
 EOF
@@ -50,7 +50,7 @@ EOF
 # Roleの依存関係を記述するファイル
 # meta/main.yml
 
-touch "$DIR"/roles/"$1"/README.md
+rm "$DIR"/roles/"$1"/README.md
 ROLE_NAME=$1
 ROLE_SEPARATOR=$(ruby -e "puts '='*${#ROLE_NAME}")
 
@@ -70,7 +70,7 @@ Example Playbook
 \`\`\`
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: username.$1, x: 42 }
 \`\`\`
 
 \`\`\`
@@ -86,4 +86,3 @@ License
 BSD
 
 EOF
-
