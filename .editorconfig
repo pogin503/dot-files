@@ -13,7 +13,7 @@ trim_trailing_whitespace = true
 [{pre-push,.bashrc,.zshrc}]
 indent_size = 2
 
-[*.sh]
+[*.{sh,fish}]
 indent_size = 2
 
 # Tab indentation (no size specified)
