@@ -1,3 +1,4 @@
 - src: geerlingguy.nodejs
 - src: geerlingguy.mysql
+- src: geerlingguy.homebrew
 - src: zzet.rbenv
