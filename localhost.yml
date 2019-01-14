@@ -8,9 +8,16 @@
       default_ruby: 2.4.1
       rubies:
       - version: 2.4.1
+
   pre_tasks:
     - name: show environment
       debug: msg="USER={{ ansible_env.USER }} HOME={{ ansible_env.HOME }}\nPATH={{ ansible_env.PATH }}"
+    # - name: Set python interpreter (not python2)
+    #   set_fact: ansible_python_interpreter="/usr/bin/env python"
+    # - name: Set python interpreter (not python2)
+    #   set_fact: ansible_python_interpreter="$HOME/.pyenv/shims/python"
+    # - name: pyenv init
+    #   shell: 'eval "$(pyenv init -)"'
     - name: get python version
       command: python --version
       register: python_version
@@ -20,12 +27,13 @@
       debug:
         msg: "{{ python_version }}"
   roles:
-    - role: common
-    - role: python
-    - role: shell
-    - role: scala
-    - role: ruby
-    # - role: js
+    - { role: common, tags: common }
+    - { role: python, tags: python }
+    - { role: shell, tags: shell }
+    - { role: scala, tags: scala }
+    - { role: ruby, tags: ruby }
+    - { role: emacs, tags: emacs }
+    - { role: js, tags: js }
     #   vars:
     #     nodebrew_install_user: pogin
     # - role: geerlingguy.nodejs

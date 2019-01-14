@@ -34,48 +34,53 @@
 
     # https://github.com/geerlingguy/ansible-role-mysql/issues/42
     - block:
-        - name: install mysql dependencies (pip)
-          pip:
-            name: "{{ item.name }}"
-            state: "{{ item.state }}"
-          with_items:
-            - name: https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python-1.1.6.tar.gz
-              state: present
-            # mysql dependencies
-            - name: mysqlclient
-              state: present
-            - name: pip
-              state: latest
+        # - name: install mysql dependencies (pip)
+        #   pip:
+        #     name: "{{ item.name }}"
+        #     state: "{{ item.state }}"
+        #   with_items:
+        #     - name: https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python-1.1.6.tar.gz
+        #       state: present
+        #     # mysql dependencies
+        #     - name: mysqlclient
+        #       state: present
+        #     - name: pip
+        #       state: latest
         - name: show python and pip version
           command: |
             python3 --version
             pip3 --version
           changed_when: false
+        - debug: msg="{{ lookup('env','HOME') }} {{ ansible_env.HOME }}"
+        - debug: msg="{{ ansible_env }}"
       when: ansible_distribution == 'Ubuntu'
 
   roles:
-    - role: common
-    # - role: python
-    # - role: scala
-    - role: ruby
-    - role: geerlingguy.nodejs
-      become: yes
-      nodejs_npm_global_packages:
-        - name: jslint
-        - name: node-sass
-    - role: geerlingguy.mysql
-      become: yes
-      mysql_databases:
-        - name: example
-          collation: utf8_general_ci
-          encoding: utf8
-          # replicate: 1
-      mysql_packages:
-        - mariadb-client
-        - mariadb-server
-        - python-mysqldb
-      mysql_users:
-        - name: pogin
-          host: "%"
-          password: mysqlpass00
-          priv: "example_db.*:ALL"
+    - { role: common, tags: common }
+    - { role: python, tags: python }
+    - { role: shell, tags: shell }
+    - { role: scala, tags: scala }
+    - { role: ruby, tags: ruby }
+    - { role: emacs, tags: emacs }
+    - { role: js, tags: js }
+    # - role: geerlingguy.nodejs
+    #   become: yes
+    #   nodejs_npm_global_packages:
+    #     - name: jslint
+    #     - name: node-sass
+    # - role: geerlingguy.mysql
+    #   become: yes
+    #   mysql_databases:
+    #     - name: example
+    #       collation: utf8_general_ci
+    #       encoding: utf8
+    #       # replicate: 1
+    #   mysql_packages:
+    #     - mariadb-client
+    #     - mariadb-server
+    #     - python-mysqldb
+    #   mysql_users:
+    #     - name: pogin
+    #       host: "%"
+    #       password: mysqlpass00
+    #       priv: "example_db.*:ALL"
