@@ -46,6 +46,25 @@ cat > "$DIR"/roles/"$1"/tests/test.yml <<EOF
     - $1
 EOF
 
+cat > "$DIR"/roles/"$1"/tasks/main.yml <<EOF
+---
+# tasks file for shell
+
+- import_tasks: macOS.yml
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- import_tasks: ubuntu.yml
+  when: ansible_facts['distribution'] == 'Ubuntu'
+
+EOF
+
+cat > "$DIR"/roles/"$1"/tests/macOS.yml <<EOF
+---
+EOF
+cat > "$DIR"/roles/"$1"/tests/ubuntu.yml <<EOF
+---
+EOF
+
 
 # Roleの依存関係を記述するファイル
 # meta/main.yml
@@ -148,9 +167,11 @@ dependencies: []
   # example:
   #   dependencies:
   #     - { role: mysql/client }
-  #   dependencies:
   #     - { role: lxc/redhat, when: "ansible_os_family == 'RedHat'" }
   #     - { role: lxc/debian, when: "ansible_os_family == 'Debian'" }
+  #     - { role: common, some_parameter: 3 }
+  #     - { role: apache, apache_port: 80 }
+  #     - { role: postgres, dbname: blarg, other_parameter: 12 }
   #     - src: geerlingguy.docker
   #     - src: git+https://github.com/geerlingguy/ansible-role-composer.git
   #       version: 775396299f2da1f519f0d8885022ca2d6ee80ee8
