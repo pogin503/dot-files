@@ -1,44 +1,34 @@
+---
 - name: create iterm2 log directory
   become: true
   file: path=/var/log/iterm2 state=directory owner=root group=admin mode=0775
   when: ansible_os_family == 'Darwin'
 
-- name: Set homebrew tap
-  homebrew_tap:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - caskroom/cask
-    - caskroom/versions
-    - railwaycat/emacsmacport
-    - sanemat/font
-
-- name: install packages
-  homebrew:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - go
-    - ricty
-    - editorconfig
-    - jenkins
+- name: Install packages
+  include_role:
+    name: geerlingguy.homebrew
+  vars:
+    homebrew_installed_packages:
+      - go
+      - ricty
+      - editorconfig
+      - jenkins
+    homebrew_taps:
+      - homebrew/cask
+      - railwaycat/emacsmacport
+      - sanemat/font
+    homebrew_cask_apps:
+      - appcleaner
+      - dropbox
+      - eclipse-platform
+      - google-chrome
+      - google-chrome-canary
+      - kindle
+      - mendley-desktop
+      - postico
+      - powershell
+      - vagrant
+      - virtualbox
+      - visual-studio-code
+      - vlc
   tags: brew-install
-
-- name: install packages
-  homebrew_cask:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - appcleaner
-    - dropbox
-    - eclipse-platform
-    - google-chrome
-    - google-chrome-canary
-    - kindle
-    - mendley-desktop
-    - postico
-    - powershell
-    - vagrant
-    - virtualbox
-    - visual-studio-code
-    - vlc
