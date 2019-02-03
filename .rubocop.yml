@@ -9,11 +9,10 @@ Naming/AsciiIdentifiers:
 LineLength:
   Max: 120
 
-IfUnlessModifier:
-  MaxLineLength: 100
+Metrics/LineLength: 120
 
 Style/Encoding:
   Enabled: true
 
-Style/TrailingCommaInLiteral:
-  EnforcedStyleForMultiline: comma
+# Style/TrailingCommaInLiteral:
+#   EnforcedStyleForMultiline: comma
