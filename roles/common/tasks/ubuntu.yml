@@ -2,17 +2,17 @@
 - name: install dpendencies
   become: true
   apt:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: present
     update_cache: yes
   with_items:
-    - git
-    - python3-pip
-    - build-essential
+    - { name: git }
+    - { name: python3-pip }
+    - { name: build-essential }
     # mysql dependencies
-    - libmysqlclient-dev
-    - python3-dev
-    - python3-pip
-    - python3-mysqldb
+    - { name: libmysqlclient-dev }
+    - { name: python3-dev }
+    - { name: python3-pip }
+    - { name: python3-mysqldb }
     # ats2 dependency
-    - libgmp3-dev
+    - { name: libgmp3-dev }
