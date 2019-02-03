@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+if ARGV.empty? || ARGV[0].empty?
+  puts "usage: #{File.basename(__FILE__)}"
+  puts '--------'
+  puts "./bin/#{File.basename(__FILE__)} {path}"
+  exit
+end
+path = ARGV[0]
+p path
+file1 = File.open(File.expand_path('~/.bashrc'), 'a')
+ret1 = if (path =~ /\$? ?export/).nil?
+         path.sub(/^\$? ?/)
+       else
+         path
+       end
+file1.puts(ret1)
+file1.close
+
+file2 = File.open(File.expand_path('~/.config/fish/config.fish'), 'a')
+file2.puts(path.sub(/\$? ?export /, '').split('=').join(' ').prepend('set -x '))
+file2.close
