@@ -8,28 +8,26 @@
 - name: Upgrade pip
   become: true
   pip:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     extra_args: --upgrade
   with_items:
-    - pip
-    - setuptools
-    - wheel
+    - { name: pip }
+    - { name: setuptools }
+    - { name: wheel }
 
 - name: Related to machine learning packages
   become: true
   pip:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: present
-  with_items:
-    - "{{ ml_packages }}"
+  with_items: "{{ ml_packages }}"
   tags: install
 
 - name: common packages
   pip:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: present
-  with_items:
-    - "{{ python_packages }}"
+  with_items: "{{ python_packages }}"
 
 # - name: Install Mecab
 #     debug: "Download Mecab"

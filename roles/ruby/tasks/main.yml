@@ -5,22 +5,22 @@
 - name: install dpendencies (Ubuntu)
   become: true
   apt:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: present
     update_cache: yes
   with_items:
-    - autoconf
-    - bison
-    - libffi-dev
-    - libffi-dev
-    - libgdbm-dev
-    - libgdbm3
-    - libncurses5-dev
-    - libreadline6-dev
-    - libssl-dev
-    - libtool-bin
-    - libyaml-dev
-    - zlib1g-dev
+    - { name: 'autoconf' }
+    - { name: 'bison' }
+    - { name: 'libffi-dev' }
+    - { name: 'libffi-dev' }
+    - { name: 'libgdbm-dev' }
+    - { name: 'libgdbm3' }
+    - { name: 'libncurses5-dev' }
+    - { name: 'libreadline6-dev' }
+    - { name: 'libssl-dev' }
+    - { name: 'libtool-bin' }
+    - { name: 'libyaml-dev' }
+    - { name: 'zlib1g-dev' }
   when: ansible_distribution == 'Ubuntu'
 
 # - name: install rbenv
@@ -102,14 +102,14 @@
     - name: install dpendencies
       become: true
       apt:
-        name: "{{ item }}"
+        name: "{{ item.name }}"
         state: present
         update_cache: yes
       with_items:
-        - git
-        - libzmq-dev
-        - autoconf
-        - pkg-config
+        - { name: git }
+        - { name: libzmq-dev }
+        - { name: autoconf }
+        - { name: pkg-config }
     - name: clone czmq
       git:
         repo: 'https://github.com/zeromq/czmq.git'
@@ -124,12 +124,12 @@
     - name: install iruby
       gem:
         name: "{{ item.name }}"
-        state: "{{ item.state }}"
+        state: present
         user_install: False
         executable: "{{ my_rbenv_root }}/shims/gem"
       with_items:
         # for iruby notebook
-        - { name: iruby, state: present }
+        - { name: iruby }
   when: ansible_distribution == 'Ubuntu'
 
 - name: install bundler by rbenv gem

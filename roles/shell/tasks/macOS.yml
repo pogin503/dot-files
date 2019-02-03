@@ -1,20 +1,20 @@
 ---
 - name: install packages
   homebrew:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: present
   with_items:
-    - fish
-    - ansifilter
-    - the_silver_searcher
-    - shellcheck
-    - tmux
-    - trash
-    - tree
-    - reattach-to-user-namespace
-    - peco
-    - fzf
-    - ripgrep
+    - { name: fish }
+    - { name: ansifilter }
+    - { name: the_silver_searcher }
+    - { name: shellcheck }
+    - { name: tmux }
+    - { name: trash }
+    - { name: tree }
+    - { name: reattach-to-user-namespace }
+    - { name: peco }
+    - { name: fzf }
+    - { name: ripgrep }
   tags: brew-install
 
 - block:
