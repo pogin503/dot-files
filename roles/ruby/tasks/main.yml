@@ -139,6 +139,7 @@
     executable: "{{ my_rbenv_root }}/shims/gem"
   with_items:
     - "{{ my_ruby_packages }}"
+  tags: install_gem
 
 # - name: Install iruby kernel
 #   shell: |
