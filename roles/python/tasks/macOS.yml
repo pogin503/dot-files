@@ -1,0 +1,13 @@
+---
+- name: copy pip.conf
+  file:
+    src: "{{ ansible_env.PWD }}/python/pip.conf"
+    dest: "$HOME/Library/Application Support/pip/pip.conf"
+    state: link
+    force: yes
+  when: ansible_env.USER  != 'travis'
+
+- name: Install pipenv
+  homebrew:
+    name: pipenv
+    state: present

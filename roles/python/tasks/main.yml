@@ -1,20 +1,9 @@
 ---
-- block:
-    - name: copy pip.conf
-      file:
-        src: "{{ ansible_env.PWD }}/python/pip.conf"
-        dest: "$HOME/Library/Application Support/pip/pip.conf"
-        state: link
-        force: yes
-      when: ansible_os_family == 'Darwin' and ansible_env.USER  != 'travis'
+- import_tasks: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
 
-    - name: copy pip.conf
-      file:
-        src: "{{ ansible_env.PWD }}/dotfiles/python/pip.conf"
-        dest: "$HOME/.config/pip/pip.conf"
-        state: link
-        force: yes
-      when: ansible_os_family == 'Ubuntu'
+- import_tasks: macOS.yml
+  when: ansible_os_family == 'Darwin'
 
 - name: Upgrade pip
   become: true
@@ -33,6 +22,7 @@
     state: present
   with_items:
     - "{{ ml_packages }}"
+  tags: install
 
 - name: common packages
   pip:
