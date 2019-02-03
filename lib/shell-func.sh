@@ -10,8 +10,7 @@ ansible_check () {
   # $ ansible_check localhost.yml
   ansible-playbook --syntax-check "$1"
   ansible-playbook --check "$1" --vault-password-file ~/.ansible/.vault_password
-  ansible-lint "$1"
-
+  ansible-lint "$1" || true
 }
 
 reload_tmux_conf () {
