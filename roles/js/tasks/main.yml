@@ -18,10 +18,13 @@
         chdir: "$HOME/workspace/"
       changed_when: false
 
-- name: Install npm modules
-  npm:
-    name: "{{ item.name }}"
-    state: "{{ item.state }}"
-    global: yes
-  with_items:
-    - '{{ nodejs_npm_global_packages }}'
+# https://truongtx.me/2015/11/02/ansible-install-and-work-with-nodejs-using-nvm
+# - name: Install npm modules
+#   npm:
+#     name: "{{ item.name }}"
+#     state: "{{ item.state }}"
+#     # executable: "~/.nvm/versions/node/v{{ nvm_node_version }}/bin/npm"
+#     global: yes
+#   with_items: "{{ nodejs_npm_global_packages }}"
+#   environment:
+#     PATH: "/usr/local/bin:~/.nvm/versions/node/v{{ nvm_node_version }}/bin:{{ ansible_env.PATH }}"
