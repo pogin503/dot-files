@@ -3,10 +3,3 @@
     path: "{{ ansible_env.HOME }}/.local/bin/"
     state: directory
     mode: 0755
-
-- name: Download jupyter scala script
-  get_url:
-    url: https://raw.githubusercontent.com/alexarchambault/jupyter-scala/master/jupyter-scala
-    dest:  "{{ ansible_env.HOME }}/.local/bin/jupyter-scala"
-    mode: 0755
-    force: yes
