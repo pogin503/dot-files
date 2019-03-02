@@ -15,12 +15,12 @@ set -x XDG_DATA_HOME "$HOME/.local/share"
 
 # for rbenv
 if test -d "$HOME"/.rbenv
-  # status --is-interactive; and . (rbenv init -|psub)
-  rbenv init - | source
+  status --is-interactive; and source (rbenv init -|psub)
 else
-  echo "can't load rbenv."
-  echo "git clone https://github.com/rbenv/rbenv.git ~/.rbenv"
-  echo "rbenv init - | source"
+  echo 'can't load rbenv.'
+  echo 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv'
+  echo 'set -Ux fish_user_paths $HOME/.rbenv/bin $fish_user_paths'
+  echo 'echo \'status --is-interactive; and source (rbenv init -|psub)\' >> ~/.config/fish/config.fish'
 end
 
 if test -d "$HOME"/.cargo/bin
@@ -32,6 +32,7 @@ if test -d "$HOME"/.local/bin
   # for haskell-stack
   set -x PATH "$HOME"/.local/bin $PATH
   # for golang
+  mkdir -p "$HOME"/.local/go
   set -x GOPATH "$HOME"/.local/go
   set -x PATH "$GOPATH"/bin $PATH
 end
@@ -62,6 +63,12 @@ if [ (uname) = 'Darwin' ];
   end
 
   set -x BROWSER "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+  set -x LIBZMQ_PATH (brew --prefix zeromq)/lib
+  set -x LIBCZMQ_PATH (brew --prefix czmq)/lib
+
+  set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
+  set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
 end
 
 if [ -d "$HOME"/.composer/vendor/bin ];
@@ -76,12 +83,9 @@ end
 set -x NVM_DIR "$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ];and bash "$NVM_DIR/nvm.sh"  # This loads nvm
 
-set -x LIBZMQ_PATH (brew --prefix zeromq)/lib
-set -x LIBCZMQ_PATH (brew --prefix czmq)/lib
-
 #peco
 function fish_user_key_bindings
-    bind \cr peco_select_history
+  bind \cr peco_select_history
 end
 
 # global
@@ -92,8 +96,6 @@ function history-merge --on-event fish_preexec
   history --merge
 end
 
-set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
-set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
 
 set -x CARGO_HOME "$XDG_DATA_HOME"/cargo
