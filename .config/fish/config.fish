@@ -15,23 +15,26 @@ set -x XDG_DATA_HOME "$HOME/.local/share"
 
 # for rbenv
 if test -d "$HOME"/.rbenv
-  # status --is-interactive; and . (rbenv init -|psub)
-  rbenv init - | source
+  status --is-interactive; and source (rbenv init -|psub)
 else
-  echo "can't load rbenv."
-  echo "git clone https://github.com/rbenv/rbenv.git ~/.rbenv"
-  echo "rbenv init - | source"
+  echo 'can\'t load rbenv.'
+  echo 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv'
+  echo 'set -Ux fish_user_paths $HOME/.rbenv/bin $fish_user_paths'
+  echo 'echo \'status --is-interactive; and source (rbenv init -|psub)\' >> ~/.config/fish/config.fish'
 end
 
 if test -d "$HOME"/.cargo/bin
   set -x PATH "$HOME"/.cargo/bin $PATH
+  # set -x CARGO_HOME "$XDG_DATA_HOME"/cargo
 end
 
 
 if test -d "$HOME"/.local/bin
   # for haskell-stack
+  # set -x STACK_ROOT "$XDG_DATA_HOME"/stack
   set -x PATH "$HOME"/.local/bin $PATH
   # for golang
+  mkdir -p "$HOME"/.local/go
   set -x GOPATH "$HOME"/.local/go
   set -x PATH "$GOPATH"/bin $PATH
 end
@@ -39,19 +42,23 @@ end
 if test -d "$HOME"/.pyenv
   set -x PYENV_ROOT "$HOME"/.pyenv
   set -x PATH "$PYENV_ROOT"/bin $PATH
-  . (pyenv init - | psub)
+  pyenv init - | source
+
+  set -l python_install_version anaconda3-5.3.1
+  if test -d "$PYENV_ROOT"/versions/"$python_install_version"/bin
+    set -x PATH $PATH "$PYENV_ROOT"/versions/"$python_install_version"/bin
+    # enable "conda activate <env_name>"
+    # enable "conda deactivate <env_name>"
+    source (conda info --root)/etc/fish/conf.d/conda.fish
+  end
 end
 
 if [ -f "$HOME"/.config/fish/GRAPHQL_TOKEN ];
   set -x GITHUB_GRAPHQL_TOKEN (cat "$HOME"/.config/fish/GRAPHQL_TOKEN)
 end
 
-
-if [ -d "$HOME"/.nodebrew/current/bin ];
-  set -x PATH "$HOME"/.nodebrew/current/bin $PATH
-end
-if [ -d /Applications/IBM/node/bin ];
-  set -x PATH /Applications/IBM/node/bin $PATH
+if [ -f "$XDG_CONFIG_HOME"/private/.hubot_annict_token ];
+  set -x HUBOT_ANNICT_TOKEN (cat "$XDG_CONFIG_HOME"/private/.hubot_annict_token)
 end
 
 if [ (uname) = 'Darwin' ];
@@ -62,6 +69,16 @@ if [ (uname) = 'Darwin' ];
   end
 
   set -x BROWSER "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+  set -x LIBZMQ_PATH (brew --prefix zeromq)/lib
+  set -x LIBCZMQ_PATH (brew --prefix czmq)/lib
+
+  set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
+  set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
+
+  if [ -d "/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin" ];
+    set -x PATH "/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin" $PATH
+  end
 end
 
 if [ -d "$HOME"/.composer/vendor/bin ];
@@ -76,12 +93,11 @@ end
 set -x NVM_DIR "$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ];and bash "$NVM_DIR/nvm.sh"  # This loads nvm
 
-set -x LIBZMQ_PATH (brew --prefix zeromq)/lib
-set -x LIBCZMQ_PATH (brew --prefix czmq)/lib
+set -x PATH "$HOME"/dotfiles/bin $PATH
 
-#peco
+# peco
 function fish_user_key_bindings
-    bind \cr peco_select_history
+  bind \cr peco_select_history
 end
 
 # global
@@ -92,8 +108,6 @@ function history-merge --on-event fish_preexec
   history --merge
 end
 
-set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
-set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
 
 set -x CARGO_HOME "$XDG_DATA_HOME"/cargo
@@ -109,10 +123,6 @@ set -x IRBRC "$XDG_CONFIG_HOME"/irb/irbrc
 set -x IPYTHONDIR "$XDG_CONFIG_HOME"/jupyter
 set -x JUPYTER_CONFIG_DIR "$XDG_CONFIG_HOME"/jupyter
 
-set -x NODE_REPL_HISTORY "$XDG_DATA_HOME"/node_repl_history
-set -x NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
-set -x NVM_DIR "$XDG_DATA_HOME"/nvm
-
 set -x VAGRANT_ALIAS_FILE "$XDG_DATA_HOME"/vagrant/aliases
 set -x VAGRANT_HOME "$XDG_DATA_HOME"/vagrant
 set -x DOCKER_CONFIG "$XDG_CONFIG_HOME"/docker
@@ -124,6 +134,8 @@ set -x PSQLRC "$XDG_CONFIG_HOME/pg/psqlrc"
 set -x PSQL_HISTORY "$XDG_CACHE_HOME/pg/psql_history"
 set -x PGPASSFILE "$XDG_CONFIG_HOME/pg/pgpass"
 set -x PGSERVICEFILE "$XDG_CONFIG_HOME/pg/pg_service.conf"
+
+set -x SQLITE_HISTORY "$XDG_DATA_HOME"/sqlite_history
 
 set -x OCTAVE_HISTFILE "$XDG_CACHE_HOME/octave-hsts"
 set -x OCTAVE_SITE_INITFILE "$XDG_CONFIG_HOME/octave/octaverc"
