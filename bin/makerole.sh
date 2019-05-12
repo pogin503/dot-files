@@ -48,7 +48,7 @@ EOF
 
 cat > "$DIR"/roles/"$1"/tasks/main.yml <<EOF
 ---
-# tasks file for shell
+# tasks file for $1
 
 - import_tasks: macOS.yml
   when: ansible_facts['os_family'] == 'Darwin'
