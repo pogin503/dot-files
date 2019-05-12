@@ -55,7 +55,6 @@ cat > "$DIR"/roles/"$1"/tasks/main.yml <<EOF
 
 - import_tasks: ubuntu.yml
   when: ansible_facts['distribution'] == 'Ubuntu'
-
 EOF
 
 cat > "$DIR"/roles/"$1"/tasks/macOS.yml <<EOF
@@ -103,7 +102,6 @@ License
 -------
 
 BSD
-
 EOF
 
 cat > "$DIR"/roles/"$1"/meta/main.yml <<EOF
@@ -176,5 +174,4 @@ dependencies: []
   #     - src: git+https://github.com/geerlingguy/ansible-role-composer.git
   #       version: 775396299f2da1f519f0d8885022ca2d6ee80ee8
   #       name: composer
-
 EOF
