@@ -58,10 +58,10 @@ cat > "$DIR"/roles/"$1"/tasks/main.yml <<EOF
 
 EOF
 
-cat > "$DIR"/roles/"$1"/tests/macOS.yml <<EOF
+cat > "$DIR"/roles/"$1"/tasks/macOS.yml <<EOF
 ---
 EOF
-cat > "$DIR"/roles/"$1"/tests/ubuntu.yml <<EOF
+cat > "$DIR"/roles/"$1"/tasks/ubuntu.yml <<EOF
 ---
 EOF
 
