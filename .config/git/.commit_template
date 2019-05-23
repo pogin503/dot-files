@@ -20,10 +20,14 @@
 # test: Adding missing tests or correcting existing tests
 #
 # Scope
+# - common
 # - ui
 # - tool
 # - ansible
 # - maintenance
+# - infra
+# - upgrade
+# - rc
 #
 # Subject
 #
