@@ -109,3 +109,9 @@ alias tkss='tmux kill-session -t'
 if test -e /usr/local/bin/bat
     alias cat=bat
 end
+
+alias ff=find-file
+alias dired=find-file
+alias dcup='docker-compose up -d'
+alias dcdown='docker-compose down'
+alias dcstop='docker-compose stop'

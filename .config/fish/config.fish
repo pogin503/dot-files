@@ -90,8 +90,13 @@ if [ -f "$HOME"/.opam/opam-init/init.fish ];
   source "$HOME"/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 end
 
-set -x NVM_DIR "$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ];and bash "$NVM_DIR/nvm.sh"  # This loads nvm
+set -x NODE_REPL_HISTORY "$XDG_DATA_HOME"/node_repl_history
+set -x NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
+# set -x NVM_DIR "$XDG_DATA_HOME"/nvm
+# [ -s "$NVM_DIR/nvm.sh" ];and bash "$NVM_DIR/nvm.sh"  # This loads nvm
+set -x NODENV_ROOT "$XDG_DATA_HOME"/nodenv
+# set -Ux fish_user_paths "$XDG_DATA_HOME"/nodenv/bin $fish_user_paths
+status --is-interactive; and source (nodenv init -|psub)
 
 set -x PATH "$HOME"/dotfiles/bin $PATH
 
@@ -112,12 +117,13 @@ end
 
 set -x CARGO_HOME "$XDG_DATA_HOME"/cargo
 
-set -x GEM_HOME "$XDG_DATA_HOME"/gem
-set -x GEM_SPEC_CACHE "$XDG_CACHE_HOME"/gem
+# set -x GEM_HOME "$XDG_DATA_HOME"/gem
+# set -x PATH "$GEM_HOME"/bin $PATH
+# set -x GEM_SPEC_CACHE "$XDG_CACHE_HOME"/gem
 set -x BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME"/bundle
 set -x BUNDLE_USER_CACHE "$XDG_CACHE_HOME"/bundle
 set -x BUNDLE_USER_PLUGIN "$XDG_DATA_HOME"/bundle
-set -x IRBRC "$XDG_CONFIG_HOME"/irb/irbrc
+# set -x IRBRC "$XDG_CONFIG_HOME"/irb/irbrc
 
 # set -x HISTFILE "$XDG_DATA_HOME"/bash/history
 set -x IPYTHONDIR "$XDG_CONFIG_HOME"/jupyter
@@ -152,5 +158,13 @@ mkdir -p "$XDG_CACHE_HOME"/less
 set -x LESSKEY "$XDG_CONFIG_HOME"/less/lesskey
 set -x LESSHISTFILE "$XDG_CACHE_HOME"/less/lesshst
 
-# set -x XINITRC "$XDG_CONFIG_HOME"/X11/xinitrc
+set -x GRADLE_USER_HOME "$XDG_DATA_HOME"/gradle
+
+# set -x XINITRC "$XDG_CONFIG_HOME"/X11/xinitrcx
 # set -x XSERVERRC "$XDG_CONFIG_HOME"/X11/xserverrc
+
+set -x OCTAVE_HISTFILE "$XDG_CACHE_HOME/octave-hsts"a
+set -x OCTAVE_SITE_INITFILE "$XDG_CONFIG_HOME/octave/octaverc"
+set -x PYTHON_EGG_CACHE "$XDG_CACHE_HOME"/python-eggs
+set -x PYLINTHOME "$XDG_CACHE_HOME"/pylint
+set -x INPUTRC "$XDG_CONFIG_HOME"/readline/inputrc

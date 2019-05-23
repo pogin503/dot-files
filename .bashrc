@@ -76,6 +76,8 @@ export PSQL_HISTORY="$XDG_CACHE_HOME/pg/psql_history"
 export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
 
+export SQLITE_HISTORY="$XDG_DATA_HOME"/sqlite_history
+
 export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
 export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
 
@@ -93,5 +95,13 @@ mkdir -p "$XDG_CACHE_HOME"/less
 export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/lesshst
 
+export GRADLE_USER_HOME=/Users/pogin/.local/share/gradle
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 # export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 # export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
+export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
+export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
