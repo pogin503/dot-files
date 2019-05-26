@@ -1,20 +1,40 @@
 #!/usr/bin/env fish
 
 function readme_template
-  if [ (count $argv) = 0 ]
-    printf "usage:
-    \$ readme_template <app_name>\n"
+  set -l usage "usage:
+    \$ readme_template
+    \$ readme_template -f <path>\n"
+
+  argparse -n readme_template 'v/version' 'f/filepath=' 'h/help' -- $argv
+  or return 1
+
+  if set -lq _flag_help
+    printf $usage
     return
+  end
+
+  if set -lq _flag_version
+    echo "readme_template, version 0.0.1"
+    return
+  end
+
+  set -l filepath
+  set -l app_name
+  if set -lq _flag_filepath
+    set filepath (realpath "$_flag_filepath/README.md")
+    set app_name (basename (realpath $_flag_filepath))
   else
-    if [ f README.md ];
-      if not _read_confirm
-        return
-      end
+    set filepath (realpath ./README.md)
+    set app_name (basename (dirname $filepath))
+  end
+
+  if [ -f $filepath ]
+    if not _read_confirm
+      return
     end
-    printf "$argv[1]\n" > README.md
-    set len (string length $argv[1])
-    ruby e "$len.times {|i| print '=' }; puts " >> README.md
-    set template "\
+  end
+
+  set template "\
 
 
 # Features
@@ -22,6 +42,7 @@ function readme_template
 
 
 # Description
+
 
 
 # Requirement
@@ -40,13 +61,16 @@ function readme_template
 
 MIT
 "
-    printf $template | cat >> README.md
-  end
+  echo $app_name > $filepath
+  set -l len (string length $app_name)
+  ruby -e "$len.times {|i| print '=' }; puts " >> $filepath
+  printf $template | cat >> $filepath
+
 end
 
 function _read_confirm
   while true
-    read l p _read_confirm_prompt confirm
+    read -l -p _read_confirm_prompt confirm
 
     switch $confirm
       case Y y
