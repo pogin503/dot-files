@@ -21,7 +21,12 @@ mkdir -p ~/.config/fish
 mkdir -p ~/.config/fish/functions
 ln -sf "$DOT_DIR"/.config/fish/aliases.fish               ~/.config/fish/aliases.fish
 ln -sf "$DOT_DIR"/.config/fish/config.fish                ~/.config/fish/config.fish
-ln -sf "$DOT_DIR"/.config/fish/functions/functions.fish   ~/.config/fish/functions/functions.fish
+
+files=$(find "$DOT_DIR"/.config/fish/functions/ -type f -print0 | xargs -0 -n1 basename)
+
+for file in $files; do
+  ln -sf "$DOT_DIR"/.config/fish/functions/"$file" ~/.config/fish/functions/"$file"
+done
 
 mkdir -p ~/.config/git
 ln -sf "$DOT_DIR"/.config/git/.commit_template  ~/.config/git/.commit_template
