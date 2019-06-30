@@ -1,0 +1,9 @@
+---
+- name: get alloy jar file
+  get_url:
+    url: "{{ alloy_mac_dl_url }}"
+    dest: "/tmp/{{ alloy_file }}"
+
+- name: install alloy
+  become: true
+  command: "installer -pkg /tmp/{{ alloy_file }}  -target /"

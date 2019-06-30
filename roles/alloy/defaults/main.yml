@@ -1,0 +1,6 @@
+---
+# defaults file for alloy
+alloy_dl_url: https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v5.0.0.1/Alloy-5.0.0.1.jar
+alloy_mac_dl_url: https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v5.0.0.1/Alloy-5.0.0.1.pkg
+alloy_path: ~/.local/share/alloy
+alloy_file: Alloy-5.0.0.1.jar

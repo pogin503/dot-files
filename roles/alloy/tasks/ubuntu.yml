@@ -1,0 +1,17 @@
+---
+- name: create directory
+  file:
+    path: "{{ alloy_path }}"
+    state: directory
+    mode: '0755'
+
+- name: get alloy jar file
+  get_url:
+    url: "{{ alloy_dl_url }}"
+    dest: "{{ alloy_path }}/{{ alloy_file }}"
+
+- name: make alloy exec shell
+  template:
+    src: alloy.j2
+    dest: ~/.local/bin/alloy
+    mode: 0755
