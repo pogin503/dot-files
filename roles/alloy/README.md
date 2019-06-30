@@ -32,4 +32,4 @@ Usage
 License
 -------
 
-BSD
+MIT
