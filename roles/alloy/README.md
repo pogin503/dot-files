@@ -19,7 +19,7 @@ Example Playbook
 ```
     - hosts: servers
       roles:
-         - { role: username.alloy, x: 42 }
+         - { role: alloy }
 ```
 
 ```
