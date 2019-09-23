@@ -18,6 +18,7 @@
 # style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 # setting: Change tools setting
 # test: Adding missing tests or correcting existing tests
+# chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
 #
 # Scope
 # - common

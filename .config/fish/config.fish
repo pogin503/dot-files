@@ -13,6 +13,9 @@ set -x XDG_CACHE_HOME "$HOME/.cache"
 set -x XDG_DATA_HOME "$HOME/.local/share"
 # set -x XDG_RUNTIME_DIR
 
+set -x DOT_HOME "$HOME/dotfiles"
+set -x PATH $PATH "$DOT_HOME"/bin
+
 # for rbenv
 if test -d "$HOME"/.rbenv
   status --is-interactive; and source (rbenv init -|psub)
@@ -45,7 +48,9 @@ if test -d "$HOME"/.pyenv
   pyenv init - | source
 
   set -l python_install_version anaconda3-5.3.1
-  if test -d "$PYENV_ROOT"/versions/"$python_install_version"/bin
+  set -q _LOADED_CONDA_FISH; or set -x _LOADED_CONDA_FISH 0
+  if test -d "$PYENV_ROOT"/versions/"$python_install_version"/bin;and test $_LOADED_CONDA_FISH -eq 0
+    set -x _LOADED_CONDA_FISH 1
     set -x PATH $PATH "$PYENV_ROOT"/versions/"$python_install_version"/bin
     # enable "conda activate <env_name>"
     # enable "conda deactivate <env_name>"

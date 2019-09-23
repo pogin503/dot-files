@@ -53,6 +53,8 @@ function homestead
     popd
 end
 
+# ============================
+# emacs
 function magit
     set repo $argv[1]
     string length -q -- $repo; or set repo (pwd)
@@ -73,8 +75,6 @@ function find-file
     string length -q -- $file; or set file (pwd)
     emacsclient --eval "(find-file \"$file\")" --eval '(open-emacs-window)'
 end
-alias ff=find-file
-alias dired=find-file
 
 # Get token(password) from log file.
 function get_jupyternotebook_token
@@ -92,4 +92,26 @@ function sample_default_value
     set MY_PROGRAM_ROOT "root!"
     set -q $MY_PROGRAM_ROOT; and set program_root ~/.local/share/my_prorgram;or set program_root $MY_PROGRAM_ROOT
     echo $program_root #=> root!
+end
+
+# https://github.com/fish-shell/fish-shell/issues/296
+function varclear --description 'Remove duplicates from environment variable'
+  if test (count $argv) = 1
+    set -l newvar
+    set -l count 0
+    for v in $$argv
+      if contains -- $v $newvar
+        set count (math $count+1)
+      else
+        set newvar $newvar $v
+      end
+    end
+    set $argv $newvar
+    test $count -gt 0
+    and echo Removed $count duplicates from $argv
+  else
+    for a in $argv
+      varclear $a
+    end
+  end
 end
