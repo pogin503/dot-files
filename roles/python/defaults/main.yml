@@ -18,3 +18,4 @@ python_packages:
   # A Python library for the Docker Engine API
   # https://github.com/docker/docker-py
   - docker
+  - molecule

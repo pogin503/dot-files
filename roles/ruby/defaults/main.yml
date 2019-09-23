@@ -6,7 +6,7 @@ rbenv:
   rubies:
     - version: 2.5.1
 
-my_ruby_version: 2.4.1
+my_ruby_version: 2.5.1
 my_ruby_packages:
   # A toolkit of support libraries and Ruby core extensions extracted
   # from the Rails framework. Rich support for multibyte strings,
@@ -14,6 +14,5 @@ my_ruby_packages:
   - activesupport
   - bundler
   - pry
-  -
 
 my_rbenv_root: "{% if rbenv.env == 'system' %}/usr/local/rbenv{% else %}~/.rbenv{% endif %}"

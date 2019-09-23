@@ -10,12 +10,6 @@ nodejs_npm_global_packages:
   # A build tool for PureScript projects
   # https://github.com/purescript-contrib/pulp
   - { name: pulp, state: present }
-  # A package manager for the web
-  # https://bower.io/
-  - { name: bower, state: present }
-  # browser-side require() the node.js way
-  # https://github.com/browserify/browserify
-  - { name: browserify, state: present }
   # The pluggable natural language linter for text and markdown.
   # https://github.com/textlint/textlint
   - { name: textlint, state: present }
@@ -25,3 +19,9 @@ nodejs_npm_global_packages:
   # TypeScript is a superset of JavaScript that compiles to clean JavaScript output.
   # https://github.com/Microsoft/TypeScript
   - { name: typescript, state: present }
+  # CLI tool for running Yeoman generators
+  # https://github.com/yeoman/yo
+  - { name: yo, state: present }
+  # Hubot generator for Yeoman
+  # https://github.com/hubotio/generator-hubot#readme
+  - { name: generator-hubot, state: present }
