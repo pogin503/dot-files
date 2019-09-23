@@ -21,6 +21,10 @@ usage:
 EOF
 fi
 
+if [ ! -d "$DIR"/roles/ ]; then
+  mkdir "$DIR"/roles/
+fi
+
 ansible-galaxy init --init-path "$DIR"/roles/ "$1"
 
 # 実行するタスクを定義する
