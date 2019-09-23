@@ -40,12 +40,23 @@ ansible-galaxy init --init-path "$DIR"/roles/ "$1"
 # ハンドラーを定義する
 # handlers/main.yml
 
+# test/inventory
+cat > "$DIR"/roles/"$1"/tests/inventory <<EOF
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+EOF
+
+
 # テスト用のタスクを定義する
 # tests/main.yml
 cat > "$DIR"/roles/"$1"/tests/test.yml <<EOF
 ---
 - hosts: localhost
   # remote_user: root
+  connection: local
   roles:
     - $1
 EOF
@@ -105,7 +116,7 @@ Usage
 License
 -------
 
-BSD
+MIT
 EOF
 
 cat > "$DIR"/roles/"$1"/meta/main.yml <<EOF
@@ -125,7 +136,7 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: BSD (GPLv2, CC-BY, etc)
+  license: MIT (GPLv2, CC-BY, etc)
 
   min_ansible_version: 2.0
 
