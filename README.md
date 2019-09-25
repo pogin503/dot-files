@@ -10,20 +10,35 @@ my dotfiles
 
 # Usage
 
-local setting (for macOS)
+local setting
 
 ```
 git clone https://github.com/pogin503/dot-files.git ~/dotfiles
 cd ~/dotfiles
+```
+
+Ubuntu
+
+```
+$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo apt-add-repository ppa:ansible/ansible
+$ sudo apt update
+$ sudo apt install ansible
+```
+
+Execute ansible playbook.
+
+```
 ansible-galaxy install -r requirements.yml
 ansible-playbook -K -i hosts localhost.yml -v
 ```
 
-Create guest machine (Ubuntu)
+Create container
 
 ```
-cd dotfiles
-vagrant up
+cd dotfiles/docker/my-dev
+docker-compose u -d
 ```
 
 # Installation
