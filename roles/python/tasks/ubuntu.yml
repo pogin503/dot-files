@@ -2,17 +2,17 @@
 - name: install dpendencies
   become: true
   apt:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: present
-    update_cache: yesx
+    update_cache: yes
   with_items:
-    - git
-    - python3-pip
-    - build-essential
+    - { name: git } 
+    - { name: python3-pip }
+    - { name: build-essential }
 
 - name: copy pip.conf
   file:
-    src: "{{ ansible_env.PWD }}/dotfiles/python/pip.conf"
+    src: "{{ ansible_env.HOME }}/dotfiles/python/pip.conf"
     dest: "$HOME/.config/pip/pip.conf"
     state: link
     force: yes

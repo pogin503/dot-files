@@ -12,12 +12,12 @@
   pre_tasks:
     - name: show environment
       debug: msg="USER={{ ansible_env.USER }} HOME={{ ansible_env.HOME }}\nPATH={{ ansible_env.PATH }}"
-    # - name: Set python interpreter (not python2)
-    #   set_fact: ansible_python_interpreter="/usr/bin/env python"
-    # - name: Set python interpreter (not python2)
-    #   set_fact: ansible_python_interpreter="$HOME/.pyenv/shims/python"
-    # - name: pyenv init
-    #   shell: 'eval "$(pyenv init -)"'
+      # - name: Set python interpreter (not python2)
+      #   set_fact: ansible_python_interpreter="/usr/bin/env python"
+      # - name: Set python interpreter (not python2)
+      #   set_fact: ansible_python_interpreter="$HOME/.pyenv/shims/python"
+      # - name: pyenv init
+      #   shell: 'eval "$(pyenv init -)"'
     - name: get python version
       command: python --version
       register: python_version
