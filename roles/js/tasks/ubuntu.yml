@@ -1,0 +1,3 @@
+- name: install nodejs
+  include_role:
+    name: geerlingguy.nodejs
