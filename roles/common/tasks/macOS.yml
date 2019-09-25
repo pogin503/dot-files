@@ -17,6 +17,7 @@
       - homebrew/cask
       - railwaycat/emacsmacport
       - sanemat/font
+      - rafaelgarrido/homebrew-caveats
     homebrew_cask_apps:
       - appcleaner
       - dropbox
@@ -31,4 +32,5 @@
       - virtualbox
       - visual-studio-code
       - vlc
+      - brew-caveats
   tags: brew-install
