@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  ubuntu: &app_base
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ubuntu:18.10
+    tty: true
