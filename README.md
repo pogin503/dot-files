@@ -5,8 +5,6 @@ my dotfiles
 
 # Requirement
 - Ansible
-- Vagrant
-- VirtualBox
 - fish
 - Python 3
 
@@ -36,7 +34,6 @@ for macOS
 - [fish shell](https://fishshell.com/)
 - [pyenv/pyenv: Simple Python version management](https://github.com/pyenv/pyenv#installation)
 
-for guest machine
+for docker
 
-- [Vagrant by HashiCorp](https://www.vagrantup.com/)
-- [Oracle VM VirtualBox](https://www.virtualbox.org/)
+- [Docker](https://www.docker.com/)
