@@ -11,3 +11,6 @@ homebrew_cask_packages:
 - { name: vagrant }
 - { name: virtualbox }
 - { name: vlc }
+
+my_users:
+- { name: pogin, group: sudo }

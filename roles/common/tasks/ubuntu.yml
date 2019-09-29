@@ -1,4 +1,11 @@
 ---
+- name: Add user
+  become: yes
+  user:
+    name: "{{ item.name }}"
+    group: "{{ item.group }}"
+  with_items: "{{ my_users }}"
+
 - name: install dpendencies
   become: true
   apt:
@@ -9,3 +16,4 @@
     - { name: git }
     - { name: python3-pip }
     - { name: build-essential }
+    - { name: sudo }
