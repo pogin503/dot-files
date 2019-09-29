@@ -11,7 +11,7 @@
 
   pre_tasks:
     - name: show environment
-      debug: msg="USER={{ ansible_env.USER }} HOME={{ ansible_env.HOME }}\nPATH={{ ansible_env.PATH }}"
+      debug: msg="USER={{ ansible_env.USER | default(omit)}} HOME={{ ansible_env.HOME }}\nPATH={{ ansible_env.PATH }}"
       # - name: Set python interpreter (not python2)
       #   set_fact: ansible_python_interpreter="/usr/bin/env python"
       # - name: Set python interpreter (not python2)
