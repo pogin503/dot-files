@@ -10,6 +10,11 @@
     - { name: python3-pip }
     - { name: build-essential }
 
+- name: make directory
+  file:
+    path: "$HOME/.config/pip"
+    state: directory
+
 - name: copy pip.conf
   file:
     src: "{{ ansible_env.HOME }}/dotfiles/python/pip.conf"

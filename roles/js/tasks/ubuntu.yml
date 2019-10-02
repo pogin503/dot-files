@@ -1,3 +1,5 @@
 - name: install nodejs
   include_role:
     name: geerlingguy.nodejs
+  vars:
+    ansible_become: yes

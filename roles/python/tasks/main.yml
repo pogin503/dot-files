@@ -20,6 +20,7 @@
   pip:
     name: "{{ item.name }}"
     state: present
+    extra_args: --user
   with_items: "{{ ml_packages }}"
   tags: install
 
@@ -27,7 +28,9 @@
   pip:
     name: "{{ item.name }}"
     state: present
+    extra_args: --user
   with_items: "{{ python_packages }}"
+  tags: install
 
 # - name: Install Mecab
 #     debug: "Download Mecab"
