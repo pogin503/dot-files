@@ -4,6 +4,7 @@ cache:
   directories:
     - $HOME/Library/Caches/Homebrew
 # osx_image: xcode9.1
+
 matrix:
   include:
     # - os: linux
@@ -14,7 +15,6 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew outdated xctool || brew upgrade xctool; fi
 
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install python3; fi
   - sudo -H easy_install pip
   - sudo -H pip install ansible
 
@@ -30,7 +30,6 @@ script:
   - ansible --version
   - ansible-galaxy install -r requirements.yml
   - ansible-playbook --syntax-check ./localhost.yml
-  - ansible-playbook --syntax-check ./playbook.yml
   - "travis_wait 30 ansible-playbook -i hosts localhost.yml"
   # Test the playbook's idempotence.
   - idempotence=$(mktemp)
