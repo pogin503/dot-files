@@ -1,0 +1,107 @@
+- name: install dpendencies (Ubuntu)
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - autoconf
+    - bison
+    - libffi-dev
+    - libffi-dev
+    - libgdbm-dev
+    # - libgdbm3
+    - libncurses5-dev
+    - libreadline6-dev
+    - libssl-dev
+    - libtool-bin
+    - libyaml-dev
+    - zlib1g-dev
+
+- name: install rbenv
+  git:
+    repo: https://github.com/sstephenson/rbenv.git
+    dest: "{{ my_rbenv_root }}"
+    version: master
+  when: ansible_distribution == 'Ubuntu'
+
+- name: set rbenv setting
+  shell: $SHELL -lc "export RBENV_ROOT={{ my_rbenv_root }}; export PATH=$RBENV_ROOT/bin:$PATH"
+  args:
+    creates: "{{ my_rbenv_root }}/versions/{{ my_ruby_version }}"
+  changed_when: false
+  check_mode: no
+
+- name: install ruby
+  shell: |
+    echo N | rbenv install {{ my_ruby_version }} --skip-existing {{ my_ruby_version }}
+    rbenv global {{ my_ruby_version }}
+  args:
+    creates: "{{ my_rbenv_root }}/versions/{{ my_ruby_version }}"
+
+- name: set ruby {{ my_ruby_version }} for system
+  command: $SHELL -lc "rbenv rehash"
+  changed_when: false
+
+# - name: check ruby installed version
+#   shell: bash -lc "rbenv versions"
+#   register: ruby_installed_version
+
+# - name: change ~ owner to vagrant
+#   file: path={{ my_rbenv_root }} state=directory owner=ubuntu group=vagrant recurse=yes
+
+- name: install iruby dpendencies (Ubuntu)
+  block:
+    - name: iruby dependency (block)
+      gem:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+        user_install: False
+        executable: "{{ my_rbenv_root }}/shims/gem"
+      with_items:
+        - { name: cztop, state: present }
+    - name: install dpendencies
+      become: true
+      apt:
+        name: "{{ item.name }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - { name: git }
+        - { name: libzmq-dev }
+        - { name: autoconf }
+        - { name: pkg-config }
+    - name: clone czmq
+      git:
+        repo: 'https://github.com/zeromq/czmq.git'
+        dest: '/tmp/czmq'
+        version: master
+        force: yes
+    - name: make czmq
+      shell: |
+        ./autogen.sh && ./configure && sudo make && sudo make install
+      args:
+        chdir: '/tmp/czmq'
+    - name: install iruby
+      gem:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+        user_install: False
+        executable: "{{ my_rbenv_root }}/shims/gem"
+      with_items:
+        # for iruby notebook
+        - { name: iruby, state: present }
+
+- name: install bundler by rbenv gem
+  gem:
+    name: "{{ item }}"
+    user_install: False
+    executable: "{{ my_rbenv_root }}/shims/gem"
+  with_items:
+    - "{{ my_ruby_packages }}"
+  tags: install_gem
+
+# - name: Install iruby kernel
+#   shell: |
+#     ls {{ my_rbenv_root }}/shims/; iruby register --force
+#   changed_when: false

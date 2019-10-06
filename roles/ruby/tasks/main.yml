@@ -1,27 +1,9 @@
 ---
+- import_tasks: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
 - import_tasks: macOS.yml
   when: ansible_os_family == 'Darwin'
-
-- name: install dpendencies (Ubuntu)
-  become: true
-  apt:
-    name: "{{ item.name }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - { name: 'autoconf' }
-    - { name: 'bison' }
-    - { name: 'libffi-dev' }
-    - { name: 'libffi-dev' }
-    - { name: 'libgdbm-dev' }
-    - { name: 'libgdbm3' }
-    - { name: 'libncurses5-dev' }
-    - { name: 'libreadline6-dev' }
-    - { name: 'libssl-dev' }
-    - { name: 'libtool-bin' }
-    - { name: 'libyaml-dev' }
-    - { name: 'zlib1g-dev' }
-  when: ansible_distribution == 'Ubuntu'
 
 # - name: install rbenv
 #   git:
@@ -68,6 +50,7 @@
 # - name: change ~ owner to vagrant
 #   file: path={{ my_rbenv_root }} state=directory owner=ubuntu group=vagrant recurse=yes
 
+
 - name: install iruby dpendencies (macOS)
   block:
     - name: install iruby dependencies
@@ -88,60 +71,3 @@
         - { name: cztop, state: present }
         - { name: iruby, state: present }
   when: ansible_os_family == 'Darwin'
-
-- name: install iruby dpendencies (Ubuntu)
-  block:
-    - name: iruby dependency (block)
-      gem:
-        name: "{{ item.name }}"
-        state: "{{ item.state }}"
-        user_install: False
-        executable: "{{ my_rbenv_root }}/shims/gem"
-      with_items:
-        - { name: cztop, state: present }
-    - name: install dpendencies
-      become: true
-      apt:
-        name: "{{ item.name }}"
-        state: present
-        update_cache: yes
-      with_items:
-        - { name: git }
-        - { name: libzmq-dev }
-        - { name: autoconf }
-        - { name: pkg-config }
-    - name: clone czmq
-      git:
-        repo: 'https://github.com/zeromq/czmq.git'
-        dest: '/tmp/czmq'
-        version: master
-        force: yes
-    - name: make czmq
-      shell: |
-        ./autogen.sh && ./configure && sudo make && sudo make install
-      args:
-        chdir: '/tmp/czmq'
-    - name: install iruby
-      gem:
-        name: "{{ item.name }}"
-        state: present
-        user_install: False
-        executable: "{{ my_rbenv_root }}/shims/gem"
-      with_items:
-        # for iruby notebook
-        - { name: iruby }
-  when: ansible_distribution == 'Ubuntu'
-
-- name: install bundler by rbenv gem
-  gem:
-    name: "{{ item }}"
-    user_install: False
-    executable: "{{ my_rbenv_root }}/shims/gem"
-  with_items:
-    - "{{ my_ruby_packages }}"
-  tags: install_gem
-
-# - name: Install iruby kernel
-#   shell: |
-#     ls {{ my_rbenv_root }}/shims/; iruby register --force
-#   changed_when: false
