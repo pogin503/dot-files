@@ -131,8 +131,8 @@ set -x BUNDLE_USER_PLUGIN "$XDG_DATA_HOME"/bundle
 # set -x IRBRC "$XDG_CONFIG_HOME"/irb/irbrc
 
 # set -x HISTFILE "$XDG_DATA_HOME"/bash/history
-set -x IPYTHONDIR "$XDG_CONFIG_HOME"/jupyter
 set -x JUPYTER_CONFIG_DIR "$XDG_CONFIG_HOME"/jupyter
+set -x JUPYTER_DATA_DIR "$XDG_DATA_HOME"/jupyter
 
 set -x VAGRANT_ALIAS_FILE "$XDG_DATA_HOME"/vagrant/aliases
 set -x VAGRANT_HOME "$XDG_DATA_HOME"/vagrant

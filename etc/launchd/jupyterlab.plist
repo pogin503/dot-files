@@ -8,13 +8,16 @@
     <string>com.pogin.jupyter-notebook</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/pogin/.pyenv/shims/jupyter-notebook</string>
+        <string>/bin/zsh</string>
+        <string>/Users/pogin/dotfiles/etc/jupyterlab.sh</string>
+        <string>8888</string>
+        <string>/Users/pogin/</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
     <key>StandardOutPath</key>
-    <string>/Users/pogin/var/log/jupyter-notebook/jupyter-notebook.log</string>
+    <string>/Users/pogin/var/log/jupyter/jupyterlab.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/pogin/var/log/jupyter-notebook/jupyter-notebook.err.log</string>
+    <string>/Users/pogin/var/log/jupyter/jupyterlab.err.log</string>
 </dict>
 </plist>

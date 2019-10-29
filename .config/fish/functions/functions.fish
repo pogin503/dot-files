@@ -22,6 +22,9 @@ function ansible_check
   # $ ansible_check ./locahost.yml
   # $ ansible_check ./locahost.yml hosts
   if [ (string length "$argv.length") = 0 ]
+    echo 'usage'
+    echo '  $ ansible_check ./locahost.yml'
+    echo '  $ ansible_check ./locahost.yml hosts'
     exit
   else if [ (string length "$argv.length") = 1 ]
     ansible-playbook --syntax-check $argv[1]
@@ -74,15 +77,6 @@ function find-file
     set repo $argv[1]
     string length -q -- $file; or set file (pwd)
     emacsclient --eval "(find-file \"$file\")" --eval '(open-emacs-window)'
-end
-
-# Get token(password) from log file.
-function get_jupyternotebook_token
-    set -q $argv[1]; and set -l log_path ~/var/log/jupyter-notebook/jupyter-notebook.err.log;
-    or set -l log_path argv[1]
-    set -q $argv[2]; and set -l grepword http://localhost:8888/\?token;
-    or set -l log_path argv[2]
-    cat $log_path | grep $grepword | tail -n 1 | sed -e 's/.*=//'
 end
 
 function sample_default_value
