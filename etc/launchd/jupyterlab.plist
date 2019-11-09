@@ -5,7 +5,7 @@
     <key>KeepAlive</key>
     <true/>
     <key>Label</key>
-    <string>com.pogin.jupyter-notebook</string>
+    <string>com.pogin.jupyterlab</string>
     <key>ProgramArguments</key>
     <array>
         <string>/bin/zsh</string>

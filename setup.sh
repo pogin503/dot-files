@@ -54,6 +54,4 @@ git config --global core.quotepath false
 # "$DOT_DIR"/rust/setup.sh
 # "$DOT_DIR"/ats2/setup.sh
 
-# if [[ $(uname) = 'Darwin' ]];then
-#     "$DOT_DIR"/mac/setup.sh
-# fi
+"$DOT_DIR"/etc/setup.sh
