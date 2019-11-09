@@ -2,7 +2,8 @@
 set -eu
 # set -x
 
-DOT_DIR="$HOME"/dotfiles
+SCRIPT_DIR=$(dirname "$0")
+"$SCRIPT_DIR"/etc/env.sh
 
 ln -sf "$DOT_DIR"/.aliases          ~/.aliases
 if [ -e ~/.bashrc ]; then
