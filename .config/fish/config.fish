@@ -97,11 +97,8 @@ end
 
 set -x NODE_REPL_HISTORY "$XDG_DATA_HOME"/node_repl_history
 set -x NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
-# set -x NVM_DIR "$XDG_DATA_HOME"/nvm
-# [ -s "$NVM_DIR/nvm.sh" ];and bash "$NVM_DIR/nvm.sh"  # This loads nvm
 set -x NODENV_ROOT "$XDG_DATA_HOME"/nodenv
-# set -Ux fish_user_paths "$XDG_DATA_HOME"/nodenv/bin $fish_user_paths
-status --is-interactive; and source (nodenv init -|psub)
+# status --is-interactive; and source (nodenv init -|psub)
 
 set -x PATH "$HOME"/dotfiles/bin $PATH
 
@@ -173,3 +170,4 @@ set -x OCTAVE_SITE_INITFILE "$XDG_CONFIG_HOME/octave/octaverc"
 set -x PYTHON_EGG_CACHE "$XDG_CACHE_HOME"/python-eggs
 set -x PYLINTHOME "$XDG_CACHE_HOME"/pylint
 set -x INPUTRC "$XDG_CONFIG_HOME"/readline/inputrc
+set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
