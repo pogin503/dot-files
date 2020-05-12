@@ -3,7 +3,7 @@ set -eu
 # set -x
 
 SCRIPT_DIR=$(dirname "$0")
-"$SCRIPT_DIR"/etc/env.sh
+. "$SCRIPT_DIR"/etc/env.sh
 
 ln -sf "$DOT_DIR"/.aliases          ~/.aliases
 if [ -e ~/.bashrc ]; then
@@ -36,6 +36,7 @@ ln -sf "$DOT_DIR"/.config/git/.gitignore_global ~/.config/git/.gitignore_global
 mkdir -p ~/.stack/
 ln -sf "$DOT_DIR"/.stack/config.yaml ~/.stack/config.yaml
 
+# git config
 git config --global alias.co 'checkout'
 git config --global alias.st 'status -sb'
 git config --global alias.cm 'commit -a'
