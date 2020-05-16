@@ -115,6 +115,11 @@ function history-merge --on-event fish_preexec
   history --merge
 end
 
+# cargo
+if [ -d "$HOME"/.local/share/cargo/bin ];
+  set -x PATH "$HOME"/.local/share/cargo/bin $PATH
+end
+
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
 
 set -x CARGO_HOME "$XDG_DATA_HOME"/cargo
