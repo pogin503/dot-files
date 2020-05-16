@@ -12,7 +12,6 @@
       - go
       - ricty
       - editorconfig
-      - jenkins
     homebrew_taps:
       - homebrew/cask
       - railwaycat/emacsmacport
@@ -28,7 +27,6 @@
       - mendley-desktop
       - postico
       - powershell
-      - vagrant
       - virtualbox
       - visual-studio-code
       - vlc
