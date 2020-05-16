@@ -5,25 +5,24 @@
     state: present
     update_cache: yes
   with_items:
-    - autoconf
-    - bison
-    - libffi-dev
-    - libffi-dev
-    - libgdbm-dev
+    - { item: autoconf }
+    - { item: bison }
+    - { item: libffi-dev }
+    - { item: libffi-dev }
+    - { item: libgdbm-dev }
     # - libgdbm3
-    - libncurses5-dev
-    - libreadline6-dev
-    - libssl-dev
-    - libtool-bin
-    - libyaml-dev
-    - zlib1g-dev
+    - { item: libncurses5-dev }
+    - { item: libreadline6-dev }
+    - { item: libssl-dev }
+    - { item: libtool-bin }
+    - { item: libyaml-dev }
+    - { item: zlib1g-dev }
 
 - name: install rbenv
   git:
     repo: https://github.com/sstephenson/rbenv.git
     dest: "{{ my_rbenv_root }}"
     version: master
-  when: ansible_distribution == 'Ubuntu'
 
 - name: set rbenv setting
   shell: $SHELL -lc "export RBENV_ROOT={{ my_rbenv_root }}; export PATH=$RBENV_ROOT/bin:$PATH"
