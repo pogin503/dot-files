@@ -107,13 +107,13 @@ function fish_user_key_bindings
   bind \cr peco_select_history
 end
 
-# global
-set -x GTAGSLABEL pygments
-
 function history-merge --on-event fish_preexec
   history --save
   history --merge
 end
+
+# global
+set -x GTAGSLABEL pygments
 
 # cargo
 if [ -d "$HOME"/.local/share/cargo/bin ];
@@ -176,3 +176,4 @@ set -x PYTHON_EGG_CACHE "$XDG_CACHE_HOME"/python-eggs
 set -x PYLINTHOME "$XDG_CACHE_HOME"/pylint
 set -x INPUTRC "$XDG_CONFIG_HOME"/readline/inputrc
 set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
+set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
