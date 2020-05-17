@@ -18,12 +18,13 @@ set -x PATH $PATH "$DOT_HOME"/bin
 
 # for rbenv
 if test -d "$HOME"/.rbenv
-  status --is-interactive; and source (rbenv init -|psub)
+  set -x PATH $HOME/.rbenv/bin $PATH
+  status --is-interactive; and rbenv init - | source
 else
   echo 'can\'t load rbenv.'
   echo 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv'
-  echo 'set -Ux fish_user_paths $HOME/.rbenv/bin $fish_user_paths'
-  echo 'echo \'status --is-interactive; and source (rbenv init -|psub)\' >> ~/.config/fish/config.fish'
+  echo 'set -x PATH $HOME/.rbenv/bin $PATH'
+  echo 'echo \'status --is-interactive; and rbenv init - | source\' >> ~/.config/fish/config.fish'
 end
 
 if test -d "$HOME"/.cargo/bin
