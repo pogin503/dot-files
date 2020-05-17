@@ -1,0 +1,13 @@
+dotfiles/
+.nodenv/
+.rbenv/
+.cache/
+.npm/
+.local/
+.ansible/
+.stack/
+workspace/
+Dockerfile
+.DS_Store
+.gitignore
+README.md
