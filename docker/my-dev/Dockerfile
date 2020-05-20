@@ -1,4 +1,5 @@
-# syntax = docker/dockerfile:experimental
+# syntax=docker/dockerfile:experimental
+
 FROM ubuntu:18.04 as my-dev-base
 
 RUN sed -i.bak -e "s%http://[^ ]\+%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list \
@@ -20,26 +21,25 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 # FOR Ansible
 RUN apt-get update && apt-get -y install python3-dev
 
-RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
-# RUN --mount=type=secret,id=ssh,target=/root/.ssh/id_rsa git clone git@github.com:pogin503/dot-files.git /root/dotfiles
-# RUN --mount=type=ssh git clone git@github.com:pogin503/dot-files.git /root/dotfiles
-RUN git clone https://github.com/pogin503/dot-files.git /root/dotfiles
+RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan -t rsa -H github.com >> ~/.ssh/known_hosts
+RUN --mount=type=secret,id=ssh,target=/root/.ssh/id_rsa git clone git@github.com:pogin503/dot-files.git /root/dotfiles
 
-RUN apt update && \
-    apt install software-properties-common \
-    apt-add-repository ppa:ansible/ansible \
-    apt update \
-    apt install ansible
-
-ansible-galaxy install -r requirements.yml
-
-RUN rm -rf /var/lib/apt/lists/*
-
-FROM my-dev-base
+RUN apt-get update \
+  && apt-get install -y software-properties-common  \
+  && apt-add-repository -y ppa:ansible/ansible \
+  && apt-get update \
+  && apt-get install -y ansible
 
 WORKDIR /root/dotfiles
-ansible-playbook -i hosts localhost.yml -v
-exit 0
+RUN ansible-galaxy install -r requirements.yml
+
+# install pyenv
+RUN apt-get install -y libffi-dev libssl-dev zlib1g-dev liblzma-dev libbz2-dev libreadline-dev libsqlite3-dev
+RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+# RUN ansible-playbook -i hosts localhost.yml -v
+
+RUN rm -rf /var/lib/apt/lists/*
 
 # EXPOSE 22
 # CMD ["/usr/sbin/sshd", "-D"]
