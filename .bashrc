@@ -105,3 +105,7 @@ export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi

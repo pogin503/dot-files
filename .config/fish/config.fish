@@ -44,8 +44,8 @@ if test -d "$HOME"/.local/bin
 end
 
 if test -d "$HOME"/.pyenv
-  set -x PYENV_ROOT "$HOME"/.pyenv
-  set -x PATH "$PYENV_ROOT"/bin $PATH
+  set -Ux PYENV_ROOT "$HOME"/.pyenv
+  set -Ux fish_user_paths $PYENV_ROOT/bin $fish_user_paths
   pyenv init - | source
 
   set -l python_install_version anaconda3-5.3.1
