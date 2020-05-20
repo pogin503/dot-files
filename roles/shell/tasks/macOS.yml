@@ -16,6 +16,7 @@
     - { name: fzf }
     - { name: ripgrep }
     - { name: mobile-shell }
+    - { name: bat }
   tags: brew-install
 
 - block:

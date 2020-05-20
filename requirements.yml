@@ -2,3 +2,4 @@
 - src: geerlingguy.mysql
 - src: geerlingguy.homebrew
 - src: zzet.rbenv
+- src: aeimer.install_bat
