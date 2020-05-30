@@ -5,4 +5,5 @@ SCRIPT_DIR=$(dirname "$0")
 
 if [ "$(uname)" = 'Darwin' ];then
   ln -sf "$DOT_DIR"/etc/launchd/com.pogin.jupyterlab.plist ~/Library/LaunchAgents/com.pogin.jupyterlab.plist
+  mkdir -p "$HOME"/var/log/jupyter
 fi
