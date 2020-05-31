@@ -89,7 +89,7 @@ function sample_default_value
 end
 
 # https://github.com/fish-shell/fish-shell/issues/296
-function varclear --description 'Remove duplicates from environment variable'
+function clear_dupe_var --description 'Remove duplicates from environment variable'
   if test (count $argv) = 1
     set -l newvar
     set -l count 0
@@ -108,4 +108,8 @@ function varclear --description 'Remove duplicates from environment variable'
       varclear $a
     end
   end
+end
+
+function show_path
+  echo $$argv[1] | tr " " "\n" | nl
 end
