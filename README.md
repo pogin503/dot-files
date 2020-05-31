@@ -10,7 +10,7 @@ my dotfiles
 
 # Usage
 
-local setting
+local setting (for macOS)
 
 ```
 git clone https://github.com/pogin503/dot-files.git ~/dotfiles
