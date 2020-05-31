@@ -1,21 +1,57 @@
 ---
 ml_packages:
-  - jupyter
-  - jupyter_contrib_nbextensions
-  - scikit-learn
-  - environment_kernels
-  - numpy
-  - matplotlib
-  - bokeh
-  - plotly
+  # Jupyter Interactive Notebook
+  # https://jupyter-notebook.readthedocs.io/en/stable/
+  - { name: jupyter }
+  # JupyterLab is the next-generation web-based user interface for Project Jupyter.
+  # https://jupyterlab.readthedocs.io/en/stable/index.html
+  - { name: jupyterlab }
+  # Unofficial Jupyter Notebook Extensions
+  # https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/index.html
+  - { name: jupyter_contrib_nbextensions }
+  # An Jupyter plugin to enable the automatic detection of conda and virtualenv environments as kernels.
+  # https://github.com/Cadair/jupyter_environment_kernels/
+  - { name: environment_kernels }
+  # scikit-learn: machine learning in Python
+  # https://scikit-learn.org/stable/
+  - { name: scikit-learn }
+  # The fundamental package for scientific computing with Python
+  # https://numpy.org/
+  - { name: numpy }
+  # Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.
+  # https://matplotlib.org/
+  - { name: matplotlib }
+  # Bokeh is an interactive visualization library for modern web browsers.
+  # https://docs.bokeh.org/en/latest/
+  - { name: bokeh }
+  # Plotly Python Open Source Graphing Library
+  # https://plotly.com/python/
+  - { name: plotly }
 
 python_packages:
-  - jedi
-  - epc
-  - flake8
-  - pygments
-  - requests
+  # Jedi - an awesome autocompletion, static analysis and refactoring library for Python
+  # https://github.com/davidhalter/jedi
+  - { name: jedi }
+  # EPC (RPC stack for Emacs Lisp) for Python
+  # https://github.com/tkf/python-epc
+  - { name: epc }
+  - { name: flake8 }
+  - { name: pylint }
+  # Pygments is a generic syntax highlighter written in Python
+  # https://pygments.org/
+  - { name: pygments }
+  - { name: requests }
   # A Python library for the Docker Engine API
   # https://github.com/docker/docker-py
-  - docker
-  - molecule
+  - { name: docker }
+  # Molecule project is designed to aid in the development and testing of Ansible roles.
+  # https://molecule.readthedocs.io/en/latest/#
+  - { name: molecule }
+  - { name: "molecule[lint]" }
+  - { name: "molecule[docker]" }
+  # %%sql magic for IPython, hopefully evolving into full SQL client
+  # https://github.com/catherinedevlin/ipython-sql
+  - { name: ipython-sql }
+  # Psycopg is the most popular PostgreSQL database adapter for the Python programming language.
+  # https://pypi.org/project/psycopg2-binary/
+  - { name: psycopg2-binary }
