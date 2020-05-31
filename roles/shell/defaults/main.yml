@@ -1,2 +1,16 @@
 ---
 # defaults file for shell
+macos_homebrew_packages:
+  - { name: fish }
+  - { name: ansifilter }
+  - { name: the_silver_searcher }
+  - { name: shellcheck }
+  - { name: tmux }
+  - { name: trash }
+  - { name: tree }
+  - { name: reattach-to-user-namespace }
+  - { name: peco }
+  - { name: fzf }
+  - { name: ripgrep }
+  - { name: mobile-shell }
+  - { name: bat }

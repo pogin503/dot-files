@@ -33,3 +33,8 @@
       args:
         chdir: /tmp/global-6.6.3
       when: result2 is failed
+
+- name: install tpm
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm

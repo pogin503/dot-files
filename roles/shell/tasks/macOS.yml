@@ -3,20 +3,7 @@
   homebrew:
     name: "{{ item.name }}"
     state: present
-  with_items:
-    - { name: fish }
-    - { name: ansifilter }
-    - { name: the_silver_searcher }
-    - { name: shellcheck }
-    - { name: tmux }
-    - { name: trash }
-    - { name: tree }
-    - { name: reattach-to-user-namespace }
-    - { name: peco }
-    - { name: fzf }
-    - { name: ripgrep }
-    - { name: mobile-shell }
-    - { name: bat }
+  with_items: "{{ macos_homebrew_packages }}"
   tags: brew-install
 
 - block:
