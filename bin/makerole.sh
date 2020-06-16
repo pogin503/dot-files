@@ -33,7 +33,7 @@ if [ ! -d "$DIR"/roles/ ]; then
   mkdir "$DIR"/roles/
 fi
 
-pushd "$DIR/roles"
+pushd "$DIR/roles" > /dev/null
 # ansible-galaxy init --init-path "$DIR"/roles/ "$1"
 molecule init role "$1"
 popd
