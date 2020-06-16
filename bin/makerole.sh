@@ -17,6 +17,9 @@ do
     #   shift 1
     #   DIR="$@"
     #   ;;
+    h|help)
+      usage
+      ;;
     *)
       DIR=$(pwd)
   esac
