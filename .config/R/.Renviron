@@ -1,0 +1,9 @@
+options(repos="https://cran.ism.ac.jp/")
+XDG_CONFIG_HOME=$HOME/.config
+XDG_DATA_HOME=$HOME/.local/share
+XDG_CACHE_HOME=$HOME/.cache
+# R_USER=${XDG_CONFIG_HOME}/.config/R
+R_LIBS_USER=${XDG_DATA_HOME}/R/library
+R_ENVIRON_USER=${XDG_CONFIG_HOME}/.Renviron
+R_PROFILE_USER=${XDG_CONFIG_HOME}/.Rprofile
+R_HISTFILE=${XDG_CACHE_HOME}/R/.Rhistory
