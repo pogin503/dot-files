@@ -33,7 +33,10 @@ if [ ! -d "$DIR"/roles/ ]; then
   mkdir "$DIR"/roles/
 fi
 
-ansible-galaxy init --init-path "$DIR"/roles/ "$1"
+pushd "$DIR/roles"
+# ansible-galaxy init --init-path "$DIR"/roles/ "$1"
+molecule init role "$1"
+popd
 
 # 実行するタスクを定義する
 # tasks/main.yml
@@ -48,26 +51,26 @@ ansible-galaxy init --init-path "$DIR"/roles/ "$1"
 # ハンドラーを定義する
 # handlers/main.yml
 
-# test/inventory
-cat > "$DIR"/roles/"$1"/tests/inventory <<EOF
----
-all:
-  hosts:
-    localhost:
-      ansible_connection: local
-EOF
+# tests/inventory
+# cat > "$DIR"/roles/"$1"/tests/inventory <<EOF
+# ---
+# all:
+#   hosts:
+#     localhost:
+#       ansible_connection: local
+# EOF
 
 
 # テスト用のタスクを定義する
 # tests/main.yml
-cat > "$DIR"/roles/"$1"/tests/test.yml <<EOF
----
-- hosts: localhost
-  # remote_user: root
-  connection: local
-  roles:
-    - $1
-EOF
+# cat > "$DIR"/roles/"$1"/tests/test.yml <<EOF
+# ---
+# - hosts: localhost
+#   # remote_user: root
+#   connection: local
+#   roles:
+#     - $1
+# EOF
 
 cat > "$DIR"/roles/"$1"/tasks/main.yml <<EOF
 ---
@@ -91,41 +94,41 @@ EOF
 # Roleの依存関係を記述するファイル
 # meta/main.yml
 
-rm "$DIR"/roles/"$1"/README.md
-ROLE_NAME=$1
-ROLE_SEPARATOR=$(ruby -e "puts '='*${#ROLE_NAME}")
+# rm "$DIR"/roles/"$1"/README.md
+# ROLE_NAME=$1
+# ROLE_SEPARATOR=$(ruby -e "puts '='*${#ROLE_NAME}")
 
-cat > "$DIR"/roles/"$1"/README.md <<EOF
-$1
-${ROLE_SEPARATOR}
+# cat > "$DIR"/roles/"$1"/README.md <<EOF
+# $1
+# ${ROLE_SEPARATOR}
 
-Requirements
-------------
+# Requirements
+# ------------
 
-Role Variables
---------------
+# Role Variables
+# --------------
 
-Example Playbook
-----------------
+# Example Playbook
+# ----------------
 
-\`\`\`
-    - hosts: servers
-      roles:
-         - { role: username.$1, x: 42 }
-\`\`\`
+# \`\`\`
+#     - hosts: servers
+#       roles:
+#          - { role: username.$1, x: 42 }
+# \`\`\`
 
-\`\`\`
-ansible-playbook -i $1/tests/inventory $1/tests/test.yml
-\`\`\`
+# \`\`\`
+# ansible-playbook -i $1/tests/inventory $1/tests/test.yml
+# \`\`\`
 
-Usage
------
+# Usage
+# -----
 
-License
--------
+# License
+# -------
 
-MIT
-EOF
+# MIT
+# EOF
 
 cat > "$DIR"/roles/"$1"/meta/main.yml <<EOF
 galaxy_info:
