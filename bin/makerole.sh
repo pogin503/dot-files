@@ -2,6 +2,14 @@
 
 set -eu
 
+usage() {
+  cat <<EOF
+usage:
+    ./makerole.sh <role-name>
+EOF
+  exit
+}
+
 for OPT in "$@"
 do
   case "$OPT" in
@@ -15,10 +23,7 @@ do
 done
 
 if [ $# -lt 1 ]; then
-  cat <<EOF
-usage:
-    ./makerole.sh <role-name>
-EOF
+  usage
 fi
 
 if [ ! -d "$DIR"/roles/ ]; then
