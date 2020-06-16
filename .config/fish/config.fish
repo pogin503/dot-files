@@ -177,3 +177,4 @@ set -x PYLINTHOME "$XDG_CACHE_HOME"/pylint
 set -x INPUTRC "$XDG_CONFIG_HOME"/readline/inputrc
 set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
 set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
+set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
