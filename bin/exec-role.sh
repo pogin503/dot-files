@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 PROGNAME=$(basename "$0")
-if [[ $# -lt 2 ]]; then
-    cat <<HELP
+usage() {
+  cat <<HELP
 Wrapper script for ansible-playbook to apply single role.
 
 Usage: ./bin/$PROGNAME <host-pattern> <role-name> [ansible-playbook options]
@@ -11,7 +11,10 @@ Examples:
   ./bin/$PROGNAME dest_host my_role
   ./bin/$PROGNAME custom_host my_role -i 'custom_host,' -vv --check
 HELP
-    exit
+  exit
+}
+if [[ $# -lt 2 ]]; then
+  usage
 fi
 
 HOST_PATTERN=$1
