@@ -9,6 +9,7 @@ export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_DATA_DIR="$XDG_DATA_HOME"/jupyter
 
 export PATH="$HOME"/.pyenv/shims:"$PATH"
+export PATH="$HOME"/.local/bin:"$PATH"
 env | sort
 printf "version: "
 jupyter --version
