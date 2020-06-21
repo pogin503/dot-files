@@ -36,7 +36,7 @@ fi
 pushd "$DIR/roles" > /dev/null
 # ansible-galaxy init --init-path "$DIR"/roles/ "$1"
 molecule init role "$1"
-popd
+popd > /dev/null
 
 # 実行するタスクを定義する
 # tasks/main.yml
