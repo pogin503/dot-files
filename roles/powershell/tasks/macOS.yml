@@ -1,0 +1,8 @@
+---
+- name: install packages
+  homebrew_cask:
+    name: "{{ item.name }}"
+    state: present
+    sudo_password: "{{ ansible_become_pass }}"
+  with_items:
+    - { name: powershell }

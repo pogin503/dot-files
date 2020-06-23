@@ -10,11 +10,16 @@ my dotfiles
 
 # Usage
 
-local setting (for macOS)
+local setting
 
 ```
 git clone https://github.com/pogin503/dot-files.git ~/dotfiles
 cd ~/dotfiles
+```
+
+```
+echo "ansible_become_pass: password" > hosts/group_vars/local_group/vault
+ansible-vault encrypt hosts/group_vars/local_group/vault
 ```
 
 Ubuntu
@@ -31,7 +36,7 @@ Execute ansible playbook.
 
 ```
 ansible-galaxy install -r requirements.yml
-ansible-playbook -K -i hosts localhost.yml -v
+ansible-playbook -K -i hosts/hosts localhost.yml -v
 ```
 
 Create container

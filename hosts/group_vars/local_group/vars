@@ -1,0 +1,2 @@
+ansible_become_pass: "{{ vault_ansible_become_pass }}"
+group_localhost_var: group_localhost_var
