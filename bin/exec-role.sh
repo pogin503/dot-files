@@ -41,7 +41,7 @@ YAML_DATA=$(cat << END
 END
 )
 
-echo $YAML_DATA
+echo -e "$YAML_DATA"
 ansible-playbook "$@" /dev/stdin <<END
 $YAML_DATA
 END
