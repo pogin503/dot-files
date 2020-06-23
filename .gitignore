@@ -114,3 +114,4 @@ private*
 group_vars/all
 *.retry
 .vagrant/
+hosts/group_vars/**/vault
