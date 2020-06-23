@@ -42,12 +42,7 @@ END
             )
 echo $YAML_DATA
 ansible-playbook "$@" /dev/stdin <<END
----
-- hosts: $HOST_PATTERN
-  pre_tasks:
-    - debug: msg={{ansible_env.PWD}}
-  roles:
-    - $ROLE
+$YAML_DATA
 END
 
 # @see https://stackoverflow.com/questions/38350674/ansible-can-i-execute-role-from-command-line
