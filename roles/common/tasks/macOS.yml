@@ -11,6 +11,7 @@
       - go
       - ricty
       - editorconfig
+      - gnupg
     homebrew_taps:
       - homebrew/cask
       - railwaycat/emacsmacport
