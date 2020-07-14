@@ -1,6 +1,27 @@
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "bin/**"
+    - "db/schema.rb"
+    - "node_modules/**/*"
+    - "tmp/**/*"
+    - "lib/**/*"
+
 # アスキーコメントのみ許可
 Style/AsciiComments:
   Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Encoding:
+  Enabled: true
+
+# Style/TrailingCommaInLiteral:
+#   EnforcedStyleForMultiline: comma
 
 # アスキーの変数名のみ許可
 Naming/AsciiIdentifiers:
@@ -8,10 +29,12 @@ Naming/AsciiIdentifiers:
 
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - "db/migrate/*.rb"
 
+# 1行の文字数
+Metrics/MethodLength:
+  Max: 30
 
-Style/Encoding:
-  Enabled: true
-
-# Style/TrailingCommaInLiteral:
-#   EnforcedStyleForMultiline: comma
+Metrics/AbcSize:
+  Max: 20
