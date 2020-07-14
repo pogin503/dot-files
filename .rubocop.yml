@@ -1,15 +1,14 @@
 # アスキーコメントのみ許可
-AsciiComments:
+Style/AsciiComments:
   Enabled: false
 
 # アスキーの変数名のみ許可
 Naming/AsciiIdentifiers:
   Enabled: false
 
-LineLength:
+Metrics/LineLength:
   Max: 120
 
-Metrics/LineLength: 120
 
 Style/Encoding:
   Enabled: true
