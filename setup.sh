@@ -2,6 +2,10 @@
 set -eu
 # set -x
 
+XDG_CONFIG_HOME="$HOME/.config"
+XDG_CACHE_HOME="$HOME/.cache"
+XDG_DATA_HOME="$HOME/.local/share"
+
 SCRIPT_DIR=$(dirname "$0")
 . "$SCRIPT_DIR"/etc/env.sh
 
@@ -9,14 +13,15 @@ ln -sf "$DOT_DIR"/.aliases          ~/.aliases
 if [ -e ~/.bashrc ]; then
   cp ~/.bashrc ~/".bashrc_orig_$(date '+%Y-%m-%dT%H:%M')"
 fi
-ln -sf "$DOT_DIR"/.bashrc           ~/.bashrc
-ln -sf "$DOT_DIR"/.gdbinit          ~/.gdbinit
-ln -sf "$DOT_DIR"/.ghci             ~/.ghci
-ln -sf "$DOT_DIR"/.guile            ~/.guile
-ln -sf "$DOT_DIR"/.rubocop.yml      ~/.rubocop.yml
-ln -sf "$DOT_DIR"/.tmux.conf        ~/.tmux.conf
-ln -sf "$DOT_DIR"/.vimrc            ~/.vimrc
-ln -sf "$DOT_DIR"/.zshrc            ~/.zshrc
+ln -sf "$DOT_DIR"/.bashrc              ~/.bashrc
+ln -sf "$DOT_DIR"/.gdbinit             ~/.gdbinit
+ln -sf "$DOT_DIR"/.ghci                ~/.ghci
+ln -sf "$DOT_DIR"/.guile               ~/.guile
+ln -sf "$DOT_DIR"/.tmux.conf           ~/.tmux.conf
+ln -sf "$DOT_DIR"/.vimrc               ~/.vimrc
+ln -sf "$DOT_DIR"/.zshrc               ~/.zshrc
+
+ln -sf "$DOT_DIR"/.rubocop.yml         "$XDG_CONFIG_HOME"/rubocop/.rubocop.yml
 
 mkdir -p ~/.config/fish
 mkdir -p ~/.config/fish/functions
