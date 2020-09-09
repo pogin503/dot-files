@@ -8,7 +8,6 @@ macos_homebrew_packages:
   - { name: tmux }
   - { name: trash }
   - { name: tree }
-  - { name: reattach-to-user-namespace }
   - { name: peco }
   - { name: fzf }
   - { name: ripgrep }
