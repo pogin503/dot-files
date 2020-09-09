@@ -22,6 +22,7 @@ ln -sf "$DOT_DIR"/.vimrc               ~/.vimrc
 ln -sf "$DOT_DIR"/.zshrc               ~/.zshrc
 
 ln -sf "$DOT_DIR"/.rubocop.yml         "$XDG_CONFIG_HOME"/rubocop/.rubocop.yml
+ln -sf "$DOT_DIR"/.config/R/.Renviron  "$XDG_CONFIG_HOME"/R/.Renviron
 
 mkdir -p ~/.config/fish
 mkdir -p ~/.config/fish/functions
