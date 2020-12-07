@@ -2,14 +2,27 @@
 # defaults file for shell
 macos_homebrew_packages:
   - { name: fish }
+  # ANSI エスケープシーケンス使って吐かれたテキストを HTML に変換したくなったときに使う
+  # http://www.andre-simon.de/doku/ansifilter/en/ansifilter.php
   - { name: ansifilter }
-  - { name: the_silver_searcher }
   - { name: shellcheck }
   - { name: tmux }
   - { name: trash }
   - { name: tree }
   - { name: peco }
   - { name: fzf }
+  - { name: the_silver_searcher }
   - { name: ripgrep }
   - { name: mobile-shell }
+  # A cat(1) clone with syntax highlighting and Git integration.
+  # https://github.com/sharkdp/bat
   - { name: bat }
+  # Tokei is a program that displays statistics about your code.
+  # Tokei will show the number of files, total lines within those files and code,
+  # comments, and blanks grouped by language.
+  # https://github.com/XAMPPRocky/tokei
+  - { name: tokei }
+  - { name: direnv }
+  # ghq - Manage remote repository clones
+  # https://github.com/x-motemen/ghq
+  - { name: ghq }
