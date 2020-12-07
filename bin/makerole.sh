@@ -33,6 +33,11 @@ if [ ! -d "$DIR"/roles/ ]; then
   mkdir "$DIR"/roles/
 fi
 
+if [ -d "$DIR"/roles/"$1" ]; then
+  echo already exists "$DIR"/roles/"$1" &2
+  exit 1
+fi
+
 pushd "$DIR/roles" > /dev/null
 # ansible-galaxy init --init-path "$DIR"/roles/ "$1"
 molecule init role "$1"
