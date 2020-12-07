@@ -81,15 +81,17 @@ cat > "$DIR"/roles/"$1"/tasks/main.yml <<EOF
 
 - import_tasks: ubuntu.yml
   when: ansible_facts['distribution'] == 'Ubuntu'
+
+- import_tasks: centos.yml
+  when: ansible_facts['distribution'] == 'CentOS'
 EOF
 
-cat > "$DIR"/roles/"$1"/tasks/macOS.yml <<EOF
+for target in macOS ubuntu centos
+do
+  cat > "$DIR"/roles/"$1"/tasks/"$target".yml <<EOF
 ---
 EOF
-cat > "$DIR"/roles/"$1"/tasks/ubuntu.yml <<EOF
----
-EOF
-
+done
 
 # Roleの依存関係を記述するファイル
 # meta/main.yml
