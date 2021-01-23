@@ -109,3 +109,7 @@ export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PA
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+
+# WebAssembly
+export WASMER_DIR="/Users/iMac/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"

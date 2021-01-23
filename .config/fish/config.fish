@@ -2,16 +2,26 @@
 # set fisher_config ~/.config/fisherman
 # source $fisher_home/config.fish
 
+if [ (uname) = 'Darwin' ];
+  set -x LANG ja_JP.UTF-8
+else
+  set -x LANG ja_JP.utf8
+end
+
 # load aliases
 . "$HOME"/.config/fish/aliases.fish
 
 # load functions
 . "$HOME"/.config/fish/functions/functions.fish
 
-set -x XDG_CONFIG_HOME "$HOME/.config"
-set -x XDG_CACHE_HOME "$HOME/.cache"
-set -x XDG_DATA_HOME "$HOME/.local/share"
+# set -x XDG_CONFIG_HOME "$HOME/.config"
+# set -x XDG_CACHE_HOME "$HOME/.cache"
+# set -x XDG_DATA_HOME "$HOME/.local/share"
 # set -x XDG_RUNTIME_DIR
+# set -x XDG_DATA_DIRS "$HOME/.local/share"
+# if [[ (uname) = 'Darwin' ]]; then]
+#   set -x XDG_DATA_DIRS "/Volumes/ext_SSD/.local/share:$XDG_DATA_DIRS"
+# fi
 
 set -x DOT_HOME "$HOME/dotfiles"
 set -x PATH $PATH "$DOT_HOME"/bin
@@ -67,6 +77,7 @@ if [ -f "$XDG_CONFIG_HOME"/private/.hubot_annict_token ];
 end
 
 if [ (uname) = 'Darwin' ];
+  set -x GROOVY_HOME /usr/local/opt/groovy/libexec
 
   # set homebrew github api token
   if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]
@@ -78,11 +89,15 @@ if [ (uname) = 'Darwin' ];
   set -x LIBZMQ_PATH (brew --prefix zeromq)/lib
   set -x LIBCZMQ_PATH (brew --prefix czmq)/lib
 
-  set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
-  set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
-
   if [ -d "/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin" ];
     set -x PATH "/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin" $PATH
+  end
+
+  # set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
+  set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
+
+  if [ -d "/usr/local/texlive/2020/bin/x86_64-darwin" ];
+    set -x PATH /usr/local/texlive/2020/bin/x86_64-darwin $PATH
   end
 end
 
@@ -115,15 +130,19 @@ end
 # global
 set -x GTAGSLABEL pygments
 
-# cargo
-if [ -d "$HOME"/.local/share/cargo/bin ];
-  set -x PATH "$HOME"/.local/share/cargo/bin $PATH
-end
-
 # set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
 
+# rust
+# cargo
 set -x CARGO_HOME "$XDG_DATA_HOME"/cargo
+if [ -d "$CARGO_HOME" ];
+  set -x PATH "$CARGO_HOME"/bin $PATH
+end
 
+set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
+set -x RUSTC_WRAPPER=$(which sccache)
+
+# ruby
 # set -x GEM_HOME "$XDG_DATA_HOME"/gem
 # set -x PATH "$GEM_HOME"/bin $PATH
 # set -x GEM_SPEC_CACHE "$XDG_CACHE_HOME"/gem
@@ -176,5 +195,11 @@ set -x PYTHON_EGG_CACHE "$XDG_CACHE_HOME"/python-eggs
 set -x PYLINTHOME "$XDG_CACHE_HOME"/pylint
 set -x INPUTRC "$XDG_CONFIG_HOME"/readline/inputrc
 set -x ANSIBLE_INVENTORY "$HOME"/ansible_hosts
-set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
-set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
+set -x ANSIBLE_CONFIG ~/.config/ansible/ansible.cfg
+# direnv setting
+eval (direnv hook fish)
+set -g fish_user_paths "/usr/local/opt/openjdk/bin" $fish_user_paths
+
+# Wasmer
+export WASMER_DIR="/Users/iMac/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
