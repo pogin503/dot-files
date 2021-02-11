@@ -4,4 +4,4 @@
     name: "{{ item.name }}"
     state: "{{ item.state }}"
     global: yes
-  with_items: "{{ nodejs_npm_global_packages }}"
+  loop: "{{ nodejs_npm_global_packages }}"
