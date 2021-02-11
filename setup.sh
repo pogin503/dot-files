@@ -14,26 +14,27 @@ if [ -e ~/.bashrc ]; then
   cp ~/.bashrc ~/".bashrc_orig_$(date '+%Y-%m-%dT%H:%M')"
 fi
 ln -sf "$DOT_DIR"/.bashrc              ~/.bashrc
-ln -sf "$DOT_DIR"/.gdbinit             ~/.gdbinit
-ln -sf "$DOT_DIR"/.ghci                ~/.ghci
-ln -sf "$DOT_DIR"/.guile               ~/.guile
 ln -sf "$DOT_DIR"/.tmux.conf           ~/.tmux.conf
 ln -sf "$DOT_DIR"/.vimrc               ~/.vimrc
 ln -sf "$DOT_DIR"/.zshrc               ~/.zshrc
 
-ln -sf "$DOT_DIR"/.rubocop.yml         "$XDG_CONFIG_HOME"/rubocop/.rubocop.yml
-ln -sf "$DOT_DIR"/.config/R/.Renviron  "$XDG_CONFIG_HOME"/R/.Renviron
-
 mkdir -p ~/.config/fish
 mkdir -p ~/.config/fish/functions
-ln -sf "$DOT_DIR"/.config/fish/aliases.fish               ~/.config/fish/aliases.fish
-ln -sf "$DOT_DIR"/.config/fish/config.fish                ~/.config/fish/config.fish
+ln -sf "$DOT_DIR"/.config/fish/aliases.fish ~/.config/fish/aliases.fish
+ln -sf "$DOT_DIR"/.config/fish/config.fish  ~/.config/fish/config.fish
 
 files=$(find "$DOT_DIR"/.config/fish/functions/ -type f -print0 | xargs -0 -n1 basename)
 
 for file in $files; do
   ln -sf "$DOT_DIR"/.config/fish/functions/"$file" ~/.config/fish/functions/"$file"
 done
+
+# languages
+ln -sf "$DOT_DIR"/.config/R/.Renviron  "$XDG_CONFIG_HOME"/R/.Renviron
+ln -sf "$DOT_DIR"/.gdbinit             ~/.gdbinit
+ln -sf "$DOT_DIR"/.ghci                ~/.ghci
+ln -sf "$DOT_DIR"/.guile               ~/.guile
+ln -sf "$DOT_DIR"/.rubocop.yml         "$XDG_CONFIG_HOME"/rubocop/.rubocop.yml
 
 mkdir -p ~/.config/git
 ln -sf "$DOT_DIR"/.config/git/.commit_template  ~/.config/git/.commit_template
