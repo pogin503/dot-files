@@ -60,6 +60,15 @@ git config --global core.excludesfile ~/.config/git/.gitignore_global
 git config --global commit.template   ~/.config/git/.commit_template
 git config --global core.quotepath false
 
+# ghq setting
+if [[ $(uname) = 'Darwin' ]]; then
+  git config --global ghq.root /Volumes/ext_SSD/repo
+else
+  :
+fi
+
+
+
 # "$DOT_DIR"/clojure/setup.sh
 # "$DOT_DIR"/rust/setup.sh
 # "$DOT_DIR"/ats2/setup.sh
