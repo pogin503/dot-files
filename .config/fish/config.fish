@@ -140,7 +140,7 @@ if [ -d "$CARGO_HOME" ];
 end
 
 set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
-set -x RUSTC_WRAPPER=$(which sccache)
+set -x RUSTC_WRAPPER (which sccache)
 
 # ruby
 # set -x GEM_HOME "$XDG_DATA_HOME"/gem

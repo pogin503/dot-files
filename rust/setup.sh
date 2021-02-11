@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-set -eu
-# set -x
+set -u
 
-curl https://sh.rustup.rs -sSf | sh -s -- -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# completion, difinition jump
-cargo install racer
+# lsp
+rustup component add rls rust-analysis rust-src
 
-# code formatter
-cargo install rustfmt
+# rust-analyzer
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux \
+     -o ~/.local/bin/rust-analyzer
