@@ -29,6 +29,8 @@ for file in $files; do
   ln -sf "$DOT_DIR"/.config/fish/functions/"$file" ~/.config/fish/functions/"$file"
 done
 
+ln -sf "$DOT_DIR"/.textlintrc  ~/.textlintrc
+
 # languages
 ln -sf "$DOT_DIR"/.config/R/.Renviron  "$XDG_CONFIG_HOME"/R/.Renviron
 ln -sf "$DOT_DIR"/.gdbinit             ~/.gdbinit
