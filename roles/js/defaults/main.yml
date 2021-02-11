@@ -27,7 +27,7 @@ nodejs_npm_global_packages:
   - { name: generator-hubot, state: present }
   # Find newer versions of package dependencies than what your package.json allows
   # https://www.npmjs.com/package/npm-check-updates
-  - { name: npm-check-update, state: present }
+  - { name: npm-check-updates, state: present }
   # 🏢 command line tool for blocking sites to be more productive
   # https://github.com/gorangajic/workmode
   - { name: workmode, state: present }
