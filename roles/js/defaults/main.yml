@@ -31,3 +31,14 @@ nodejs_npm_global_packages:
   # 🏢 command line tool for blocking sites to be more productive
   # https://github.com/gorangajic/workmode
   - { name: workmode, state: present }
+
+  # https://github.com/typicode/json-server
+  # Get a full fake REST API with zero coding in less than 30 seconds (seriously)
+  # Created with <3 for front-end developers who need a quick back-end for prototyping and mocking.
+  - { name: json-graphql-server, state: present }
+
+  # https://github.com/marmelab/json-graphql-server
+  # Get a full fake GraphQL API with zero coding in less than 30 seconds.
+  # Start playing with GraphQL right away with json-graphql-server, a testing and mocking tool for GraphQL. All it takes is a JSON of your data.
+  # Inspired by the excellent json-server.
+  - { name: json-graphql-server, state: present }
