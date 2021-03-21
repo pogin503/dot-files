@@ -55,3 +55,8 @@ python_packages:
   # Psycopg is the most popular PostgreSQL database adapter for the Python programming language.
   # https://pypi.org/project/psycopg2-binary/
   - { name: psycopg2-binary }
+  # Pipenv is a tool that aims to bring the best of all packaging
+  # worlds (bundler, composer, npm, cargo, yarn, etc.) to the Python
+  # world. Windows is a first-class citizen, in our world.
+  # https://github.com/pypa/pipenv
+  - { name: pipenv }

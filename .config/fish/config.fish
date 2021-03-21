@@ -98,10 +98,12 @@ if [ (uname) = 'Darwin' ];
   end
 end
 
+# PHP
 if [ -d "$HOME"/.composer/vendor/bin ];
   set -x PATH "$HOME"/.composer/vendor/bin $PATH
 end
 
+# OCaml
 # OPAM configuration
 if [ -f "$HOME"/.opam/opam-init/init.fish ];
   source "$HOME"/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
