@@ -8,11 +8,11 @@ else
   set -x LANG ja_JP.utf8
 end
 
-# load aliases
-. "$HOME"/.config/fish/aliases.fish
+# load aliasesﬁ
+. "$XDG_CONFIG_HOME"/fish/aliases.fish
 
 # load functions
-. "$HOME"/.config/fish/functions/functions.fish
+. "$XDG_CONFIG_HOME"/fish/functions/functions.fish
 
 # set -x XDG_RUNTIME_DIR
 # set -x XDG_DATA_DIRS "$HOME/.local/share"
@@ -65,8 +65,8 @@ if test -d "$HOME"/.pyenv
   end
 end
 
-if [ -f "$HOME"/.config/fish/GRAPHQL_TOKEN ];
-  set -x GITHUB_GRAPHQL_TOKEN (cat "$HOME"/.config/fish/GRAPHQL_TOKEN)
+if [ -f "$XDG_CONFIG_HOME"/fish/GRAPHQL_TOKEN ];
+  set -x GITHUB_GRAPHQL_TOKEN (cat "$XDG_CONFIG_HOME"/fish/GRAPHQL_TOKEN)
 end
 
 if [ -f "$XDG_CONFIG_HOME"/private/.hubot_annict_token ];
@@ -77,8 +77,8 @@ if [ (uname) = 'Darwin' ];
   set -x GROOVY_HOME /usr/local/opt/groovy/libexec
 
   # set homebrew github api token
-  if [ -f "$HOME"/.config/fish/.homebrew_github_api_token ]
-    source "$HOME"/.config/fish/.homebrew_github_api_token
+  if [ -f "$XDG_CONFIG_HOME"/fish/.homebrew_github_api_token ]
+    source "$XDG_CONFIG_HOME"/fish/.homebrew_github_api_token
   end
 
   set -x BROWSER "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
