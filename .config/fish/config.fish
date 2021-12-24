@@ -52,7 +52,8 @@ end
 
 if test -d "$HOME"/.pyenv
 
-  pyenv init - | source
+  status is-login; and pyenv init --path | source
+  status is-interactive; and pyenv init - | source
 
   set -l python_install_version anaconda3-5.3.1
   set -q _LOADED_CONDA_FISH; or set -x _LOADED_CONDA_FISH 0
