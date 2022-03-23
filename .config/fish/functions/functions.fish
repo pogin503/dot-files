@@ -1,12 +1,3 @@
-function sh_template
-	touch $argv[1]
-	echo "#!/usr/bin/env bash" >> $argv[1]
-	echo "set -x" >> $argv[1]
-	echo "set -u" >> $argv[1]
-	echo "set -e" >> $argv[1]
-  chmod 744 $argv[1]
-end
-
 # function kill_process
 #   set pid (pgrep $argv[1])
 #   if not (-z $pid "")
@@ -17,40 +8,6 @@ end
 #   end
 # end
 
-function ansible_check
-  # usage
-  # $ ansible_check ./locahost.yml
-  # $ ansible_check ./locahost.yml hosts
-  if [ (string length "$argv.length") = 0 ]
-    echo 'usage'
-    echo '  $ ansible_check ./locahost.yml'
-    echo '  $ ansible_check ./locahost.yml hosts'
-    exit
-  else if [ (string length "$argv.length") = 1 ]
-    ansible-playbook --syntax-check $argv[1]
-    and ansible-playbook --check $argv[1] --vault-password-file ~/.ansible/.vault_password
-    and ansible-lint $argv[1]
-  else
-    ansible-playbook --syntax-check $argv[1] -i $argv[2]
-    and ansible-playbook --check $argv[1] -i $argv[2] --vault-password-file ~/.ansible/.vault_password
-    and ansible-lint $argv[1]
-  end
-end
-
-function reload_tmux_conf
-  tmux source-file ~/.tmux.conf; tmux display-message "reload"
-end
-
-function dbash
-    # $1 -> container_id
-    command docker exec -it "$argv[1]" bash
-end
-
-function kbash
-    # $1 -> container_id
-    command kubectl exec -it "$argv[1]" bash
-end
-
 function homestead
     pushd ~/Homestead ;and vagrant $argv[1..-1]
     popd
@@ -58,25 +15,9 @@ end
 
 # ============================
 # emacs
-function magit
-    set repo $argv[1]
-    string length -q -- $repo; or set repo (pwd)
-    cd $repo ;and emacsclient --eval '(magit-status)'
-end
-
-function eshell
-    emacsclient --eval '(eshell)' --eval '(open-emacs-window)'
-end
-
 function info-in-emacs
     set node=$argv[1]
     emacsclient --eval "(shell/info \"$node\")" --eval '(open-emacs-window)'
-end
-
-function find-file
-    set repo $argv[1]
-    string length -q -- $file; or set file (pwd)
-    emacsclient --eval "(find-file \"$file\")" --eval '(open-emacs-window)'
 end
 
 function sample_default_value
