@@ -40,7 +40,7 @@ fi
 
 pushd "$DIR/roles" > /dev/null
 # ansible-galaxy init --init-path "$DIR"/roles/ "$1"
-molecule init role "$1"
+molecule init role pogin503."$1"
 popd > /dev/null
 
 # 実行するタスクを定義する
@@ -140,6 +140,7 @@ done
 cat > "$DIR"/roles/"$1"/meta/main.yml <<EOF
 galaxy_info:
   author: pogin503
+  namespace: pogin503
   description: your role description
   # company: your company (optional)
 
