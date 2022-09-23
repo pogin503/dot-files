@@ -10,12 +10,13 @@ my dotfiles
 
 # Usage
 
-local setting
-
 ```
 git clone https://github.com/pogin503/dot-files.git ~/dotfiles
 cd ~/dotfiles
+./setup.sh
 ```
+
+local setting
 
 ```
 echo "ansible_become_pass: password" > hosts/group_vars/local_group/vault
