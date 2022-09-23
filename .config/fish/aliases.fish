@@ -3,10 +3,11 @@ alias e='emacsclient -n'
 
 alias lr='ls -R'            # recursive ls
 alias ll='ls -l'
-alias la='ll -lAB'
+alias la='ll -AB'
 alias lx='ll -BX'           # sort by extension
 alias lz='ll -rS'           # sort by size
 alias lt='ll -rt'           # sort by date
+alias ltr='ll -rt'          # sort by date
 alias l1='ls -1'
 alias lm='la | more'
 alias ..='cd ..'
