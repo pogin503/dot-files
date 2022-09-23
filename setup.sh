@@ -2,10 +2,6 @@
 set -eu
 # set -x
 
-XDG_CONFIG_HOME="$HOME/.config"
-XDG_CACHE_HOME="$HOME/.cache"
-XDG_DATA_HOME="$HOME/.local/share"
-
 SCRIPT_DIR=$(dirname "$0")
 . "$SCRIPT_DIR"/etc/env.sh
 
@@ -18,29 +14,31 @@ ln -sf "$DOT_DIR"/.tmux.conf           ~/.tmux.conf
 ln -sf "$DOT_DIR"/.vimrc               ~/.vimrc
 ln -sf "$DOT_DIR"/.zshrc               ~/.zshrc
 
-mkdir -p ~/.config/fish
-mkdir -p ~/.config/fish/functions
-ln -sf "$DOT_DIR"/.config/fish/aliases.fish ~/.config/fish/aliases.fish
-ln -sf "$DOT_DIR"/.config/fish/config.fish  ~/.config/fish/config.fish
+mkdir -p "$XDG_CONFIG_HOME"/fish
+mkdir -p "$XDG_CONFIG_HOME"/fish/functions
+ln -sf "$DOT_DIR"/.config/fish/aliases.fish "$XDG_CONFIG_HOME"/fish/aliases.fish
+ln -sf "$DOT_DIR"/.config/fish/config.fish  "$XDG_CONFIG_HOME"/fish/config.fish
 
 files=$(find "$DOT_DIR"/.config/fish/functions/ -type f -print0 | xargs -0 -n1 basename)
 
 for file in $files; do
-  ln -sf "$DOT_DIR"/.config/fish/functions/"$file" ~/.config/fish/functions/"$file"
+  ln -sf "$DOT_DIR"/.config/fish/functions/"$file" "$XDG_CONFIG_HOME"/fish/functions/"$file"
 done
 
 ln -sf "$DOT_DIR"/.textlintrc  ~/.textlintrc
 
 # languages
+mkdir -p "$XDG_CONFIG_HOME"
+mkdir -p "$XDG_CONFIG_HOME"/rubocop
 ln -sf "$DOT_DIR"/.config/R/.Renviron  "$XDG_CONFIG_HOME"/R/.Renviron
 ln -sf "$DOT_DIR"/.gdbinit             ~/.gdbinit
 ln -sf "$DOT_DIR"/.ghci                ~/.ghci
 ln -sf "$DOT_DIR"/.guile               ~/.guile
 ln -sf "$DOT_DIR"/.rubocop.yml         "$XDG_CONFIG_HOME"/rubocop/.rubocop.yml
 
-mkdir -p ~/.config/git
-ln -sf "$DOT_DIR"/.config/git/.commit_template  ~/.config/git/.commit_template
-ln -sf "$DOT_DIR"/.config/git/.gitignore_global ~/.config/git/.gitignore_global
+mkdir -p "$XDG_CONFIG_HOME"/git
+ln -sf "$DOT_DIR"/.config/git/.commit_template  "$XDG_CONFIG_HOME"/git/.commit_template
+ln -sf "$DOT_DIR"/.config/git/.gitignore_global "$XDG_CONFIG_HOME"/git/.gitignore_global
 
 mkdir -p ~/.stack/
 ln -sf "$DOT_DIR"/.stack/config.yaml ~/.stack/config.yaml
@@ -55,9 +53,9 @@ git config --global alias.br 'branch'
 git config --global user.name  "pogin503"
 git config --global user.email "pogin503@gmail.com"
 
-git config --global core.excludesfile ~/.config/git/.gitignore_global
+git config --global core.excludesfile "$XDG_CONFIG_HOME"/git/.gitignore_global
 # git config --global core.editor emacsclient
-git config --global commit.template   ~/.config/git/.commit_template
+git config --global commit.template   "$XDG_CONFIG_HOME"/git/.commit_template
 git config --global core.quotepath false
 
 # ghq setting
@@ -66,7 +64,6 @@ if [[ $(uname) = 'Darwin' ]]; then
 else
   :
 fi
-
 
 
 # "$DOT_DIR"/clojure/setup.sh
