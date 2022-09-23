@@ -18,3 +18,9 @@ export smoothblue="\[\033[0;38;5;111m\]"
 export iceblue="\[\033[0;38;5;45m\]"
 export turqoise="\[\033[0;38;5;50m\]"
 export smoothgreen="\[\033[0;38;5;42m\]"
+
+export GOPATH=$HOME/.local/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
+
+
