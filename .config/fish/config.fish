@@ -21,33 +21,23 @@ end
 # fi
 
 set -x DOT_HOME "$HOME/dotfiles"
-set -x PATH $PATH "$DOT_HOME"/bin
+fish_add_path "$DOT_HOME"/bin
+
 
 # for rbenv
 if test -d "$HOME"/.rbenv
-  set -x PATH $HOME/.rbenv/bin $PATH
   status --is-interactive; and rbenv init - | source
 else
   echo 'can\'t load rbenv.'
-  echo 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv'
-  echo 'set -x PATH $HOME/.rbenv/bin $PATH'
-  echo 'echo \'status --is-interactive; and rbenv init - | source\' >> ~/.config/fish/config.fish'
 end
-
-if test -d "$HOME"/.cargo/bin
-  set -x PATH "$HOME"/.cargo/bin $PATH
-  # set -x CARGO_HOME "$XDG_DATA_HOME"/cargo
-end
-
 
 if test -d "$HOME"/.local/bin
   # for haskell-stack
   # set -x STACK_ROOT "$XDG_DATA_HOME"/stack
-  set -x PATH "$HOME"/.local/bin $PATH
+  fish_add_path "$HOME"/.local/bin
   # for golang
   mkdir -p "$HOME"/.local/go
-  set -x GOPATH "$HOME"/.local/go
-  set -x PATH "$GOPATH"/bin $PATH
+  fish_add_path "$GOBIN"
 end
 
 if test -d "$HOME"/.pyenv
@@ -59,7 +49,7 @@ if test -d "$HOME"/.pyenv
   set -q _LOADED_CONDA_FISH; or set -x _LOADED_CONDA_FISH 0
   if test -d "$PYENV_ROOT"/versions/"$python_install_version"/bin;and test $_LOADED_CONDA_FISH -eq 0
     set -x _LOADED_CONDA_FISH 1
-    set -x PATH $PATH "$PYENV_ROOT"/versions/"$python_install_version"/bin
+    fish_add_path "$PYENV_ROOT"/versions/"$python_install_version"/bin
     # enable "conda activate <env_name>"
     # enable "conda deactivate <env_name>"
     source (conda info --root)/etc/fish/conf.d/conda.fish
@@ -88,20 +78,20 @@ if [ (uname) = 'Darwin' ];
   set -x LIBCZMQ_PATH (brew --prefix czmq)/lib
 
   if [ -d "/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin" ];
-    set -x PATH "/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin" $PATH
+    fish_add_path "/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin"
   end
 
   # set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
-  set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
+  fish_add_path /usr/local/opt/gnu-sed/libexec/gnubin
 
   if [ -d "/usr/local/texlive/2020/bin/x86_64-darwin" ];
-    set -x PATH /usr/local/texlive/2020/bin/x86_64-darwin $PATH
+    fish_add_path /usr/local/texlive/2020/bin/x86_64-darwin
   end
 end
 
 # PHP
 if [ -d "$HOME"/.composer/vendor/bin ];
-  set -x PATH "$HOME"/.composer/vendor/bin $PATH
+  fish_add_path "$HOME"/.composer/vendor/bin
 end
 
 # OCaml
@@ -110,12 +100,7 @@ if [ -f "$HOME"/.opam/opam-init/init.fish ];
   source "$HOME"/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 end
 
-set -x NODE_REPL_HISTORY "$XDG_DATA_HOME"/node_repl_history
-set -x NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
-set -x NODENV_ROOT "$XDG_DATA_HOME"/nodenv
 # status --is-interactive; and source (nodenv init -|psub)
-
-set -x PATH "$HOME"/dotfiles/bin $PATH
 
 # peco
 function fish_user_key_bindings
@@ -134,9 +119,8 @@ set -x GTAGSLABEL pygments
 
 # rust
 # cargo
-set -x CARGO_HOME "$XDG_DATA_HOME"/cargo
 if [ -d "$CARGO_HOME" ];
-  set -x PATH "$CARGO_HOME"/bin $PATH
+  fish_add_path "$CARGO_HOME"/bin
 end
 
 set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
@@ -149,10 +133,10 @@ end
 
 mkdir -p "$XDG_CACHE_HOME"/less
 
+# set -g fish_user_paths "/usr/local/opt/openjdk/bin" $fish_user_paths
 
 # direnv setting
 eval (direnv hook fish)
-set -g fish_user_paths "/usr/local/opt/openjdk/bin" $fish_user_paths
 
 # Wasmer
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
