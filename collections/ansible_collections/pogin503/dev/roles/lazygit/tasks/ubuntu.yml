@@ -1,0 +1,11 @@
+---
+- name :
+  ansible.builtin.shell: curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/'
+  register: LAZYGIT_VERSION
+
+- name: Download and extract lazygit.tar.gz
+  ansible.builtin.unarchive:
+    src: 'https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ LAZYGIT_VERSION.stdout }}_Linux_x86_64.tar.gz'
+    dest: /usr/local/bin
+    remote_src: yes
+

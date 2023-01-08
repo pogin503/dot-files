@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: "Include pogin503.lazygit"
+      ansible.builtin.include_role:
+        name: "pogin503.lazygit"
