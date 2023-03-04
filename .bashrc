@@ -21,6 +21,14 @@ shopt -s histappend
 # shellcheck source=.aliases
 source ~/.aliases
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+if test -d "$HOME"/.local/bin; then
+  PATH=$PATH:"$HOME"/.local/bin
+fi
+
 if [ -f /usr/share/git-core/git-completion.bash ]; then
   # shellcheck disable=SC1091
   source /usr/share/git-core/git-completion.bash
@@ -37,10 +45,6 @@ eval "$(rbenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
 
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 

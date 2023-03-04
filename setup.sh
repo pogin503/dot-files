@@ -30,6 +30,7 @@ ln -sf "$DOT_DIR"/.textlintrc  ~/.textlintrc
 # languages
 mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_CONFIG_HOME"/rubocop
+mkdir -p "$XDG_CONFIG_HOME"/R
 ln -sf "$DOT_DIR"/.config/R/.Renviron  "$XDG_CONFIG_HOME"/R/.Renviron
 ln -sf "$DOT_DIR"/.gdbinit             ~/.gdbinit
 ln -sf "$DOT_DIR"/.ghci                ~/.ghci
