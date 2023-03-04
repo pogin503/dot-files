@@ -8,7 +8,7 @@ else
   set -x LANG ja_JP.utf8
 end
 
-# load aliasesﬁ
+# load aliases
 . "$XDG_CONFIG_HOME"/fish/aliases.fish
 
 # load functions
