@@ -35,6 +35,7 @@ ln -sf "$DOT_DIR"/.gdbinit             ~/.gdbinit
 ln -sf "$DOT_DIR"/.ghci                ~/.ghci
 ln -sf "$DOT_DIR"/.guile               ~/.guile
 ln -sf "$DOT_DIR"/.rubocop.yml         "$XDG_CONFIG_HOME"/rubocop/.rubocop.yml
+ln -sf "$DOT_DIR"/.ansible.cfg         ~/.ansible.cfg
 
 mkdir -p "$XDG_CONFIG_HOME"/git
 ln -sf "$DOT_DIR"/.config/git/.commit_template  "$XDG_CONFIG_HOME"/git/.commit_template
