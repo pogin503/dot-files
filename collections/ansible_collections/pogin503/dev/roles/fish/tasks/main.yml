@@ -1,0 +1,11 @@
+---
+# tasks file for fish
+
+- import_tasks: macOS.yml
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- import_tasks: ubuntu.yml
+  when: ansible_facts['distribution'] == 'Ubuntu'
+
+- import_tasks: centos.yml
+  when: ansible_facts['distribution'] == 'CentOS'

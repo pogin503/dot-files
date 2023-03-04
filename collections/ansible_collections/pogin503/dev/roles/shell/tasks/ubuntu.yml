@@ -38,3 +38,7 @@
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
+
+- name: install tig
+  import_role: 
+    name: ansible-role-tig

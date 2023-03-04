@@ -1,0 +1,5 @@
+---
+- name: fish install
+  ansible.builtin.dnf:
+    name: fish
+    state: present
