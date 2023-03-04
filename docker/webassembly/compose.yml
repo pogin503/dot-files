@@ -1,0 +1,18 @@
+version: "3"
+services:
+  webassembly:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-dev:webassembly
+    volumes:
+      - "webassembly:/root/"
+      - "dotfiles:/root/dotfiles"
+    tty: true
+    cap_add:
+      - NET_ADMIN
+
+volumes:
+  webassembly:
+  dotfiles:
+    external: true
