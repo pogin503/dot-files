@@ -5,10 +5,21 @@ set -eu
 usage() {
   cat <<EOF
 usage:
-    ./makerole.sh <role-name>
+    ./makerole.sh <namespace.collection> <role-name>
+example:
+    ./makerole.sh pogin503.dev fish
 EOF
   exit
 }
+
+if [ $# -lt 2 ]; then
+  usage
+fi
+
+if !(command -v molecule > /dev/null 2>&1); then
+  echo molecule not found
+  exit 1
+fi
 
 for OPT in "$@"
 do
@@ -21,26 +32,30 @@ do
       usage
       ;;
     *)
-      DIR=$(pwd)
   esac
 done
 
-if [ $# -lt 1 ]; then
-  usage
-fi
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+NAMESPACE_COLLECTION=$1
+shift
+ROLE=$1
+shift
+col_path=$("$SCRIPT_DIR"/get_collection_roles_path $NAMESPACE_COLLECTION)
+DIR="$col_path"/$(echo $NAMESPACE_COLLECTION | sed 's/\./\//')
 
 if [ ! -d "$DIR"/roles/ ]; then
   mkdir "$DIR"/roles/
 fi
 
-if [ -d "$DIR"/roles/"$1" ]; then
-  echo already exists "$DIR"/roles/"$1" &2
+if [ -d "$DIR"/roles/"$ROLE" ]; then
+  echo already exists "$DIR"/roles/"$ROLE" &2
   exit 1
 fi
 
 pushd "$DIR/roles" > /dev/null
-# ansible-galaxy init --init-path "$DIR"/roles/ "$1"
-molecule init role pogin503."$1"
+# ansible-galaxy init --init-path "$DIR"/roles/ "$ROLE"
+molecule init role "$ROLE" --driver-name docker
 popd > /dev/null
 
 # 実行するタスクを定義する
@@ -57,7 +72,7 @@ popd > /dev/null
 # handlers/main.yml
 
 # tests/inventory
-# cat > "$DIR"/roles/"$1"/tests/inventory <<EOF
+# cat > "$DIR"/roles/"$ROLE"/tests/inventory <<EOF
 # ---
 # all:
 #   hosts:
@@ -68,18 +83,18 @@ popd > /dev/null
 
 # テスト用のタスクを定義する
 # tests/main.yml
-# cat > "$DIR"/roles/"$1"/tests/test.yml <<EOF
+# cat > "$DIR"/roles/"$ROLE"/tests/test.yml <<EOF
 # ---
 # - hosts: localhost
 #   # remote_user: root
 #   connection: local
 #   roles:
-#     - $1
+#     - $ROLE
 # EOF
 
-cat > "$DIR"/roles/"$1"/tasks/main.yml <<EOF
+cat > "$DIR"/roles/"$ROLE"/tasks/main.yml <<EOF
 ---
-# tasks file for $1
+# tasks file for $ROLE
 
 - import_tasks: macOS.yml
   when: ansible_facts['os_family'] == 'Darwin'
@@ -93,7 +108,7 @@ EOF
 
 for target in macOS ubuntu centos
 do
-  cat > "$DIR"/roles/"$1"/tasks/"$target".yml <<EOF
+  cat > "$DIR"/roles/"$ROLE"/tasks/"$target".yml <<EOF
 ---
 EOF
 done
@@ -101,12 +116,12 @@ done
 # Roleの依存関係を記述するファイル
 # meta/main.yml
 
-# rm "$DIR"/roles/"$1"/README.md
-# ROLE_NAME=$1
+# rm "$DIR"/roles/"$ROLE"/README.md
+# ROLE_NAME=$ROLE
 # ROLE_SEPARATOR=$(ruby -e "puts '='*${#ROLE_NAME}")
 
-# cat > "$DIR"/roles/"$1"/README.md <<EOF
-# $1
+# cat > "$DIR"/roles/"$ROLE"/README.md <<EOF
+# $ROLE
 # ${ROLE_SEPARATOR}
 
 # Requirements
@@ -121,11 +136,11 @@ done
 # \`\`\`
 #     - hosts: servers
 #       roles:
-#          - { role: username.$1, x: 42 }
+#          - { role: username.$ROLE, x: 42 }
 # \`\`\`
 
 # \`\`\`
-# ansible-playbook -i $1/tests/inventory $1/tests/test.yml
+# ansible-playbook -i $ROLE/tests/inventory $ROLE/tests/test.yml
 # \`\`\`
 
 # Usage
@@ -137,7 +152,7 @@ done
 # MIT
 # EOF
 
-cat > "$DIR"/roles/"$1"/meta/main.yml <<EOF
+cat > "$DIR"/roles/"$ROLE"/meta/main.yml <<EOF
 galaxy_info:
   author: pogin503
   namespace: pogin503

@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+import argparse
+import subprocess
+
+p = argparse.ArgumentParser(
+     formatter_class=argparse.RawDescriptionHelpFormatter,
+     description="""
+"""
+)
+
+p.add_argument("collection")
+args = p.parse_args()
+output = subprocess.run("ansible-galaxy collection list " + args.collection, shell=True, capture_output=True)
+lines = output.stdout.strip().decode().split("\n")
+collection_path = lines[0].replace("# ", "")
+print(collection_path)
