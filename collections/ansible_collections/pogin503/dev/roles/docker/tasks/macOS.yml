@@ -1,0 +1,10 @@
+---
+- block:
+  - name: add docker completion for fish
+    get_url:
+      url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/fish/docker.fish
+      dest: ~/.config/fish/completions/docker.fish
+  - name: add docker completion for bash
+    get_url:
+      url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker
+      dest: ~/.config/bash/completions/docker.fish
