@@ -12,44 +12,75 @@ EOF
   exit
 }
 
-if [ $# -lt 2 ]; then
-  usage
-fi
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 if !(command -v molecule > /dev/null 2>&1); then
   echo molecule not found
   exit 1
 fi
 
-for OPT in "$@"
-do
-  case "$OPT" in
-    # '-d'|'--dest' )
-    #   shift 1
-    #   DIR="$@"
-    #   ;;
-    h|help)
-      usage
-      ;;
-    *)
-  esac
-done
+msg() {
+  echo >&2 -e "${1-}"
+}
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+die() {
+  local msg=$1
+  local code=${2-1} # default exit status 1
+  msg "$msg"
+  exit "$code"
+}
 
-NAMESPACE_COLLECTION=$1
-shift
-ROLE=$1
-shift
+parse_params() {
+  while :; do
+    case "${1-}" in
+    -h | --help) usage ;;
+    -v | --verbose)
+      set -x
+      shift;;
+    -?*) die "Unknown option: $1" ;;
+    *) break ;;
+    esac
+  done
+
+  args=("$@")
+
+  # check required params and arguments
+  if [[ ${#args[@]} -ne 2 ]]; then
+    usage
+  fi
+
+  NAMESPACE_COLLECTION=$1
+  shift
+  ROLE=$1
+  shift
+
+  return 0
+}
+
+parse_params "$@"
+
+col_error() {
+  echo namespace.collection: "$NAMESPACE_COLLECTION" >&2
+  echo role: "$ROLE" >&2
+  exit 1
+}
+
+trap col_error ERR
+
 col_path=$("$SCRIPT_DIR"/get_collection_roles_path $NAMESPACE_COLLECTION)
 DIR="$col_path"/$(echo $NAMESPACE_COLLECTION | sed 's/\./\//')
+
+if [ ! -d "$DIR" ]; then
+  echo "$DIR": No such collection >&2
+  col_error
+fi
 
 if [ ! -d "$DIR"/roles/ ]; then
   mkdir "$DIR"/roles/
 fi
 
 if [ -d "$DIR"/roles/"$ROLE" ]; then
-  echo already exists "$DIR"/roles/"$ROLE" &2
+  echo already exists "$DIR"/roles/"$ROLE" >&2
   exit 1
 fi
 

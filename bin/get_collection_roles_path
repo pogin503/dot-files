@@ -1,16 +1,47 @@
 #!/usr/bin/env python3
 import argparse
+import logging
 import subprocess
+import sys
+
+def set_logger(name=None):
+    logging.basicConfig(level=logging.DEBUG, format='%(levelname)s: %(message)s')
+    logging.disable(logging.CRITICAL)
+
+    # INFO以下のログを標準出力する
+    stdout_handler = logging.StreamHandler(stream=sys.stderr)
+    stdout_handler.setLevel(logging.DEBUG)
+    stdout_handler.addFilter(lambda record: record.levelno <= logging.INFO)
+
+    # WARNING以上のログを標準エラー出力する
+    stderr_handler = logging.StreamHandler(stream=sys.stderr)
+    stderr_handler.setLevel(logging.WARNING)
+
+    # ロガーにハンドラを設定する
+    logger = logging.getLogger(name)
+    # logger.setLevel(logging.DEBUG)
+    logger.addHandler(stdout_handler)
+    logger.addHandler(stderr_handler)
 
 p = argparse.ArgumentParser(
      formatter_class=argparse.RawDescriptionHelpFormatter,
      description="""
 """
 )
-
+set_logger(__name__)
+logger = logging.getLogger()
 p.add_argument("collection")
 args = p.parse_args()
 output = subprocess.run("ansible-galaxy collection list " + args.collection, shell=True, capture_output=True)
+
+if not output.returncode == 0:
+    sys.exit(output.stderr.decode().strip())
+
+if not len(output.stderr) == 0:
+    logger.debug("stdout: " + output.stdout.decode())
+    sys.exit(output.stderr.decode().strip())
+
 lines = output.stdout.strip().decode().split("\n")
 collection_path = lines[0].replace("# ", "")
+
 print(collection_path)
