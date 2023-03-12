@@ -1,0 +1,9 @@
+---
+- name: Tap a Homebrew repository, state present
+  community.general.homebrew_tap:
+    name: jesseduffield/lazydocker/lazydocker
+    state: present
+
+- community.general.homebrew:
+    name: lazydocker
+    state: present

@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include lazydocker"
+      include_role:
+        name: "lazydocker"
