@@ -1,5 +1,11 @@
+roles:
 - src: geerlingguy.nodejs
 - src: geerlingguy.mysql
+- src: geerlingguy.pip
+- src: geerlingguy.docker
 - src: geerlingguy.homebrew
 - src: zzet.rbenv
 - src: aeimer.install_bat
+collections:
+- name: community.docker
+- name: community.general
