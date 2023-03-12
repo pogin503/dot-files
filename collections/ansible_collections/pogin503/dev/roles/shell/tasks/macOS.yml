@@ -5,9 +5,3 @@
     state: present
   with_items: "{{ macos_homebrew_packages }}"
   tags: brew-install
-
-- block:
-    - name: install global
-      homebrew:
-        name: global
-        install_options: with-exuberant-ctags,with-pygments

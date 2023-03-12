@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include gnu-global"
+      include_role:
+        name: "gnu-global"

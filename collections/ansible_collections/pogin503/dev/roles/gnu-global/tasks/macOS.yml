@@ -1,0 +1,5 @@
+---
+- name: install global
+  homebrew:
+    name: global
+    install_options: with-exuberant-ctags,with-pygments
