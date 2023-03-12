@@ -115,3 +115,6 @@ group_vars/all
 *.retry
 .vagrant/
 hosts/group_vars/**/vault
+
+# ansible collections
+collections/ansible_collections/community*
