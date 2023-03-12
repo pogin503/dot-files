@@ -1,19 +1,9 @@
 ---
-- name: Add Docker GPG apt Key
-  become: true
-  apt_key:
-    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
-    state: present
+- name:
+  import_role:
+    name: geerlingguy.pip
 
-- name: Add Docker Repository
-  become: true
-  apt_repository:
-    repo: "deb https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
-    state: present
+- name:
+  import_role:
+    name: geerlingguy.docker
 
-- name: Install docker
-  become: true
-  apt:
-    update_cache: true
-    name: "docker-ce"
-    state: present
