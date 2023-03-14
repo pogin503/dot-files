@@ -5,9 +5,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # secrets:
-    #   -
-    image: ubuntu:18.04
+    volumes:
+      - "dotfiles:/root/dotfiles"
+    # image: ubuntu:22.04
     tty: true
     cap_add:
       - NET_ADMIN
+    privileged: true
+    command: /sbin/init
+
+volumes:
+  dotfiles:
+    external: true
