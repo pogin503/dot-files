@@ -11,6 +11,8 @@ services:
     tty: true
     cap_add:
       - NET_ADMIN
+    privileged: true
+    command: /sbin/init
 
 volumes:
   webassembly:
