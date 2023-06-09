@@ -59,6 +59,7 @@ git config --global core.excludesfile "$XDG_CONFIG_HOME"/git/.gitignore_global
 # git config --global core.editor emacsclient
 git config --global commit.template   "$XDG_CONFIG_HOME"/git/.commit_template
 git config --global core.quotepath false
+git config --global core.autocrlf input
 
 # ghq setting
 if [[ $(uname) = 'Darwin' ]]; then
