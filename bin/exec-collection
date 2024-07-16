@@ -13,7 +13,22 @@ Examples:
 HELP
   exit
 }
-if [[ $# -lt 3 ]]; then
+
+while :; do
+  case "${1-}" in
+  -h | --help) usage ;;
+  -v | --verbose)
+    set -x
+    shift;;
+  # -?*) die "Unknown option: $1" ;;
+  *) break ;;
+  esac
+done
+
+args=("$@")
+
+# check required params and arguments
+if [[ ${#args[@]} -lt 3 ]]; then
   usage
 fi
 
@@ -36,12 +51,11 @@ export ANSIBLE_RETRY_FILES_ENABLED="False"
 YAML_DATA=$(cat << END
 ---
 - hosts: $HOST_PATTERN
-  collections:
-    ${NAMESPACE_COLLECTION}
   pre_tasks:
     - debug: msg={{ ansible_env.PWD }}
   roles:
-    - $ROLE
+    - ${NAMESPACE_COLLECTION}.${ROLE}
+
 END
 )
 
