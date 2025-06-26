@@ -5,6 +5,10 @@ local_group:
       homebrew_cellar: "{{ lookup('pipe','echo `brew --cellar`') }}"
     ubuntu:
     webassembly:
+    local:
+      ansible_connection: local
+      ansible_host: localhost
+      ansible_python_interpreter: '{{ ansible_playbook_python }}'
   vars:
     ansible_python_interpreter: "/usr/bin/env python"
     ansible_connection: local
