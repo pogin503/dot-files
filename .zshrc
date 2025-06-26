@@ -96,3 +96,14 @@ fi
 if [ -d "$HOME"/.composer/vendor/bin ]; then
    export PATH="$HOME"/.composer/vendor/bin:${PATH}
 fi
+
+# golang
+export PATH=$PATH:/usr/local/go/bin
+
+eval $(opam env)
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+. "$HOME/.local/share/../bin/env"

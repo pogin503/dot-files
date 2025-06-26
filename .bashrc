@@ -116,3 +116,38 @@ fi
 # WebAssembly
 export WASMER_DIR="$HOME/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+# golang
+export PATH=$PATH:/usr/local/go/bin
+
+eval $(opam env)
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/pogin503/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/pogin503/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/home/pogin503/mambaforge/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/pogin503/mambaforge/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "/home/pogin503/mambaforge/etc/profile.d/mamba.sh" ]; then
+    . "/home/pogin503/mambaforge/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
+
+[ -f "/home/pogin503/.local/share/ghcup/env" ] && source "/home/pogin503/.local/share/ghcup/env" # ghcup-env
+
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
+
+. "$HOME/.local/share/../bin/env"
+. "/home/pogin503/.deno/env"

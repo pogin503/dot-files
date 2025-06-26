@@ -11,6 +11,8 @@ set number
 set ignorecase
 set smartcase
 
+set hlsearch
+
 " オートインデント
 set autoindent
 
@@ -20,9 +22,18 @@ set confirm
 
 " Enable use of the mouse for all modes
 " 全モードでマウスを有効化
-set mouse=a
+" set mouse=a
 
 " エンコーディング
-set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
 set fileformats=unix,dos,mac
+
+" TABキーを押した際にタブ文字の代わりにスペースを入れる
+set expandtab
+" 画面上のタブ文字の幅
+set tabstop=4
+" 自動インデントでずれる幅
+set shiftwidth=4
+
+" set clipboard&
+" set clipboard^=unnamedplus

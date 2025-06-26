@@ -82,3 +82,5 @@ set -Ux GOBIN "$GOPATH"/bin
 # node, npm
 set -Ux NODE_REPL_HISTORY "$XDG_DATA_HOME"/node_repl_history
 set -Ux NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
+
+set -Ua fish_user_paths "$HOME/.rye/shims"
