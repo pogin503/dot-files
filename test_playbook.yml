@@ -1,0 +1,5 @@
+- name: Execute role from pogin503.dev collection on localhost
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - pogin503.dev.lazygit
