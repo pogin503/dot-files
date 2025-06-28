@@ -10,7 +10,6 @@ if [ -e ~/.bashrc ]; then
   cp ~/.bashrc ~/".bashrc_orig_$(date '+%Y-%m-%dT%H:%M')"
 fi
 ln -sf "$DOT_DIR"/.bashrc              ~/.bashrc
-ln -sf "$DOT_DIR"/.tmux.conf           ~/.tmux.conf
 ln -sf "$DOT_DIR"/.vimrc               ~/.vimrc
 ln -sf "$DOT_DIR"/.zshrc               ~/.zshrc
 
@@ -24,6 +23,10 @@ files=$(find "$DOT_DIR"/.config/fish/functions/ -type f -print0 | xargs -0 -n1 b
 for file in $files; do
   ln -sf "$DOT_DIR"/.config/fish/functions/"$file" "$XDG_CONFIG_HOME"/fish/functions/"$file"
 done
+
+mkdir -p "$XDG_CONFIG_HOME"/tmux
+ln -sf "$DOT_DIR"/.config/tmux/tmux.conf        "$XDG_CONFIG_HOME"/tmux/tmux.conf
+ln -sf "$DOT_DIR"/.config/tmux/keybindings.conf "$XDG_CONFIG_HOME"/tmux/keybindings.conf
 
 ln -sf "$DOT_DIR"/.textlintrc  ~/.textlintrc
 
